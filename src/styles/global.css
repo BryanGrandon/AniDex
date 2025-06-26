@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@font-face {
+  font-family: 'Basicaline';
+  src: url('/fonts/Basicaline.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary: #ff7129;
+  --color-secondary: #030726;
+  --color-secondary-t: #0307266e;
+  --color-background-dark: #202020;
+  --color-background-light: #e5e7eb;
+  --font-basicaline: 'Basicaline', sans-serif;
+}
+
+@layer {
+  .bg-light-dark {
+    @apply bg-background-light dark:bg-background-dark;
+  }
+
+  .overlay {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #000000a9;
+      color: #0307266e;
+    }
+  }
+
+  .glassmorphism {
+    background: rgba(0, 0, 0, 0.096);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(0.2rem);
+    -webkit-backdrop-filter: blur(0.2rem);
+    border: 1px solid rgba(0, 0, 0, 0.082);
+    @media (prefers-color-scheme: dark) {
+      border: 1px solid rgba(255, 255, 255, 0.082);
+    }
+  }
+
+  .test {
+    border: 1px solid #f00;
+  }
+}
