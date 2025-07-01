@@ -1,10 +1,16 @@
 ---
 import Header from '../components/layout/Header.astro'
+import Greeting from '../components/layout/ViewCards'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
   <Header />
+  <article class='test'>
+    <!-- <Greeting client:only='react' /> -->
+    <Greeting client:load />
+  </article>
+
   <main>
     <article>
       <p>filter</p>
