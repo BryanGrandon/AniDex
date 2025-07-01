@@ -1,0 +1,14 @@
+{
+    "header": {
+        "title": "AniDex",
+        "description": "All the information you are looking for about anime, in one place. Synopsis, dates, studios, characters and more, always updated and organized for you to discover and explore your passion for anime, easily and quickly.",
+        "logo": {
+            "text": "API",
+            "href": "#"
+        },
+        "button": {
+            "text": "Github",
+            "href": "#"
+        }
+    }
+}
