@@ -45,10 +45,6 @@ body {
   display: grid;
   min-height: 100dvh;
   grid-template-rows: auto 1fr auto;
-}
-
-h1 {
-  /* font-family: 'Courier New', Courier, monospace; */
   font-family: 'JetBrains Mono Variable', monospace;
 }
 
