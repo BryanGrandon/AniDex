@@ -6,22 +6,63 @@ import Layout from '../layouts/Layout.astro'
 
 <Layout>
   <Header />
-  <article class='test'>
-    <Greeting client:load />
+
+  <article id='content' class=''>
+    <h2>Summer 2021 anime</h2>
   </article>
 
-  <main>
-    <article>
-      <p>filter</p>
+  <main class=''>
+    <article class='bg-blue-700 p-4'>
+      <h2>Latest Updated Episode Videos</h2>
+      <!-- watch api -->
     </article>
-    <article>
-      <p>info card</p>
-      <p>info card</p>
-      <p>info card</p>
+
+    <article class='bg-blue-700 p-4'>
+      <h2>Top Upcoming Anime</h2>
+    </article>
+
+    <article class='bg-blue-700 p-4'>
+      <h2>Recommendations</h2>
     </article>
   </main>
-  <footer>
+
+  <aside class=''>
+    <h2>Top Airing Anime</h2>
+    <h2>Bypopularity anime</h2>
+    <h2>Bypopularity Manga</h2>
+  </aside>
+  <footer class=''>
     <p>Copyright</p>
     <p>ETC... ?</p>
   </footer>
 </Layout>
+
+<style>
+  header {
+    grid-area: header;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  aside {
+    grid-area: aside;
+    background-color: green;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  main {
+    grid-area: main;
+    padding: 1rem;
+    background-color: blueviolet;
+  }
+  footer {
+    grid-area: footer;
+    padding: 1rem;
+    background-color: cadetblue;
+    border-top: 1px solid #dee2e6;
+  }
+  #content {
+    grid-area: content;
+    padding: 1rem;
+    background-color: coral;
+  }
+</style>

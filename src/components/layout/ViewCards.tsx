@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 import { getCharacters } from '../../services/getInfoApi'
-import { GENRES } from '../../services/constants/api'
+import { TYPES_OF_GENRES } from '../../services/constants/api'
 
 const Greeting = () => {
   const [data, setData] = useState<any>([])
@@ -14,7 +14,7 @@ const Greeting = () => {
       console.error('Error fetching data')
     }
   }
-  console.log(GENRES)
+  console.log(TYPES_OF_GENRES)
 
   useEffect(() => {
     getAnime()
