@@ -7,8 +7,10 @@ const URL_API = 'https://api.jikan.moe/v4'
 const URL_CHARACTERS = `${URL_API}/characters`
 const URL_MANGA = `${URL_API}/manga`
 const URL_ANIME = `${URL_API}/anime`
+const URL_SEASONS = `${URL_API}/seasons`
+const URL_TOP = `${URL_API}/top`
 
-export { URL_CHARACTERS, URL_MANGA, URL_ANIME }
+export { URL_CHARACTERS, URL_MANGA, URL_ANIME, URL_SEASONS, URL_TOP }
 
 // External API URLs
 // const URL_MAL = 'https://myanimelist-api1.p.rapidapi.com/anime/genres'
