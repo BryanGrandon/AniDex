@@ -16,7 +16,7 @@ const Seasons = () => {
     <article>
       <h1>Seasons sss </h1>
       <Swiper
-        spaceBetween={30}
+        spaceBetween={20}
         slidesPerView={1}
         breakpoints={{
           640: {
@@ -40,11 +40,11 @@ const Seasons = () => {
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
         modules={[Pagination, Autoplay]}
-        className='p-8 rounded-lg shadow-lg'
+        className='test  w-full h-100'
       >
         {$season_now.data.map((season) => (
           <SwiperSlide>
-            <DefaultCard id={season.mal_id} img={season.images.webp.large_image_url} title={season.title} episodes={season.episodes} status={season.status} />
+            <DefaultCard id={season.mal_id} img={season.images.webp.large_image_url} title={season.title} episodes={season.episodes} />
           </SwiperSlide>
         ))}
       </Swiper>

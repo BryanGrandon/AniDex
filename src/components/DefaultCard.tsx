@@ -3,16 +3,14 @@ interface Default_Card {
   img: string
   title: string
   episodes: number
-  status: string
 }
 
-const DefaultCard = ({ img, title, episodes, status }: Default_Card) => {
+const DefaultCard = ({ img, title, episodes }: Default_Card) => {
   return (
-    <a class='p-4 border rounded shadow inline-block h-90 w-68'>
-      <img src={img} alt={`img-${title}`} class='w-full h-60  mb-2 rounded' />
-      <h2 class='text-xl font-bold'>{title}</h2>
-      <p class='text-gray-600'>Episodes: {episodes}</p>
-      <p class='text-gray-600'>Status: {status}</p>
+    <a class='block min-h-85 w-58 relative'>
+      <img src={img} alt={`img-${title}`} class='w-full max-h-68 rounded' />
+      <p class='text-gray-200 absolute top-3 right-0  px-2 bg-gray-900 rounded-l-xl '>Episodes: {episodes}</p>
+      <h3 class=' bottom-2 left-0 text-gray-650 text-lg p-2'>{title}</h3>
     </a>
   )
 }
