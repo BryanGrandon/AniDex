@@ -1,15 +1,16 @@
 ---
+import DefaultCard from '../components/DefaultCard'
 import Header from '../components/layout/Header.astro'
-import Seasons from '../components/layout/Seasons'
+import Slider from '../components/layout/Slider'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
   <Header />
 
-  <article id='content' class=''>
+  <article id='slider' class=''>
     <h2>Summer 2021 anime</h2>
-    <Seasons />
+    <Slider client:load />
   </article>
 
   <main class=''>
@@ -61,7 +62,7 @@ import Layout from '../layouts/Layout.astro'
     background-color: cadetblue;
     border-top: 1px solid #dee2e6;
   }
-  #content {
+  #slider {
     grid-area: content;
     padding: 1rem;
     background-color: coral;
