@@ -15,6 +15,7 @@
     "astro": "^5.10.1",
     "nanostores": "^1.0.1",
     "preact": "^10.26.9",
+    "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
