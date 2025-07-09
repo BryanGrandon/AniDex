@@ -1,29 +1,19 @@
 ---
 import data from '../../data.json' assert { type: 'json' }
-const { title, logo, description, button } = data.header
+import Navbar from '../Navbar'
+const { title, description } = data.header
+
+type Props = {
+  structureId: string
+}
+
+const { structureId } = Astro.props
 ---
 
-<header class='p-4 flex flex-col gap-4'>
-  <nav class='flex justify-between items-center text-white'>
-    <a href={logo.href}>{logo.text}</a>
-    <a href={button.href}>{button.text}</a>
-  </nav>
+<header id={structureId} class='p-4 flex flex-col gap-4'>
+  <Navbar client:visible />
   <section class='flex flex-col items-center justify-center gap-4'>
     <h1 class='font-basicaline text-5xl'>{title}</h1>
     <p class='prose prose-lg dark:prose-invert'>{description}</p>
   </section>
-  <section class='flex flex-wrap justify-evenly gap-4 text-lg'>
-    <p>anime</p>
-    <p>manga</p>
-    <p>seasons</p>
-    <p>producers</p>
-    <p>characters</p>
-  </section>
 </header>
-
-<style>
-  header {
-    grid-area: header;
-    background: seagreen;
-  }
-</style>

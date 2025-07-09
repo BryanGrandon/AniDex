@@ -1,12 +1,11 @@
 ---
-import DefaultCard from '../components/DefaultCard'
 import Header from '../components/layout/Header.astro'
 import Slider from '../components/layout/Slider'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
-  <Header />
+  <Header structureId='header' />
 
   <article id='slider' class=''>
     <Slider client:only />
@@ -61,6 +60,7 @@ import Layout from '../layouts/Layout.astro'
     background-color: cadetblue;
     border-top: 1px solid #dee2e6;
   }
+
   #slider {
     grid-area: content;
   }

@@ -6,9 +6,27 @@
             "text": "API",
             "href": "#"
         },
-        "button": {
-            "text": "Github",
-            "href": "#"
-        }
+        "links": [
+            {
+                "title": "Anime",
+                "href": "#"
+            },
+            {
+                "title": "Manga",
+                "href": "#"
+            },
+            {
+                "title": "Seasons",
+                "href": "#"
+            },
+            {
+                "title": "Producers",
+                "href": "#"
+            },
+            {
+                "title": "Characters",
+                "href": "#"
+            }
+        ]
     }
 }
