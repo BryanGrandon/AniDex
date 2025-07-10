@@ -1,0 +1,21 @@
+.d-none {
+  display: none;
+}
+.navbar {
+  display: none;
+}
+.navbar__button {
+  display: flex;
+}
+
+@media screen and (min-width: 650px) {
+  .navbar {
+    display: flex;
+  }
+  .navbar__button {
+    display: none;
+  }
+  .navbar__list {
+    display: none;
+  }
+}

@@ -1,0 +1,50 @@
+.container__icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  top: 0;
+  bottom: 0;
+}
+
+.barsToCloseIcon {
+  width: 1.5rem;
+  height: 0.15rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  transition: 0.2s ease-in;
+}
+.barsToCloseIcon::after,
+.barsToCloseIcon::before {
+  content: '';
+  width: 1.5rem;
+  height: 0.15rem;
+  position: absolute;
+  background: white;
+  box-shadow: 0 0 10px #222;
+  transition: 0.3s ease-in;
+}
+.barsToCloseIcon::after {
+  top: 10px;
+}
+.barsToCloseIcon::before {
+  top: -10px;
+}
+.start-animation-icon .barsToCloseIcon {
+  background: transparent;
+  box-shadow: none;
+}
+.start-animation-icon .barsToCloseIcon {
+  background: transparent;
+  box-shadow: none;
+}
+.start-animation-icon .barsToCloseIcon::after {
+  top: 0;
+  transform: rotate(45deg);
+}
+.start-animation-icon .barsToCloseIcon::before {
+  top: 0;
+  transform: rotate(135deg);
+}
