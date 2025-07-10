@@ -9,8 +9,12 @@ const URL_MANGA = `${URL_API}/manga`
 const URL_ANIME = `${URL_API}/anime`
 const URL_SEASONS = `${URL_API}/seasons`
 const URL_TOP = `${URL_API}/top`
+const URL_WATCH = `${URL_API}/watch`
 
-export { URL_CHARACTERS, URL_MANGA, URL_ANIME, URL_SEASONS, URL_TOP }
+// Latest Episodes Updates
+const URL_LEU = `${URL_API}/watch/episodes`
+
+export { URL_CHARACTERS, URL_MANGA, URL_ANIME, URL_SEASONS, URL_TOP, URL_LEU }
 
 // External API URLs
 // const URL_MAL = 'https://myanimelist-api1.p.rapidapi.com/anime/genres'

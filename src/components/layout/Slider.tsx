@@ -2,7 +2,7 @@ import { useStore } from '@nanostores/preact'
 import { seasons_now } from '../../services/storage/general-store'
 import type { Seasons_now } from '../../services/api/interfaces'
 import DefaultCard from '../DefaultCard'
-// Test
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -16,7 +16,7 @@ const Seasons = () => {
   return (
     <article class='p-4'>
       <h2 class='font-basicaline text-2xl py-5'>
-        Seasons Now: <span class='capitalize text-primary'>{$season_now.data[0].season}</span>
+        Current seasons: <span class='capitalize text-primary'>{$season_now.data[0].season}</span>
       </h2>
       <Swiper
         spaceBetween={20}
