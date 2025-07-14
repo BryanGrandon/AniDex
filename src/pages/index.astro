@@ -1,15 +1,16 @@
 ---
+import Header from '../components/content/index/layout/Header.astro'
 import LatestEpisodesUpdates from '../components/content/index/layout/LatestEpisodesUpdates'
-import Header from '../components/layout/Header.astro'
-import Slider from '../components/layout/Slider'
+
 import Layout from '../layouts/Layout.astro'
+import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeasonSwiper'
 ---
 
 <Layout>
   <Header structureId='header' />
 
   <article id='slider' class=''>
-    <Slider client:only />
+    <CurrentSeasonSwiper client:only />
   </article>
 
   <main class=''>
