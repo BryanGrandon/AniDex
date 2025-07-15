@@ -1,9 +1,9 @@
 ---
 import Header from '../components/content/index/Header.astro'
-
 import Layout from '../layouts/Layout.astro'
 import CurrentSeasonSwiper from '../components/content/index/CurrentSeasonSwiper'
 import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
+import TopUpcomingAnimeSwiper from '../components/content/index/TopUpcomingAnimeSwiper'
 ---
 
 <Layout>
@@ -19,13 +19,14 @@ import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpiso
       <LatestEpisodesUpdatesSwiper client:only />
     </article>
 
+    <article class='test'>
+      <h2>Top Upcoming Anime</h2>
+      <TopUpcomingAnimeSwiper client:only />
+    </article>
+
     <!-- watch api -->
 
     <!-- <article class='bg-blue-700 p-4'>
-      <h2>Top Upcoming Anime</h2>
-    </article>
-
-    <article class='bg-blue-700 p-4'>
       <h2>Recommendations</h2>
     </article> -->
   </main>
@@ -55,7 +56,6 @@ import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpiso
   main {
     grid-area: main;
     padding: 1rem;
-    background-color: blueviolet;
   }
   footer {
     grid-area: footer;

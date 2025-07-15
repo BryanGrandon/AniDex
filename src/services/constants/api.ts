@@ -4,20 +4,11 @@ export { LIMIT }
 
 // API URLs
 const URL_API = 'https://api.jikan.moe/v4'
-const URL_CHARACTERS = `${URL_API}/characters`
-const URL_MANGA = `${URL_API}/manga`
-const URL_ANIME = `${URL_API}/anime`
-const URL_SEASONS = `${URL_API}/seasons`
-const URL_TOP = `${URL_API}/top`
-const URL_WATCH = `${URL_API}/watch`
+const URL_CS = `${URL_API}/seasons/now` // Current Season
+const URL_LEU = `${URL_API}/watch/episodes` // Latest Episodes Updates
+const URL_TUA = `${URL_API}/anime` // Top Upcoming Anime
 
-// Latest Episodes Updates
-const URL_LEU = `${URL_API}/watch/episodes`
-
-export { URL_CHARACTERS, URL_MANGA, URL_ANIME, URL_SEASONS, URL_TOP, URL_LEU }
-
-// External API URLs
-// const URL_MAL = 'https://myanimelist-api1.p.rapidapi.com/anime/genres'
+export { URL_LEU, URL_TUA, URL_CS }
 
 const TYPES_OF_GENRES = {
   genres: [

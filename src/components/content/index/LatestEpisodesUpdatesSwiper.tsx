@@ -8,10 +8,11 @@ import DefaultCard from '../../ui/DefaultCard'
 
 const LatestEpisodesUpdatesSwiper = () => {
   const $leu: LEU = useStore(latest_Episodes_Updates)
+  const limited = $leu.data.slice(0, 20)
 
   return (
     <SwiperCustom>
-      {$leu.data.map((data) => (
+      {limited.map((data) => (
         <SwiperSlide>
           <DefaultCard id={data.entry.mal_id} image={data.entry.images.webp.large_image_url} title={data.entry.title} highlight={`Episode: ${data.episodes[0].mal_id}`} />
         </SwiperSlide>
