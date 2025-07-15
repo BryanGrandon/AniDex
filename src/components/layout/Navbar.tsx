@@ -1,5 +1,5 @@
-import data from '../data.json'
-import BarsToCloseIcon from './icons/BarsToCloseIcon'
+import data from '../../data.json'
+import BarsToCloseIcon from '../icons/BarsToCloseIcon'
 
 const Navbar = () => {
   const { links } = data.header

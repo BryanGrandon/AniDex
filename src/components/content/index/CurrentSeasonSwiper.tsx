@@ -1,9 +1,9 @@
 import { useStore } from '@nanostores/preact'
-import { seasons_now } from '../../../../services/storage/general-store'
-import type { Seasons_now } from '../../../../services/api/interfaces'
 import { SwiperSlide } from 'swiper/react'
-import DefaultCard from '../../../DefaultCard'
-import SwiperCustom from '../../../layout/SwiperCustom'
+import { seasons_now } from '../../../services/storage/general-store'
+import type { Seasons_now } from '../../../services/api/interfaces'
+import SwiperCustom from '../../layout/SwiperCustom'
+import DefaultCard from '../../ui/DefaultCard'
 
 const CurrentSeasonSwiper = () => {
   const $season_now: Seasons_now = useStore(seasons_now)
@@ -17,7 +17,7 @@ const CurrentSeasonSwiper = () => {
       <SwiperCustom>
         {$season_now.data.map((season) => (
           <SwiperSlide>
-            <DefaultCard id={season.mal_id} img={season.images.webp.large_image_url} title={season.title} episodes={season.episodes} />
+            <DefaultCard id={season.mal_id} image={season.images.webp.large_image_url} title={season.title} highlight={`Type: ${season.type}`} />
           </SwiperSlide>
         ))}
       </SwiperCustom>

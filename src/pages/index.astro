@@ -1,9 +1,9 @@
 ---
-import Header from '../components/content/index/layout/Header.astro'
-import LatestEpisodesUpdates from '../components/content/index/layout/LatestEpisodesUpdates'
+import Header from '../components/content/index/Header.astro'
 
 import Layout from '../layouts/Layout.astro'
-import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeasonSwiper'
+import CurrentSeasonSwiper from '../components/content/index/CurrentSeasonSwiper'
+import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
 ---
 
 <Layout>
@@ -14,7 +14,10 @@ import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeaso
   </article>
 
   <main class=''>
-    <LatestEpisodesUpdates client:only />
+    <article>
+      <h2>Latest Episodes Updates</h2>
+      <LatestEpisodesUpdatesSwiper client:only />
+    </article>
 
     <!-- watch api -->
 
