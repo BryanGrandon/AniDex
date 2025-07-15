@@ -8,10 +8,21 @@ import 'swiper/css/autoplay'
 
 type Swiper_Custom = {
   children: JSX.Element[]
+  breakpoints?: {}
+  delay?: number
 }
 
-const SwiperCustom = ({ children }: Swiper_Custom) => {
+const SwiperCustom = ({ children, breakpoints, delay }: Swiper_Custom) => {
   // out breakpoint and autoplay-delay
+  const breakpointDefault = {
+    320: { slidesPerView: 2 },
+    640: { slidesPerView: 4 },
+    768: { slidesPerView: 5 },
+    1024: { slidesPerView: 5 },
+    1280: { slidesPerView: 6 },
+    1606: { slidesPerView: 7 },
+  }
+
   return (
     <Swiper
       style={{
@@ -24,31 +35,12 @@ const SwiperCustom = ({ children }: Swiper_Custom) => {
       spaceBetween={20}
       slidesPerView={1}
       loop={true}
-      autoplay={{ delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+      autoplay={{ delay: delay ? delay : 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
       pagination={{ clickable: true }}
       scrollbar={true}
       modules={[Pagination, Autoplay]}
       className=''
-      breakpoints={{
-        320: {
-          slidesPerView: 2,
-        },
-        640: {
-          slidesPerView: 4,
-        },
-        768: {
-          slidesPerView: 5,
-        },
-        1024: {
-          slidesPerView: 5,
-        },
-        1280: {
-          slidesPerView: 6,
-        },
-        1606: {
-          slidesPerView: 7,
-        },
-      }}
+      breakpoints={breakpoints ? breakpoints : breakpointDefault}
     >
       {children}
     </Swiper>
