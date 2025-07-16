@@ -1,0 +1,9 @@
+---
+type Props = {
+  text: string
+  theClass?: string
+}
+const { text, theClass = '' } = Astro.props
+---
+
+<h2 class={`font-basicaline text-3xl py-5 ${theClass}`}>{text}</h2>

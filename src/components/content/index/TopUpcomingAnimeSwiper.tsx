@@ -13,7 +13,7 @@ const TopUpcomingAnimeSwiper = () => {
     <SwiperCustom>
       {$tua.data?.map((data) => (
         <SwiperSlide>
-          <DefaultCard id={data.mal_id} title={data.title} highlight='ss' image={data.images.webp.large_image_url} />
+          <DefaultCard id={data.mal_id} title={data.title} highlight={`Release date: ${data.year ? data.year : 'TBA'}`} image={data.images.webp.large_image_url} />
         </SwiperSlide>
       ))}
     </SwiperCustom>

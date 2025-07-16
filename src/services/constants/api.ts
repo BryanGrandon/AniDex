@@ -6,7 +6,7 @@ export { LIMIT }
 const URL_API = 'https://api.jikan.moe/v4'
 const URL_CS = `${URL_API}/seasons/now` // Current Season
 const URL_LEU = `${URL_API}/watch/episodes` // Latest Episodes Updates
-const URL_TUA = `${URL_API}/anime` // Top Upcoming Anime
+const URL_TUA = `${URL_API}/top/anime` // Top Upcoming Anime
 
 export { URL_LEU, URL_TUA, URL_CS }
 

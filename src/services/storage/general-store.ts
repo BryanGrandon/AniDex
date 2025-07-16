@@ -28,6 +28,6 @@ export const top_upcoming_anime = atom(
     url: URL_TUA,
     page: page.get(),
     limit: LIMIT,
-    more: 'status=upcoming',
+    more: 'filter=upcoming',
   })
 )

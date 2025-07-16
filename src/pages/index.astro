@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro'
 import CurrentSeasonSwiper from '../components/content/index/CurrentSeasonSwiper'
 import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
 import TopUpcomingAnimeSwiper from '../components/content/index/TopUpcomingAnimeSwiper'
+import Title from '../components/ui/Title.astro'
 ---
 
 <Layout>
@@ -13,14 +14,14 @@ import TopUpcomingAnimeSwiper from '../components/content/index/TopUpcomingAnime
     <CurrentSeasonSwiper client:only />
   </article>
 
-  <main class=''>
+  <main class='flex flex-col gap-8'>
     <article>
-      <h2>Latest Episodes Updates</h2>
+      <Title text='Latest Episodes Updates' />
       <LatestEpisodesUpdatesSwiper client:only />
     </article>
 
-    <article class='test'>
-      <h2>Top Upcoming Anime</h2>
+    <article class=''>
+      <Title text='Top Upcoming Anime' />
       <TopUpcomingAnimeSwiper client:only />
     </article>
 
