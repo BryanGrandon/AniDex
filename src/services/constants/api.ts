@@ -6,9 +6,9 @@ export { LIMIT }
 const URL_API = 'https://api.jikan.moe/v4'
 const URL_CS = `${URL_API}/seasons/now` // Current Season
 const URL_LEU = `${URL_API}/watch/episodes` // Latest Episodes Updates
-const URL_TUA = `${URL_API}/top/anime` // Top Upcoming Anime
+const URL_TA = `${URL_API}/top/anime` // Top Anime
 
-export { URL_LEU, URL_TUA, URL_CS }
+export { URL_LEU, URL_TA, URL_CS }
 
 const TYPES_OF_GENRES = {
   genres: [
