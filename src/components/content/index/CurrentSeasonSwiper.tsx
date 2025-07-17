@@ -27,7 +27,13 @@ const CurrentSeasonSwiper = () => {
       <SwiperCustom breakpoints={breakpoint} delay={3000}>
         {$season_now.data.map((season) => (
           <SwiperSlide>
-            <DefaultCard id={season.mal_id} image={season.images.webp.large_image_url} title={season.title} highlight={`Type: ${season.type}`} />
+            <DefaultCard
+              id={season.mal_id}
+              image={season.images.webp.large_image_url}
+              title={season.title}
+              highlightText={season.type}
+              highlightClass='absolute top-2 right-2 bg-black rounded-xl px-2'
+            />
           </SwiperSlide>
         ))}
       </SwiperCustom>
