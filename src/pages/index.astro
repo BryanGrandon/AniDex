@@ -32,14 +32,19 @@ import TopAiringAnime from '../components/content/index/TopAiringAnime'
       <h2>Recommendations</h2>
     </article> -->
   </main>
-  <aside class=''>
-    <article class='test'>
+  <aside class='flex flex-wrap items-center justify-center'>
+    <article class='test max-w-85'>
       <Title text='Top Airing Anime' />
-      <TopAiringAnime client:load />
+      <TopAiringAnime client:only />
     </article>
-    <h2>Top Airing Anime</h2>
-    <h2>Bypopularity anime</h2>
-    <h2>Bypopularity Manga</h2>
+
+    <article class='test'>
+      <Title text='Bypopularity anime' />
+    </article>
+
+    <article class='test'>
+      <Title text='Bypopularity Manga' />
+    </article>
   </aside>
   <footer class=''>
     <p>Copyright</p>
