@@ -20,7 +20,7 @@ import '../styles/base.css'
 <style>
   body {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr) 400px;
     grid-template-areas:
       'header header header header'
       'content content content content'
@@ -31,6 +31,7 @@ import '../styles/base.css'
   }
   @media screen and (max-width: 1050px) {
     body {
+      grid-template-columns: repeat(4, 1fr);
       grid-template-areas:
         'header header header header'
         'content content content content'

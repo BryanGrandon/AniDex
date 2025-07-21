@@ -1,4 +1,4 @@
-interface TAA_Data {
+interface taa_data {
   mal_id: number
   url: string
   images: {
@@ -131,7 +131,7 @@ interface top_airing_anime {
       per_page: number
     }
   }
-  data: TAA_Data[]
+  data: taa_data[]
 }
 
 export type { top_airing_anime }

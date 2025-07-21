@@ -33,14 +33,14 @@ import TopAiringAnime from '../components/content/index/TopAiringAnime.astro'
       <h2>Recommendations</h2>
     </article> -->
   </main>
-  <aside class='flex flex-wrap items-center justify-center'>
-    <article class='test max-w-85'>
+  <aside class='justify-center gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+    <article class=''>
       <Title text='Top Airing Anime' />
       <TopAiringAnime />
     </article>
 
     <article class='test'>
-      <Title text='Bypopularity anime' />
+      <Title text='Most popular anime' />
     </article>
 
     <article class='test'>
@@ -61,7 +61,7 @@ import TopAiringAnime from '../components/content/index/TopAiringAnime.astro'
   }
   aside {
     grid-area: aside;
-    background-color: green;
+    background-color: #181818;
     padding: 1rem;
     border-radius: 8px;
   }
@@ -78,5 +78,11 @@ import TopAiringAnime from '../components/content/index/TopAiringAnime.astro'
 
   #slider {
     grid-area: content;
+  }
+
+  @media screen and (min-width: 1050px) {
+    aside {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
