@@ -6,8 +6,7 @@ import Layout from '../layouts/Layout.astro'
 import CurrentSeasonSwiper from '../components/content/index/CurrentSeasonSwiper'
 import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
 import TopUpcomingAnimeSwiper from '../components/content/index/TopUpcomingAnimeSwiper'
-import TopAiringAnime from '../components/content/index/TopAiringAnime.astro'
-import MostPopularAnime from '../components/content/index/MostPopularAnime.astro'
+import Aside from '../components/content/index/Aside.astro'
 ---
 
 <Layout>
@@ -34,7 +33,8 @@ import MostPopularAnime from '../components/content/index/MostPopularAnime.astro
       <h2>Recommendations</h2>
     </article> -->
   </main>
-  <aside class='justify-center gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+  <Aside />
+  <!-- <aside class='justify-center gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
     <article class=''>
       <Title text='Top Airing Anime' />
       <TopAiringAnime />
@@ -46,9 +46,10 @@ import MostPopularAnime from '../components/content/index/MostPopularAnime.astro
     </article>
 
     <article class='test'>
-      <Title text='Bypopularity Manga' />
+      <Title text='Most popular manga' />
+      <MostPopularManga />
     </article>
-  </aside>
+  </aside> -->
   <footer class=''>
     <p>Copyright</p>
     <p>ETC... ?</p>

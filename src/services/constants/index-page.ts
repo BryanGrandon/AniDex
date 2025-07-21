@@ -1,54 +1,51 @@
 import { getData } from '../api/getData'
-import { LIMIT_CONTENT, LIMIT_CONTENT_ASIDE, URL_CS, URL_LEU, URL_TA } from './api'
+import { LIMIT_CONTENT, LIMIT_CONTENT_ASIDE, URL_CS, URL_LEU, URL_TA, URL_TM } from './api'
 
-import type { current_season } from '../api/interfaces/current-season'
 import type { latest_episodes_updates } from '../api/interfaces/latest-episodes-updates'
-import type { top_airing_anime } from '../api/interfaces/top-airing-anime'
-import type { top_upcoming_anime } from '../api/interfaces/top-upcoming-anime'
+import type { default_data } from '../api/interfaces/default-data'
+import type { most_popular_manga } from '../api/interfaces/most-popular-manga'
+import { getDataUrl } from '../api/getDataUrl'
+import { URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA } from './urls'
 
-const page = 1
+const PAGE = 1
 
-const currentSeason: current_season = await getData({
+const currentSeason: default_data = await getData({
   url: URL_CS,
-  page: page,
+  page: PAGE,
   limit: LIMIT_CONTENT,
 })
 
 const latestEpisodesUpdates: latest_episodes_updates = await getData({
   url: URL_LEU,
-  page: page,
+  page: PAGE,
   limit: LIMIT_CONTENT,
 })
 
-const topUpcomingAnime: top_upcoming_anime = await getData({
+const topUpcomingAnime: default_data = await getData({
   url: URL_TA,
-  page: page,
+  page: PAGE,
   limit: LIMIT_CONTENT,
   more: 'filter=upcoming',
 })
 
 // Aside
 
-const topAiringAnime: top_airing_anime = await getData({
+const topAiringAnime: default_data = await getData({
   url: URL_TA,
-  page: page,
+  page: PAGE,
   limit: LIMIT_CONTENT_ASIDE,
   more: 'filter=airing',
 })
 
-const mostPopularAnime: top_airing_anime = await getData({
-  url: URL_TA,
-  page: page,
-  limit: LIMIT_CONTENT_ASIDE,
-  more: 'filter=bypopularity',
-})
+export const mostPopularAnime: default_data = await getDataUrl({ url: URL_MOST_POPULAR_ANIME })
+export const mostPopularManga: most_popular_manga = await getDataUrl({ url: URL_MOST_POPULAR_MANGA })
 
 const dataIndex = {
   currentSeason,
   latestEpisodesUpdates,
   topUpcomingAnime,
+  // Aside
   topAiringAnime: topAiringAnime.data,
-  mostPopularAnime: mostPopularAnime.data,
 }
 
 export { dataIndex }
