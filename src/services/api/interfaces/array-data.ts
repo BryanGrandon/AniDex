@@ -1,4 +1,4 @@
-interface current_season_data {
+interface array_data {
   mal_id: number
   url: string
   images: {
@@ -110,18 +110,4 @@ interface current_season_data {
   }[]
 }
 
-interface current_season {
-  pagination: {
-    last_visible_page: number
-    has_next_page: boolean
-    current_page: number
-    items: {
-      count: number
-      total: number
-      per_page: number
-    }
-  }
-  data: current_season_data[]
-}
-
-export type { current_season }
+export type { array_data }

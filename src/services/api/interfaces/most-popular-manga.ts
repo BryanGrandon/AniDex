@@ -1,4 +1,4 @@
-interface TUA_DATA {
+interface mpm_data {
   mal_id: number
   url: string
   images: {
@@ -13,19 +13,7 @@ interface TUA_DATA {
       large_image_url: string
     }
   }
-  trailer: {
-    youtube_id: null
-    url: null
-    embed_url: null
-    images: {
-      image_url: null
-      small_image_url: null
-      medium_image_url: null
-      large_image_url: null
-      maximum_image_url: null
-    }
-  }
-  approved: true
+  approved: boolean
   titles: [
     {
       type: string
@@ -33,22 +21,22 @@ interface TUA_DATA {
     }[]
   ]
   title: string
-  title_english: null
+  title_english: string
   title_japanese: string
   title_synonyms: string[]
   type: string
-  source: string
-  episodes: number
+  chapters: null
+  volumes: null
   status: string
-  airing: boolean
-  aired: {
-    from: null
+  publishing: boolean
+  published: {
+    from: string
     to: null
     prop: {
       from: {
-        day: null
-        month: null
-        year: null
+        day: number
+        month: number
+        year: number
       }
       to: {
         day: null
@@ -58,27 +46,24 @@ interface TUA_DATA {
     }
     string: string
   }
-  duration: string
-  rating: null
-  score: null
-  scored_by: null
-  rank: null
+  score: number
+  scored: number
+  scored_by: number
+  rank: number
   popularity: number
   members: number
   favorites: number
   synopsis: string
   background: string
-  season: null
-  year: null
-  broadcast: {
-    day: null
-    time: null
-    timezone: null
-    string: null
-  }
-  producers: []
-  licensors: []
-  studios: [
+  authors: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }[]
+  ]
+  serializations: [
     {
       mal_id: number
       type: string
@@ -95,11 +80,25 @@ interface TUA_DATA {
     }[]
   ]
   explicit_genres: []
-  themes: []
-  demographics: []
+  themes: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }[]
+  ]
+  demographics: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }[]
+  ]
 }
 
-interface top_upcoming_anime {
+interface most_popular_manga {
   pagination: {
     last_visible_page: number
     has_next_page: boolean
@@ -110,7 +109,7 @@ interface top_upcoming_anime {
       per_page: number
     }
   }
-  data: TUA_DATA[]
+  data: mpm_data[]
 }
 
-export type { top_upcoming_anime }
+export type { most_popular_manga }
