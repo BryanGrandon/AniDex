@@ -1,0 +1,35 @@
+---
+import Title from '../../ui/Title.astro'
+import MostPopularAnime from './MostPopularAnime'
+import TopAiringAnime from './TopAiringAnime'
+import MostPopularManga from './MostPopularManga'
+---
+
+<aside class='gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+  <article>
+    <Title text='Top Airing Anime' />
+    <TopAiringAnime client:only />
+  </article>
+  <article>
+    <Title text='Most Popular Anime' />
+    <MostPopularAnime client:only />
+  </article>
+  <article>
+    <Title text='Most Popular Manga' />
+    <MostPopularManga client:only />
+  </article>
+</aside>
+
+<style>
+  aside {
+    grid-area: aside;
+    background-color: #181818;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  @media screen and (min-width: 1050px) {
+    aside {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
