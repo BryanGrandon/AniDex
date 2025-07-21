@@ -1,12 +1,10 @@
-import { useStore } from '@nanostores/preact'
 import { SwiperSlide } from 'swiper/react'
-import { seasons_now } from '../../../services/storage/general-store'
-import type { Seasons_now } from '../../../services/api/interfaces'
 import SwiperCustom from '../../layout/SwiperCustom'
 import DefaultCard from '../../ui/DefaultCard'
+import { dataIndex } from '../../../services/constants/index-page'
 
 const CurrentSeasonSwiper = () => {
-  const $season_now: Seasons_now = useStore(seasons_now)
+  const $currentSeason = dataIndex.currentSeason
 
   const breakpoint = {
     320: { slidesPerView: 2 },
@@ -21,11 +19,11 @@ const CurrentSeasonSwiper = () => {
   return (
     <article class='p-4'>
       <h2 class='font-basicaline text-3xl py-5'>
-        Current seasons: <span class='capitalize text-primary'>{$season_now.data[0].season}</span>
+        Current seasons: <span class='capitalize text-primary'>{$currentSeason.data[0].season}</span>
       </h2>
 
       <SwiperCustom breakpoints={breakpoint} delay={3000}>
-        {$season_now.data.map((season) => (
+        {$currentSeason.data.map((season) => (
           <SwiperSlide>
             <DefaultCard
               id={season.mal_id}

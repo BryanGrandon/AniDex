@@ -33,7 +33,7 @@ interface LEU_Data {
   region_locked: boolean
 }
 
-interface LEU {
+interface latest_episodes_updates {
   pagination: {
     last_visible_page: 1
     has_next_page: false
@@ -41,4 +41,4 @@ interface LEU {
   data: LEU_Data[]
 }
 
-export type { LEU }
+export type { latest_episodes_updates }

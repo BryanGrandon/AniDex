@@ -1,13 +1,10 @@
-import { top_upcoming_anime } from '../../../services/storage/general-store'
-import type { TUA } from '../../../services/api/interfaces/top_upcoming_anime'
-import { useStore } from '@nanostores/preact'
-
 import { SwiperSlide } from 'swiper/react'
 import SwiperCustom from '../../layout/SwiperCustom'
 import DefaultCard from '../../ui/DefaultCard'
+import { dataIndex } from '../../../services/constants/index-page'
 
 const TopUpcomingAnimeSwiper = () => {
-  const $tua: TUA = useStore(top_upcoming_anime)
+  const $tua = dataIndex.topUpcomingAnime
 
   return (
     <SwiperCustom>

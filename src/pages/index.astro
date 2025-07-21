@@ -2,10 +2,11 @@
 import Title from '../components/ui/Title.astro'
 import Header from '../components/content/index/Header.astro'
 import Layout from '../layouts/Layout.astro'
+
 import CurrentSeasonSwiper from '../components/content/index/CurrentSeasonSwiper'
 import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
 import TopUpcomingAnimeSwiper from '../components/content/index/TopUpcomingAnimeSwiper'
-import TopAiringAnime from '../components/content/index/TopAiringAnime'
+import TopAiringAnime from '../components/content/index/TopAiringAnime.astro'
 ---
 
 <Layout>
@@ -35,7 +36,7 @@ import TopAiringAnime from '../components/content/index/TopAiringAnime'
   <aside class='flex flex-wrap items-center justify-center'>
     <article class='test max-w-85'>
       <Title text='Top Airing Anime' />
-      <TopAiringAnime client:only />
+      <TopAiringAnime />
     </article>
 
     <article class='test'>

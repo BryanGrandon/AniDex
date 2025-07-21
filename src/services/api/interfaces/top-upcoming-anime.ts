@@ -1,4 +1,4 @@
-interface TAA_Data {
+interface TUA_DATA {
   mal_id: number
   url: string
   images: {
@@ -14,18 +14,18 @@ interface TAA_Data {
     }
   }
   trailer: {
-    youtube_id: string
-    url: string
-    embed_url: string
+    youtube_id: null
+    url: null
+    embed_url: null
     images: {
-      image_url: string
-      small_image_url: string
-      medium_image_url: string
-      large_image_url: string
-      maximum_image_url: string
+      image_url: null
+      small_image_url: null
+      medium_image_url: null
+      large_image_url: null
+      maximum_image_url: null
     }
   }
-  approved: boolean
+  approved: true
   titles: [
     {
       type: string
@@ -33,65 +33,51 @@ interface TAA_Data {
     }[]
   ]
   title: string
-  title_english: string
+  title_english: null
   title_japanese: string
   title_synonyms: string[]
   type: string
   source: string
   episodes: number
   status: string
-  airing: false
+  airing: boolean
   aired: {
-    from: string
-    to: string
+    from: null
+    to: null
     prop: {
       from: {
-        day: number
-        month: number
-        year: number
+        day: null
+        month: null
+        year: null
       }
       to: {
-        day: number
-        month: number
-        year: number
+        day: null
+        month: null
+        year: null
       }
     }
     string: string
   }
   duration: string
-  rating: string
-  score: number
-  scored_by: number
-  rank: number
+  rating: null
+  score: null
+  scored_by: null
+  rank: null
   popularity: number
   members: number
   favorites: number
   synopsis: string
   background: string
-  season: string
-  year: number
+  season: null
+  year: null
   broadcast: {
-    day: string
-    time: string
-    timezone: string
-    string: string
+    day: null
+    time: null
+    timezone: null
+    string: null
   }
-  producers: [
-    {
-      mal_id: number
-      type: string
-      name: string
-      url: string
-    }[]
-  ]
-  licensors: [
-    {
-      mal_id: number
-      type: string
-      name: string
-      url: string
-    }
-  ]
+  producers: []
+  licensors: []
   studios: [
     {
       mal_id: number
@@ -110,17 +96,10 @@ interface TAA_Data {
   ]
   explicit_genres: []
   themes: []
-  demographics: [
-    {
-      mal_id: number
-      type: string
-      name: string
-      url: string
-    }
-  ]
+  demographics: []
 }
 
-interface TAA {
+interface top_upcoming_anime {
   pagination: {
     last_visible_page: number
     has_next_page: boolean
@@ -131,7 +110,7 @@ interface TAA {
       per_page: number
     }
   }
-  data: TAA_Data[]
+  data: TUA_DATA[]
 }
 
-export type { TAA }
+export type { top_upcoming_anime }

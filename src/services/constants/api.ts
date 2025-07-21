@@ -1,6 +1,8 @@
+const LIMIT_CONTENT = 20
+const LIMIT_CONTENT_ASIDE = 7
 const LIMIT = 20
 
-export { LIMIT }
+export { LIMIT_CONTENT, LIMIT_CONTENT_ASIDE, LIMIT }
 
 // API URLs
 const URL_API = 'https://api.jikan.moe/v4'

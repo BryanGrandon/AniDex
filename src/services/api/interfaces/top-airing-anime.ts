@@ -1,4 +1,4 @@
-interface Season_data {
+interface TAA_Data {
   mal_id: number
   url: string
   images: {
@@ -26,10 +26,12 @@ interface Season_data {
     }
   }
   approved: boolean
-  titles: {
-    type: string
-    title: string
-  }[]
+  titles: [
+    {
+      type: string
+      title: string
+    }[]
+  ]
   title: string
   title_english: string
   title_japanese: string
@@ -38,13 +40,21 @@ interface Season_data {
   source: string
   episodes: number
   status: string
-  airing: boolean
+  airing: false
   aired: {
     from: string
-    to: string | null
+    to: string
     prop: {
-      from: { year: number; month: number; day: number }
-      to: { year: number; month: number; day: number } | null
+      from: {
+        day: number
+        month: number
+        year: number
+      }
+      to: {
+        day: number
+        month: number
+        year: number
+      }
     }
     string: string
   }
@@ -57,7 +67,7 @@ interface Season_data {
   members: number
   favorites: number
   synopsis: string
-  background: string | null
+  background: string
   season: string
   year: number
   broadcast: {
@@ -66,50 +76,51 @@ interface Season_data {
     timezone: string
     string: string
   }
-  producers: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
-  licensors: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
-  studios: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
-  genres: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
-  explicit_genres: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
-  themes: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
-  demographics: {
-    mal_id: number
-    type: string
-    name: string
-    url: string
-  }[]
+  producers: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }[]
+  ]
+  licensors: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }
+  ]
+  studios: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }
+  ]
+  genres: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }[]
+  ]
+  explicit_genres: []
+  themes: []
+  demographics: [
+    {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }
+  ]
 }
-interface Seasons_now {
+
+interface top_airing_anime {
   pagination: {
     last_visible_page: number
     has_next_page: boolean
@@ -120,7 +131,7 @@ interface Seasons_now {
       per_page: number
     }
   }
-  data: Season_data[]
+  data: TAA_Data[]
 }
 
-export type { Season_data, Seasons_now }
+export type { top_airing_anime }

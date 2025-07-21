@@ -1,13 +1,10 @@
-import { useStore } from '@nanostores/preact'
-import { latest_Episodes_Updates } from '../../../services/storage/general-store'
-import type { LEU } from '../../../services/api/interfaces/Latest_Episodes_Updates'
 import { SwiperSlide } from 'swiper/react'
-
 import SwiperCustom from '../../layout/SwiperCustom'
 import DefaultCard from '../../ui/DefaultCard'
+import { dataIndex } from '../../../services/constants/index-page'
 
 const LatestEpisodesUpdatesSwiper = () => {
-  const $leu: LEU = useStore(latest_Episodes_Updates)
+  const $leu = dataIndex.latestEpisodesUpdates
   const limited = $leu.data.slice(0, 20)
 
   return (
