@@ -36,11 +36,19 @@ const topAiringAnime: top_airing_anime = await getData({
   more: 'filter=airing',
 })
 
+const mostPopularAnime: top_airing_anime = await getData({
+  url: URL_TA,
+  page: page,
+  limit: LIMIT_CONTENT_ASIDE,
+  more: 'filter=bypopularity',
+})
+
 const dataIndex = {
   currentSeason,
   latestEpisodesUpdates,
   topUpcomingAnime,
-  topAiringAnime,
+  topAiringAnime: topAiringAnime.data,
+  mostPopularAnime: mostPopularAnime.data,
 }
 
 export { dataIndex }

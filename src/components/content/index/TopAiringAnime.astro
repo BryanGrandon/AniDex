@@ -1,19 +1,19 @@
 ---
 import { dataIndex } from '../../../services/constants/index-page'
-const $taa = dataIndex.topAiringAnime
-let data = dataIndex.topAiringAnime.data
+const $taa = dataIndex.mostPopularAnime
+let data = dataIndex.topAiringAnime
 data = []
-
-for (let i = 0; $taa.data.length >= i; i++) {
-  if (data.length == 0) data.push($taa.data[i])
-  else {
-    let equal = 0
-    for (let j = 0; data.length >= j; j++) {
-      if (data[j]?.mal_id == $taa.data[i]?.mal_id) equal++
+if ($taa !== undefined)
+  for (let i = 0; $taa.length >= i; i++) {
+    if (data.length == 0) data.push($taa[i])
+    else {
+      let equal = 0
+      for (let j = 0; data.length >= j; j++) {
+        if (data[j]?.mal_id == $taa[i]?.mal_id) equal++
+      }
+      if (equal === 0) data.push($taa[i])
     }
-    if (equal === 0) data.push($taa.data[i])
   }
-}
 ---
 
 <section class='flex flex-col gap-2'>
