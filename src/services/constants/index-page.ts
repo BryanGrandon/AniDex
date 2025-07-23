@@ -7,45 +7,31 @@ import type { most_popular_manga } from '../api/interfaces/most-popular-manga'
 import { getDataUrl } from '../api/getDataUrl'
 import { URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA } from './urls'
 
-const PAGE = 1
+// const PAGE = 1
 
-const currentSeason: default_data = await getData({
-  url: URL_CS,
-  page: PAGE,
-  limit: LIMIT_CONTENT,
-})
+// const currentSeason: default_data = await getData({
+//   url: URL_CS,
+//   page: PAGE,
+//   limit: LIMIT_CONTENT,
+// })
 
-const latestEpisodesUpdates: latest_episodes_updates = await getData({
-  url: URL_LEU,
-  page: PAGE,
-  limit: LIMIT_CONTENT,
-})
+// const latestEpisodesUpdates: latest_episodes_updates = await getData({
+//   url: URL_LEU,
+//   page: PAGE,
+//   limit: LIMIT_CONTENT,
+// })
 
-const topUpcomingAnime: default_data = await getData({
-  url: URL_TA,
-  page: PAGE,
-  limit: LIMIT_CONTENT,
-  more: 'filter=upcoming',
-})
+// const topUpcomingAnime: default_data = await getData({
+//   url: URL_TA,
+//   page: PAGE,
+//   limit: LIMIT_CONTENT,
+//   more: 'filter=upcoming',
+// })
 
-// Aside
+// const dataIndex = {
+//   currentSeason,
+//   latestEpisodesUpdates,
+//   topUpcomingAnime,
+// }
 
-const topAiringAnime: default_data = await getData({
-  url: URL_TA,
-  page: PAGE,
-  limit: LIMIT_CONTENT_ASIDE,
-  more: 'filter=airing',
-})
-
-export const mostPopularAnime: default_data = await getDataUrl({ url: URL_MOST_POPULAR_ANIME })
-export const mostPopularManga: most_popular_manga = await getDataUrl({ url: URL_MOST_POPULAR_MANGA })
-
-const dataIndex = {
-  currentSeason,
-  latestEpisodesUpdates,
-  topUpcomingAnime,
-  // Aside
-  topAiringAnime: topAiringAnime.data,
-}
-
-export { dataIndex }
+// export { dataIndex }
