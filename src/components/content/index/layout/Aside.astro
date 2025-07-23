@@ -1,22 +1,22 @@
 ---
-import Title from '../../ui/Title.astro'
-import MostPopularAnime from './MostPopularAnime'
-import TopAiringAnime from './TopAiringAnime'
-import MostPopularManga from './MostPopularManga'
+import Title from '../../../ui/Title.astro'
+import MostPopularAnime from '../ui/MostPopularAnime'
+import TopAiringAnime from '../ui/TopAiringAnime'
+import MostPopularManga from '../ui/MostPopularManga'
 ---
 
 <aside class='gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
   <article>
     <Title text='Top Airing Anime' />
-    <TopAiringAnime client:only />
+    <TopAiringAnime client:load />
   </article>
   <article>
     <Title text='Most Popular Anime' />
-    <MostPopularAnime client:only />
+    <MostPopularAnime client:load />
   </article>
   <article>
     <Title text='Most Popular Manga' />
-    <MostPopularManga client:only />
+    <MostPopularManga client:load />
   </article>
 </aside>
 
