@@ -6,7 +6,7 @@ const useGetDataApi = (url: string): any => {
 
   const getDataApi = async (url: string) => {
     let response = await getDataUrl({ url })
-    let arr = [...new Set<string>(response.data.map(JSON.stringify))]
+    let arr = [...new Set<string>(response.data?.map(JSON.stringify))]
     let a: any[] = []
     arr.map((element) => a.push(JSON.parse(element)))
     response.data = a

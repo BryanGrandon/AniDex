@@ -34,7 +34,6 @@ const SwiperCustom = ({ children, breakpoints, delay }: Swiper_Custom) => {
       }}
       spaceBetween={20}
       slidesPerView={1}
-      loop={true}
       autoplay={{ delay: delay ? delay : 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
       pagination={{ clickable: true }}
       scrollbar={true}

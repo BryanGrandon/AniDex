@@ -1,14 +1,17 @@
+import { useEffect, useState } from 'preact/hooks'
 import MiniCard from '../MiniCard'
 import type { most_popular_manga } from '../../../../services/api/interfaces/most-popular-manga'
-import { URL_MOST_POPULAR_MANGA } from '../../../../services/constants/urls'
-import { useGetDataApi } from '../../../../utils/hooks/useGetDataApi'
+import { getDataUrl } from '../../../../services/api/getDataUrl'
+import { URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA } from '../../../../utils/constants/urls-api'
+import { useStore } from '@nanostores/preact'
+import { dataMPM } from '../../../../utils/storage/data-index'
 
 const MostPopularManga = () => {
-  const mpm: most_popular_manga = useGetDataApi(URL_MOST_POPULAR_MANGA)
+  const $dataMPM: most_popular_manga = useStore(dataMPM)
 
   return (
     <>
-      {mpm?.data?.map((data) => (
+      {$dataMPM?.data?.map((data) => (
         <MiniCard title={data?.title} text={data?.status} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />
       ))}
     </>

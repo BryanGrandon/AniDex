@@ -1,14 +1,18 @@
+import { useEffect, useState } from 'preact/hooks'
+
 import MiniCard from '../MiniCard'
-import { URL_TOP_AIRING_ANIME } from '../../../../services/constants/urls'
-import { useGetDataApi } from '../../../../utils/hooks/useGetDataApi'
 import type { default_data } from '../../../../services/api/interfaces/default-data'
+import { getDataUrl } from '../../../../services/api/getDataUrl'
+import { URL_TOP_AIRING_ANIME } from '../../../../utils/constants/urls-api'
+import { useStore } from '@nanostores/preact'
+import { dataTAA } from '../../../../utils/storage/data-index'
 
 const TopAiringAnime = () => {
-  const taa: default_data = useGetDataApi(URL_TOP_AIRING_ANIME)
+  const $dataTAA: default_data = useStore(dataTAA)
 
   return (
     <>
-      {taa?.data?.map((data) => (
+      {$dataTAA?.data?.map((data) => (
         <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.rank}`} image={data?.images.webp.large_image_url} />
       ))}
     </>
