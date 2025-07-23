@@ -1,16 +1,17 @@
 import { URL_MOST_POPULAR_ANIME } from '../../../../services/constants/urls'
 import MiniCard from '../MiniCard'
 import { useGetDataApi } from '../../../../utils/hooks/useGetDataApi'
+import type { default_data } from '../../../../services/api/interfaces/default-data'
 
 const MostPopularAnime = () => {
-  const data = useGetDataApi(URL_MOST_POPULAR_ANIME)
+  const mpa: default_data = useGetDataApi(URL_MOST_POPULAR_ANIME)
 
   return (
-    <section class='flex flex-col gap-2'>
-      {data?.data?.map((data) => (
+    <>
+      {mpa?.data?.map((data) => (
         <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />
       ))}
-    </section>
+    </>
   )
 }
 

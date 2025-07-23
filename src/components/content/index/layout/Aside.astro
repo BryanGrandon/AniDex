@@ -8,19 +8,33 @@ import MostPopularManga from '../ui/MostPopularManga'
 <aside class='gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
   <article>
     <Title text='Top Airing Anime' />
-    <TopAiringAnime client:load />
+    <section>
+      <TopAiringAnime client:load />
+    </section>
   </article>
+
   <article>
     <Title text='Most Popular Anime' />
-    <MostPopularAnime client:load />
+    <section>
+      <MostPopularAnime client:load />
+    </section>
   </article>
+
   <article>
     <Title text='Most Popular Manga' />
-    <MostPopularManga client:load />
+    <section>
+      <MostPopularManga client:load />
+    </section>
   </article>
 </aside>
 
 <style>
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   aside {
     grid-area: aside;
     background-color: #181818;
