@@ -1,0 +1,27 @@
+---
+import Title from '../../../ui/Title.astro'
+import LatestEpisodesUpdatesSwiper from '../ui/LatestEpisodesUpdatesSwiper'
+import TopUpcomingAnimeSwiper from '../ui/TopUpcomingAnimeSwiper'
+---
+
+<main class='flex flex-col gap-8 p-4'>
+  <article>
+    <Title text='Latest Episodes Updates' />
+    <LatestEpisodesUpdatesSwiper client:only />
+  </article>
+
+  <article class=''>
+    <Title text='Top Upcoming Anime' />
+    <TopUpcomingAnimeSwiper client:only />
+  </article>
+
+  <!-- <article class='bg-blue-700 p-4'>
+      <h2>Recommendations</h2>
+    </article> -->
+</main>
+
+<style>
+  main {
+    grid-area: main;
+  }
+</style>

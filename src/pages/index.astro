@@ -1,38 +1,16 @@
 ---
-import Title from '../components/ui/Title.astro'
 import Header from '../components/content/index/layout/Header.astro'
 import Layout from '../layouts/Layout.astro'
-
-import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
-import TopUpcomingAnimeSwiper from '../components/content/index/TopUpcomingAnimeSwiper'
 import Aside from '../components/content/index/layout/Aside.astro'
 import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeasonSwiper'
+import Main from '../components/content/index/layout/Main.astro'
 ---
 
 <Layout>
   <Header />
-
   <CurrentSeasonSwiper client:only />
-
-  <main class='flex flex-col gap-8'>
-    <!-- <article>
-      <Title text='Latest Episodes Updates' />
-      <LatestEpisodesUpdatesSwiper client:only />
-    </article>
-
-    <article class=''>
-      <Title text='Top Upcoming Anime' />
-      <TopUpcomingAnimeSwiper client:only />
-    </article> -->
-
-    <!-- watch api -->
-
-    <!-- <article class='bg-blue-700 p-4'>
-      <h2>Recommendations</h2>
-    </article> -->
-  </main>
+  <Main />
   <Aside />
-
   <footer class=''>
     <p>Copyright</p>
     <p>ETC... ?</p>
@@ -40,10 +18,6 @@ import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeaso
 </Layout>
 
 <style>
-  main {
-    grid-area: main;
-    padding: 1rem;
-  }
   footer {
     grid-area: footer;
     padding: 1rem;

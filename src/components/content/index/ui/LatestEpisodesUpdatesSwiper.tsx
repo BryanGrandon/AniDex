@@ -1,15 +1,16 @@
 import { SwiperSlide } from 'swiper/react'
-import SwiperCustom from '../../layout/SwiperCustom'
-import DefaultCard from '../../ui/DefaultCard'
-import { dataIndex } from '../../../services/constants/index-page'
+import { useStore } from '@nanostores/preact'
+import DefaultCard from '../../../ui/DefaultCard'
+import SwiperCustom from '../../../layout/SwiperCustom'
+import { dataLEU } from '../../../../utils/storage/data-index'
+import type { latest_episodes_updates } from '../../../../utils/interfaces/latest-episodes-updates'
 
 const LatestEpisodesUpdatesSwiper = () => {
-  const $leu = dataIndex.latestEpisodesUpdates
-  const limited = $leu.data.slice(0, 20)
+  const $dataLEU: latest_episodes_updates = useStore(dataLEU)
 
   return (
     <SwiperCustom>
-      {limited.map((data) => (
+      {$dataLEU?.data?.map((data) => (
         <SwiperSlide>
           <DefaultCard
             id={data.entry.mal_id}

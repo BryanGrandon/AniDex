@@ -1,14 +1,16 @@
 import { SwiperSlide } from 'swiper/react'
-import SwiperCustom from '../../layout/SwiperCustom'
-import DefaultCard from '../../ui/DefaultCard'
-import { dataIndex } from '../../../services/constants/index-page'
+import { useStore } from '@nanostores/preact'
+import DefaultCard from '../../../ui/DefaultCard'
+import SwiperCustom from '../../../layout/SwiperCustom'
+import { dataTUA } from '../../../../utils/storage/data-index'
+import type { default_data } from '../../../../utils/interfaces/default-data'
 
 const TopUpcomingAnimeSwiper = () => {
-  const $tua = dataIndex.topUpcomingAnime
+  const $dataTUA: default_data = useStore(dataTUA)
 
   return (
     <SwiperCustom>
-      {$tua.data?.map((data) => (
+      {$dataTUA.data?.map((data) => (
         <SwiperSlide>
           <DefaultCard
             id={data.mal_id}
