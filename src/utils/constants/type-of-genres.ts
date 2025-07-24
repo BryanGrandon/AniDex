@@ -1,18 +1,3 @@
-const LIMIT_CONTENT = 20
-const LIMIT_CONTENT_ASIDE = 5
-const LIMIT = 20
-
-export { LIMIT_CONTENT, LIMIT_CONTENT_ASIDE, LIMIT }
-
-// API URLs
-const URL_API = 'https://api.jikan.moe/v4'
-const URL_CS = `${URL_API}/seasons/now` // Current Season
-const URL_LEU = `${URL_API}/watch/episodes` // Latest Episodes Updates
-const URL_TA = `${URL_API}/top/anime` // Top Anime
-const URL_TM = `${URL_API}/top/manga` // Top Manga
-
-export { URL_LEU, URL_TA, URL_CS, URL_TM }
-
 const TYPES_OF_GENRES = {
   genres: [
     {

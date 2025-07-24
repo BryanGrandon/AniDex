@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'preact/hooks'
-
 import { useStore } from '@nanostores/preact'
+import MiniCard from './MiniCard'
 import { dataMPA } from '../../../../utils/storage/data-index'
-import MiniCard from '../MiniCard'
-import type { default_data } from '../../../../services/api/interfaces/default-data'
+import type { default_data } from '../../../../utils/interfaces/default-data'
 
 const MostPopularAnime = () => {
   const $dataMPA: default_data = useStore(dataMPA)

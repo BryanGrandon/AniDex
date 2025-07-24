@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'preact/hooks'
-
-import MiniCard from '../MiniCard'
-import type { default_data } from '../../../../services/api/interfaces/default-data'
-import { getDataUrl } from '../../../../services/api/getDataUrl'
-import { URL_TOP_AIRING_ANIME } from '../../../../utils/constants/urls-api'
 import { useStore } from '@nanostores/preact'
+import MiniCard from './MiniCard'
 import { dataTAA } from '../../../../utils/storage/data-index'
+import type { default_data } from '../../../../utils/interfaces/default-data'
 
 const TopAiringAnime = () => {
   const $dataTAA: default_data = useStore(dataTAA)

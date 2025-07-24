@@ -1,11 +1,11 @@
-type Props = {
+type mini_card = {
   image: string
   title: string
   text: string
   highlight: string
 }
 
-const MiniCard = ({ image, title, text, highlight }: Props) => {
+const MiniCard = ({ image, title, text, highlight }: mini_card) => {
   return (
     <section class='flex gap-2 rounded-lg bg-black relative overflow-hidden'>
       <img src={image} alt='' class='h-21 w-15 object-cover' />

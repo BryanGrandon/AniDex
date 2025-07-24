@@ -1,6 +1,6 @@
 ---
 import Title from '../components/ui/Title.astro'
-import Header from '../components/content/index/Header.astro'
+import Header from '../components/content/index/layout/Header.astro'
 import Layout from '../layouts/Layout.astro'
 
 import LatestEpisodesUpdatesSwiper from '../components/content/index/LatestEpisodesUpdatesSwiper'
@@ -10,7 +10,7 @@ import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeaso
 ---
 
 <Layout>
-  <Header structureId='header' />
+  <Header />
 
   <CurrentSeasonSwiper client:only />
 
@@ -40,17 +40,6 @@ import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeaso
 </Layout>
 
 <style>
-  header {
-    grid-area: header;
-    padding: 1rem;
-    border-bottom: 1px solid #dee2e6;
-  }
-  aside {
-    grid-area: aside;
-    background-color: #181818;
-    padding: 1rem;
-    border-radius: 8px;
-  }
   main {
     grid-area: main;
     padding: 1rem;
@@ -60,15 +49,5 @@ import CurrentSeasonSwiper from '../components/content/index/layout/CurrentSeaso
     padding: 1rem;
     background-color: cadetblue;
     border-top: 1px solid #dee2e6;
-  }
-
-  #slider {
-    grid-area: content;
-  }
-
-  @media screen and (min-width: 1050px) {
-    aside {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
