@@ -2,10 +2,6 @@ import type { JSX } from 'preact/jsx-runtime'
 import { Swiper } from 'swiper/react'
 import { Pagination, Autoplay } from 'swiper/modules'
 
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/autoplay'
-
 type Swiper_Custom = {
   children: JSX.Element[]
   breakpoints?: {}

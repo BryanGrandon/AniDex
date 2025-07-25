@@ -4,7 +4,7 @@ import fetchWithDelay from '../../services/api/getDataApi'
 
 const allData = await fetchWithDelay([URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA, URL_TOP_AIRING_ANIME, URL_CURRENT_SEASON, URL_LATEST_EPISODES_UPDATES, URL_TOP_UPCOMING_ANIME])
 
-export const dataCS = atom(allData?.getCS ? allData.getCS : [])
+export const dataCS = allData?.getCS ? allData.getCS : []
 
 // Main
 export const dataLEU = atom(allData?.getLEU ? allData.getLEU : [])

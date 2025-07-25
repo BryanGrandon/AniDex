@@ -1,0 +1,49 @@
+---
+import type { default_data } from '../../../../utils/interfaces/default-data'
+import { dataCS } from '../../../../utils/storage/data-index'
+import DefaultCard from '../../../ui/DefaultCard'
+
+const $dataCS: default_data = dataCS
+---
+
+<article class='p-4' style={{ gridArea: 'content' }}>
+  <h2 class='font-basicaline text-3xl py-5'>
+    Current seasons: <span class='capitalize text-primary'>{$dataCS?.data[0]?.season}</span>
+  </h2>
+
+  <div class='swiper swiperCS'>
+    <div class='swiper-wrapper' id='my-slider'>
+      {
+        $dataCS?.data?.map((data) => (
+          <div class='swiper-slide'>
+            <DefaultCard id={data?.mal_id} image={data?.images.webp.large_image_url} title={data?.title} highlightText={data?.type} highlightClass='absolute top-2 right-2 bg-black rounded-xl px-2' />
+          </div>
+        ))
+      }
+    </div>
+    <div class='swiper-pagination'></div>
+  </div>
+</article>
+
+<script>
+  import Swiper from 'swiper'
+  import { Pagination, Autoplay } from 'swiper/modules'
+
+  const swiper = new Swiper('.swiperCS', {
+    modules: [Pagination, Autoplay],
+    scrollbar: true,
+    spaceBetween: 20,
+    slidesPerView: 1,
+    autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: 'swiper-pagination', clickable: true },
+    breakpoints: {
+      320: { slidesPerView: 2 },
+      520: { slidesPerView: 3 },
+      640: { slidesPerView: 4 },
+      768: { slidesPerView: 5 },
+      1024: { slidesPerView: 6 },
+      1280: { slidesPerView: 7 },
+      1606: { slidesPerView: 8 },
+    },
+  })
+</script>
