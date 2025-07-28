@@ -1,18 +1,60 @@
 ---
+import type { default_data } from '../../../../utils/interfaces/default-data'
+import type { latest_episodes_updates } from '../../../../utils/interfaces/latest-episodes-updates'
+import { dataLEU, dataTUA } from '../../../../utils/storage/data-index'
+import DefaultCard from '../../../ui/DefaultCard'
 import Title from '../../../ui/Title.astro'
-import LatestEpisodesUpdatesSwiper from '../ui/LatestEpisodesUpdatesSwiper'
-import TopUpcomingAnimeSwiper from '../ui/TopUpcomingAnimeSwiper'
+const $dataLEU: latest_episodes_updates = dataLEU
+const $dataTUA: default_data = dataTUA
 ---
 
 <main class='flex flex-col gap-8 p-4'>
   <article>
     <Title text='Latest Episodes Updates' />
-    <LatestEpisodesUpdatesSwiper client:only />
+    <p>Keep up to date with the latest episode releases Don't miss a moment of your favorite shows</p>
+
+    <article class='swiper swiperCS'>
+      <section class='swiper-wrapper' id='my-slider'>
+        {
+          $dataLEU?.data?.map((data) => (
+            <div class='swiper-slide'>
+              <DefaultCard
+                id={data.entry.mal_id}
+                image={data.entry.images.webp.large_image_url}
+                title={data.entry.title}
+                highlightText={`Episode: ${data.episodes[0].mal_id}`}
+                highlightClass='absolute bottom-12 bg-black px-2 rounded-r-lg '
+              />
+            </div>
+          ))
+        }
+      </section>
+      <div class='swiper-pagination'></div>
+    </article>
   </article>
 
   <article class=''>
-    <Title text='Top Upcoming Anime' />
-    <TopUpcomingAnimeSwiper client:only />
+    <Title text='Top Upcoming Anime You Can’t Miss' />
+    <p>Get ready for the next big hits! Our list of upcoming anime highlights the most anticipated series and movies coming soon.</p>
+
+    <article class='swiper swiperCS'>
+      <section class='swiper-wrapper' id='my-slider'>
+        {
+          $dataTUA?.data?.map((data) => (
+            <div class='swiper-slide'>
+              <DefaultCard
+                id={data.mal_id}
+                title={data.title}
+                highlightText={String(data.year ? data.year : 'TBA')}
+                image={data.images.webp.large_image_url}
+                highlightClass='absolute top-0 right-0 left-0 bg-black text-center p-1'
+              />
+            </div>
+          ))
+        }
+      </section>
+      <div class='swiper-pagination'></div>
+    </article>
   </article>
 
   <!-- <article class='bg-blue-700 p-4'>

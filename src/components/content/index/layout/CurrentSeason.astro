@@ -11,8 +11,8 @@ const $dataCS: default_data = dataCS
     Current seasons: <span class='capitalize text-primary'>{$dataCS?.data[0]?.season}</span>
   </h2>
 
-  <div class='swiper swiperCS'>
-    <div class='swiper-wrapper' id='my-slider'>
+  <article class='swiper swiperCS'>
+    <section class='swiper-wrapper' id='my-slider'>
       {
         $dataCS?.data?.map((data) => (
           <div class='swiper-slide'>
@@ -20,9 +20,9 @@ const $dataCS: default_data = dataCS
           </div>
         ))
       }
-    </div>
+    </section>
     <div class='swiper-pagination'></div>
-  </div>
+  </article>
 </article>
 
 <script>
