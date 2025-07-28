@@ -1,11 +1,13 @@
 ---
 import type { default_data } from '../../../../utils/interfaces/default-data'
 import type { latest_episodes_updates } from '../../../../utils/interfaces/latest-episodes-updates'
-import { dataLEU, dataTUA } from '../../../../utils/storage/data-index'
+import { dataLEU, dataTUA, dataPM } from '../../../../utils/storage/data-index'
 import DefaultCard from '../../../ui/DefaultCard'
 import Title from '../../../ui/Title.astro'
+// Data
 const $dataLEU: latest_episodes_updates = dataLEU
 const $dataTUA: default_data = dataTUA
+const $dataPM: default_data = dataPM
 ---
 
 <main class='flex flex-col gap-8 p-4'>
@@ -48,6 +50,30 @@ const $dataTUA: default_data = dataTUA
                 highlightText={String(data.year ? data.year : 'TBA')}
                 image={data.images.webp.large_image_url}
                 highlightClass='absolute top-0 right-0 left-0 bg-black text-center p-1'
+              />
+            </div>
+          ))
+        }
+      </section>
+      <div class='swiper-pagination'></div>
+    </article>
+  </article>
+
+  <article class=''>
+    <Title text='Top Publishing Manga Ranked by Score' />
+    <p>Discover the highest-rated manga that are currently being published. This list showcases the top-performing series based on user scores, critical acclaim, and community popularity.</p>
+
+    <article class='swiper swiperCS'>
+      <section class='swiper-wrapper' id='my-slider'>
+        {
+          $dataPM?.data?.map((data) => (
+            <div class='swiper-slide'>
+              <DefaultCard
+                id={data.mal_id}
+                title={data.title}
+                highlightText={`⭐ ${data.score}`}
+                image={data.images.webp.large_image_url}
+                highlightClass='absolute top-2 right-2 bg-black rounded-xl px-2'
               />
             </div>
           ))
