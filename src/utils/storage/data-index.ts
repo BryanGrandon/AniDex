@@ -21,6 +21,6 @@ export const dataTUA = allData?.getTUA ? allData.getTUA : [] // Top Upcoming Ani
 export const dataPM = allData?.getPM ? allData.getPM : [] // Publishing Manga
 
 // aside
-export const dataMPA = atom(allData?.getMPA ? allData.getMPA : []) // Most Popular Anime
-export const dataMPM = atom(allData?.getMPM ? allData.getMPM : []) // Most Popular Manga
-export const dataTAA = atom(allData?.getTAA ? allData.getTAA : []) // Top Airing Anime
+export const dataMPA = allData?.getMPA ? allData.getMPA : [] // Most Popular Anime
+export const dataMPM = allData?.getMPM ? allData.getMPM : [] // Most Popular Manga
+export const dataTAA = allData?.getTAA ? allData.getTAA : [] // Top Airing Anime
