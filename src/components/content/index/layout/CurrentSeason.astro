@@ -3,7 +3,6 @@ import type { default_data } from '../../../../utils/interfaces/default-data'
 import { dataCS } from '../../../../utils/storage/data-index'
 import DefaultCard from '../../../ui/DefaultCard'
 import data from '../../../../data.json' assert { type: 'json' }
-import Paragraph from '../ui/Paragraph.astro'
 const { CS } = data.content
 const $dataCS: default_data = dataCS
 ---
@@ -14,7 +13,7 @@ const $dataCS: default_data = dataCS
       {CS.title}:
       <span class='capitalize text-primary'>{$dataCS?.data[0]?.season}</span>
     </h2>
-    <Paragraph text={CS.description} />
+    <p class='text-sm text-gray-400'>{CS.description}</p>
   </section>
 
   <article class='swiper w-full'>

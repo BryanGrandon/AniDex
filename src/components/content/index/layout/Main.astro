@@ -3,9 +3,8 @@ import type { default_data } from '../../../../utils/interfaces/default-data'
 import type { latest_episodes_updates } from '../../../../utils/interfaces/latest-episodes-updates'
 import { dataLEU, dataTUA, dataPM } from '../../../../utils/storage/data-index'
 import DefaultCard from '../../../ui/DefaultCard'
-import Title from '../../../ui/Title.astro'
-import Paragraph from '../ui/Paragraph.astro'
 import data from '../../../../data.json' assert { type: 'json' }
+import MainContent from '../ui/MainContent'
 const { LEU, TUA, TPM } = data.content
 
 // Data API
@@ -15,81 +14,59 @@ const $dataPM: default_data = dataPM
 ---
 
 <main class='flex flex-col gap-8'>
-  <article class='flex flex-col gap-4 bg-background-dark p-4 bg-dark-light'>
-    <section>
-      <Title text={LEU.title} />
-      <Paragraph text={LEU.description} />
-    </section>
-    <article class='swiper swiperMC'>
-      <section class='swiper-wrapper' id='my-slider'>
-        {
-          $dataLEU?.data?.map((data) => (
-            <div class='swiper-slide'>
-              <DefaultCard
-                id={data.entry.mal_id}
-                image={data.entry.images.webp.large_image_url}
-                title={data.entry.title}
-                highlightText={`Episode: ${data.episodes[0].mal_id}`}
-                highlightClass='bottom-12 px-2 rounded-r-lg  '
-              />
-            </div>
-          ))
-        }
-      </section>
-      <div class='swiper-pagination'></div>
-    </article>
-  </article>
+  <MainContent title={LEU.title} description={LEU.description}>
+    <>
+      {
+        $dataLEU?.data?.map((data) => (
+          <div class='swiper-slide'>
+            <DefaultCard
+              id={data.entry.mal_id}
+              image={data.entry.images.webp.large_image_url}
+              title={data.entry.title}
+              highlightText={`Episode: ${data.episodes[0].mal_id}`}
+              highlightClass='bottom-12 px-2 rounded-r-lg  '
+            />
+          </div>
+        ))
+      }
+    </>
+  </MainContent>
 
-  <article class='flex flex-col gap-4 p-4'>
-    <section>
-      <Title text={TUA.title} />
-      <Paragraph text={TUA.description} />
-    </section>
-    <article class='swiper swiperMC'>
-      <section class='swiper-wrapper' id='my-slider'>
-        {
-          $dataTUA?.data?.map((data) => (
-            <div class='swiper-slide'>
-              <DefaultCard
-                id={data.mal_id}
-                title={data.title}
-                highlightText={String(data.year ? data.year : 'TBA')}
-                image={data.images.webp.large_image_url}
-                highlightClass='top-0 right-0 left-0 text-center p-1 font-semibold'
-              />
-            </div>
-          ))
-        }
-      </section>
-      <div class='swiper-pagination'></div>
-    </article>
-  </article>
+  <MainContent title={TUA.title} description={TUA.description}>
+    <>
+      {
+        $dataTUA?.data?.map((data) => (
+          <div class='swiper-slide'>
+            <DefaultCard
+              id={data.mal_id}
+              title={data.title}
+              highlightText={String(data.year ? data.year : 'TBA')}
+              image={data.images.webp.large_image_url}
+              highlightClass='top-0 right-0 left-0 text-center p-1 font-semibold'
+            />
+          </div>
+        ))
+      }
+    </>
+  </MainContent>
 
-  <article class='flex flex-col gap-4 bg-light-dark p-4'>
-    <section>
-      <Title text={TPM.title} />
-      <Paragraph text={TPM.description} />
-    </section>
-
-    <article class='swiper swiperMC'>
-      <section class='swiper-wrapper' id='my-slider'>
-        {
-          $dataPM?.data?.map((data) => (
-            <div class='swiper-slide'>
-              <DefaultCard
-                id={data.mal_id}
-                title={data.title}
-                highlightText={`⭐ ${data.score}`}
-                image={data.images.webp.large_image_url}
-                highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
-              />
-            </div>
-          ))
-        }
-      </section>
-      <div class='swiper-pagination'></div>
-    </article>
-  </article>
+  <MainContent title={TPM.title} description={TPM.description}>
+    <>
+      {
+        $dataPM?.data?.map((data) => (
+          <div class='swiper-slide'>
+            <DefaultCard
+              id={data.mal_id}
+              title={data.title}
+              highlightText={`⭐ ${data.score}`}
+              image={data.images.webp.large_image_url}
+              highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
+            />
+          </div>
+        ))
+      }
+    </>
+  </MainContent>
 
   <!-- <article class='bg-blue-700 p-4'>
       <h2>Recommendations</h2>
@@ -99,8 +76,5 @@ const $dataPM: default_data = dataPM
 <style>
   main {
     grid-area: main;
-  }
-  .swiperMC {
-    width: 100%;
   }
 </style>
