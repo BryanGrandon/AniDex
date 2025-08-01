@@ -28,5 +28,23 @@
                 "href": "#"
             }
         ]
+    },
+    "content": {
+        "CS": {
+            "title": "Current Seasons",
+            "description": "Explore the latest anime releases of the current season. Stay updated with the newest episodes, series, and movies that are captivating audiences right now."
+        },
+        "LEU": {
+            "title": "Latest Episodes Updates",
+            "description": "Keep up to date with the latest episode releases Don't miss a moment of your favorite shows"
+        },
+        "TUA": {
+            "title": "Top Upcoming Anime You Can’t Miss",
+            "description": "Get ready for the next big hits! Our list of upcoming anime highlights the most anticipated series and movies coming soon."
+        },
+        "TPM": {
+            "title": "Top Publishing Manga Ranked by Score",
+            "description": "Discover the highest-rated manga that are currently being published. This list showcases the top-performing series based on user scores, critical acclaim, and community popularity."
+        }
     }
 }

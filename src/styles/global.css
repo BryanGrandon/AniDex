@@ -13,10 +13,10 @@
 }
 
 @theme {
-  --color-primary: #ff7129;
-  --color-secondary: #030726;
-  --color-secondary-t: #0307266e;
-  --color-background-dark: #202020;
+  --color-primary: #ff411d;
+  --color-secondary: #4e40de;
+  --color-dark-transparent: #000000b9;
+  --color-background-dark: #15181e;
   --color-background-light: #e5e7eb;
   --font-basicaline: 'Basicaline', sans-serif;
 }

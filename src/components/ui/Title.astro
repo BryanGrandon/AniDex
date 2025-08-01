@@ -2,8 +2,9 @@
 type Props = {
   text: string
   theClass?: string
+  theSecondary?: boolean
 }
-const { text, theClass = '' } = Astro.props
+const { text, theClass = '', theSecondary = false } = Astro.props
 ---
 
-<h2 class={`font-basicaline text-3xl py-5 ${theClass}`}>{text}</h2>
+<h2 class={`${theSecondary ? 'text-2xl' : 'text-3xl'} font-basicaline pr-4 whitespace-nowrap inline-block  ${theClass}`}>{text}</h2>

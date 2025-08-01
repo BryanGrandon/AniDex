@@ -4,18 +4,23 @@ import type { latest_episodes_updates } from '../../../../utils/interfaces/lates
 import { dataLEU, dataTUA, dataPM } from '../../../../utils/storage/data-index'
 import DefaultCard from '../../../ui/DefaultCard'
 import Title from '../../../ui/Title.astro'
-// Data
+import Paragraph from '../ui/Paragraph.astro'
+import data from '../../../../data.json' assert { type: 'json' }
+const { LEU, TUA, TPM } = data.content
+
+// Data API
 const $dataLEU: latest_episodes_updates = dataLEU
 const $dataTUA: default_data = dataTUA
 const $dataPM: default_data = dataPM
 ---
 
-<main class='flex flex-col gap-8 p-4'>
-  <article>
-    <Title text='Latest Episodes Updates' />
-    <p>Keep up to date with the latest episode releases Don't miss a moment of your favorite shows</p>
-
-    <article class='swiper swiperCS'>
+<main class='flex flex-col gap-8'>
+  <article class='flex flex-col gap-4 bg-background-dark p-4 bg-dark-light'>
+    <section>
+      <Title text={LEU.title} />
+      <Paragraph text={LEU.description} />
+    </section>
+    <article class='swiper swiperMC'>
       <section class='swiper-wrapper' id='my-slider'>
         {
           $dataLEU?.data?.map((data) => (
@@ -25,7 +30,7 @@ const $dataPM: default_data = dataPM
                 image={data.entry.images.webp.large_image_url}
                 title={data.entry.title}
                 highlightText={`Episode: ${data.episodes[0].mal_id}`}
-                highlightClass='absolute bottom-12 bg-black px-2 rounded-r-lg '
+                highlightClass='bottom-12 px-2 rounded-r-lg  '
               />
             </div>
           ))
@@ -35,11 +40,12 @@ const $dataPM: default_data = dataPM
     </article>
   </article>
 
-  <article class=''>
-    <Title text='Top Upcoming Anime You Can’t Miss' />
-    <p>Get ready for the next big hits! Our list of upcoming anime highlights the most anticipated series and movies coming soon.</p>
-
-    <article class='swiper swiperCS'>
+  <article class='flex flex-col gap-4 p-4'>
+    <section>
+      <Title text={TUA.title} />
+      <Paragraph text={TUA.description} />
+    </section>
+    <article class='swiper swiperMC'>
       <section class='swiper-wrapper' id='my-slider'>
         {
           $dataTUA?.data?.map((data) => (
@@ -49,7 +55,7 @@ const $dataPM: default_data = dataPM
                 title={data.title}
                 highlightText={String(data.year ? data.year : 'TBA')}
                 image={data.images.webp.large_image_url}
-                highlightClass='absolute top-0 right-0 left-0 bg-black text-center p-1'
+                highlightClass='top-0 right-0 left-0 text-center p-1 font-semibold'
               />
             </div>
           ))
@@ -59,11 +65,13 @@ const $dataPM: default_data = dataPM
     </article>
   </article>
 
-  <article class=''>
-    <Title text='Top Publishing Manga Ranked by Score' />
-    <p>Discover the highest-rated manga that are currently being published. This list showcases the top-performing series based on user scores, critical acclaim, and community popularity.</p>
+  <article class='flex flex-col gap-4 bg-light-dark p-4'>
+    <section>
+      <Title text={TPM.title} />
+      <Paragraph text={TPM.description} />
+    </section>
 
-    <article class='swiper swiperCS'>
+    <article class='swiper swiperMC'>
       <section class='swiper-wrapper' id='my-slider'>
         {
           $dataPM?.data?.map((data) => (
@@ -73,7 +81,7 @@ const $dataPM: default_data = dataPM
                 title={data.title}
                 highlightText={`⭐ ${data.score}`}
                 image={data.images.webp.large_image_url}
-                highlightClass='absolute top-2 right-2 bg-black rounded-xl px-2'
+                highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
               />
             </div>
           ))
@@ -91,5 +99,8 @@ const $dataPM: default_data = dataPM
 <style>
   main {
     grid-area: main;
+  }
+  .swiperMC {
+    width: 100%;
   }
 </style>

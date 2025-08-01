@@ -11,22 +11,22 @@ const $dataTAA: default_data = dataTAA
 ---
 
 <aside class='gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-  <article>
-    <Title text='Top Airing Anime' />
+  <article class='flex flex-col gap-4'>
+    <Title text='Top Airing Anime' theSecondary={true} />
     <section>
       {$dataTAA?.data?.map((data) => <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.rank}`} image={data?.images.webp.large_image_url} />)}
     </section>
   </article>
 
-  <article>
-    <Title text='Most Popular Anime' />
+  <article class='flex flex-col gap-4'>
+    <Title text='Most Popular Anime' theSecondary={true} />
     <section>
       {$dataMPA?.data?.map((data) => <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />)}
     </section>
   </article>
 
-  <article>
-    <Title text='Most Popular Manga' />
+  <article class='flex flex-col gap-4'>
+    <Title text='Most Popular Manga' theSecondary={true} />
     <section>
       {$dataMPM?.data?.map((data) => <MiniCard title={data?.title} text={data?.status} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />)}
     </section>
@@ -42,9 +42,9 @@ const $dataTAA: default_data = dataTAA
 
   aside {
     grid-area: aside;
-    background-color: #181818;
-    padding: 1rem;
-    border-radius: 8px;
+    padding: 1.5rem 1rem 1rem 2rem;
+    border-radius: 4px;
+    background-color: #0b0c0f;
   }
   @media screen and (min-width: 1050px) {
     aside {

@@ -2,21 +2,33 @@
 import type { default_data } from '../../../../utils/interfaces/default-data'
 import { dataCS } from '../../../../utils/storage/data-index'
 import DefaultCard from '../../../ui/DefaultCard'
-
+import data from '../../../../data.json' assert { type: 'json' }
+import Paragraph from '../ui/Paragraph.astro'
+const { CS } = data.content
 const $dataCS: default_data = dataCS
 ---
 
-<article class='p-4' style={{ gridArea: 'content' }}>
-  <h2 class='font-basicaline text-3xl py-5'>
-    Current seasons: <span class='capitalize text-primary'>{$dataCS?.data[0]?.season}</span>
-  </h2>
+<article class='p-4 my-10 flex flex-col gap-4' style={{ gridArea: 'content' }}>
+  <section>
+    <h2 class='font-basicaline text-3xl'>
+      {CS.title}:
+      <span class='capitalize text-primary'>{$dataCS?.data[0]?.season}</span>
+    </h2>
+    <Paragraph text={CS.description} />
+  </section>
 
-  <article class='swiper swiperCS'>
+  <article class='swiper w-full'>
     <section class='swiper-wrapper' id='my-slider'>
       {
         $dataCS?.data?.map((data) => (
           <div class='swiper-slide'>
-            <DefaultCard id={data?.mal_id} image={data?.images.webp.large_image_url} title={data?.title} highlightText={data?.type} highlightClass='absolute top-2 right-2 bg-black rounded-xl px-4' />
+            <DefaultCard
+              id={data?.mal_id}
+              image={data?.images.webp.large_image_url}
+              title={data?.title}
+              highlightText={data?.type}
+              highlightClass='absolute top-2 right-2 bg-dark-transparent rounded-xl px-4'
+            />
           </div>
         ))
       }
@@ -29,7 +41,7 @@ const $dataCS: default_data = dataCS
   import Swiper from 'swiper'
   import { Pagination, Autoplay } from 'swiper/modules'
 
-  const swiper = new Swiper('.swiperCS', {
+  const swiper = new Swiper('.swiper', {
     modules: [Pagination, Autoplay],
     scrollbar: true,
     spaceBetween: 20,
@@ -37,13 +49,31 @@ const $dataCS: default_data = dataCS
     autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
     pagination: { el: 'swiper-pagination', clickable: true },
     breakpoints: {
-      320: { slidesPerView: 2 },
-      520: { slidesPerView: 3 },
-      640: { slidesPerView: 4 },
-      768: { slidesPerView: 5 },
-      1024: { slidesPerView: 6 },
-      1280: { slidesPerView: 7 },
-      1606: { slidesPerView: 8 },
+      360: { slidesPerView: 2 },
+      640: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      880: { slidesPerView: 5 },
+      1050: { slidesPerView: 6 },
+      1175: { slidesPerView: 7 },
+      1280: { slidesPerView: 8 },
+      1606: { slidesPerView: 9 },
+    },
+  })
+
+  const swiperMain = new Swiper('.swiperMC', {
+    modules: [Pagination, Autoplay],
+    scrollbar: true,
+    spaceBetween: 20,
+    slidesPerView: 1,
+    autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: 'swiper-pagination', clickable: true },
+    breakpoints: {
+      360: { slidesPerView: 2 },
+      640: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      1175: { slidesPerView: 5 },
+      1280: { slidesPerView: 6 },
+      1606: { slidesPerView: 7 },
     },
   })
 </script>

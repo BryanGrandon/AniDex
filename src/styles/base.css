@@ -1,8 +1,9 @@
 :root {
-  --dark: #242424;
+  --dark: #1d2129;
   --light: #efefef;
   --main-source: 'Montserrat Variable', sans-serif;
-  --primary: #ff7129;
+  --primary: #ff411d;
+  --secondary: #4e40de;
   --stroke: #1b1919;
 }
 
