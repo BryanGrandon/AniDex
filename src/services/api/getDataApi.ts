@@ -3,6 +3,7 @@ import {
   URL_LATEST_EPISODES_UPDATES,
   URL_MOST_POPULAR_ANIME,
   URL_MOST_POPULAR_MANGA,
+  URL_PUBLISHING_NOVEL,
   URL_PUBLISHING_MANGA,
   URL_TOP_AIRING_ANIME,
   URL_TOP_UPCOMING_ANIME,
@@ -32,6 +33,7 @@ const fetchWithDelay = async (urls: string[]) => {
     else if (url == URL_LATEST_EPISODES_UPDATES) allData.getLEU = data
     else if (url == URL_TOP_UPCOMING_ANIME) allData.getTUA = data
     else if (url == URL_PUBLISHING_MANGA) allData.getPM = data
+    else if (url == URL_PUBLISHING_NOVEL) allData.getPN = data
 
     await delay(500)
   }

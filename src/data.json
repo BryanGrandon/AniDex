@@ -45,6 +45,10 @@
         "TPM": {
             "title": "Top Publishing Manga Ranked by Score",
             "description": "Discover the highest-rated manga that are currently being published. This list showcases the top-performing series based on user scores, critical acclaim, and community popularity."
+        },
+        "TPN": {
+            "title": "Top Publishing Novel Ranked by Score",
+            "description": "Explore the top-rated novels that are currently being published. This list features the best-performing novels based on user ratings, critical reviews, and community feedback."
         }
     }
 }

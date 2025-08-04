@@ -8,7 +8,7 @@ type Props = {
 
 const MainContent = ({ title, description, children }: Props) => {
   return (
-    <article className='flex flex-col gap-4 p-4'>
+    <article className='flex flex-col gap-4 p-4 relative'>
       <section>
         <h2 className='font-basicaline text-3xl'>{title}</h2>
         <p className='prose-sm text-gray-400'>{description}</p>

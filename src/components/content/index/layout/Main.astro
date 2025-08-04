@@ -1,19 +1,20 @@
 ---
 import type { default_data } from '../../../../utils/interfaces/default-data'
 import type { latest_episodes_updates } from '../../../../utils/interfaces/latest-episodes-updates'
-import { dataLEU, dataTUA, dataPM } from '../../../../utils/storage/data-index'
+import { dataLEU, dataTUA, dataPM, dataPN } from '../../../../utils/storage/data-index'
 import DefaultCard from '../../../ui/DefaultCard'
 import data from '../../../../data.json' assert { type: 'json' }
 import MainContent from '../ui/MainContent'
-const { LEU, TUA, TPM } = data.content
+const { LEU, TUA, TPM, TPN } = data.content
 
 // Data API
 const $dataLEU: latest_episodes_updates = dataLEU
 const $dataTUA: default_data = dataTUA
 const $dataPM: default_data = dataPM
+const $dataPN: default_data = dataPN
 ---
 
-<main class='flex flex-col gap-8'>
+<main class='flex flex-col gap-8 overlay'>
   <MainContent title={LEU.title} description={LEU.description}>
     <>
       {
@@ -68,13 +69,29 @@ const $dataPM: default_data = dataPM
     </>
   </MainContent>
 
-  <!-- <article class='bg-blue-700 p-4'>
-      <h2>Recommendations</h2>
-    </article> -->
+  <MainContent title={TPN.title} description={TPN.description}>
+    <>
+      {
+        $dataPN?.data?.map((data) => (
+          <div class='swiper-slide'>
+            <DefaultCard
+              id={data.mal_id}
+              title={data.title}
+              highlightText={`⭐ ${data.score}`}
+              image={data.images.webp.large_image_url}
+              highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
+            />
+          </div>
+        ))
+      }
+    </>
+  </MainContent>
 </main>
 
 <style>
   main {
     grid-area: main;
+    background-image: url('https://i.pinimg.com/originals/62/c4/c8/62c4c8894109a2db88fe82a5fe8c41aa.png');
+    background-size: contain;
   }
 </style>

@@ -1,16 +1,16 @@
-import { atom } from 'nanostores'
 import {
   URL_CURRENT_SEASON,
   URL_LATEST_EPISODES_UPDATES,
   URL_MOST_POPULAR_ANIME,
   URL_MOST_POPULAR_MANGA,
   URL_PUBLISHING_MANGA,
+  URL_PUBLISHING_NOVEL,
   URL_TOP_AIRING_ANIME,
   URL_TOP_UPCOMING_ANIME,
 } from '../../utils/constants/urls-api'
 import fetchWithDelay from '../../services/api/getDataApi'
 
-const urls = [URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA, URL_TOP_AIRING_ANIME, URL_CURRENT_SEASON, URL_LATEST_EPISODES_UPDATES, URL_TOP_UPCOMING_ANIME, URL_PUBLISHING_MANGA]
+const urls = [URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA, URL_TOP_AIRING_ANIME, URL_CURRENT_SEASON, URL_LATEST_EPISODES_UPDATES, URL_TOP_UPCOMING_ANIME, URL_PUBLISHING_MANGA, URL_PUBLISHING_NOVEL]
 const allData = await fetchWithDelay(urls)
 
 export const dataCS = allData?.getCS ? allData.getCS : [] // Current Season
@@ -19,6 +19,7 @@ export const dataCS = allData?.getCS ? allData.getCS : [] // Current Season
 export const dataLEU = allData?.getLEU ? allData.getLEU : [] // Latest Episodes Updates
 export const dataTUA = allData?.getTUA ? allData.getTUA : [] // Top Upcoming Anime
 export const dataPM = allData?.getPM ? allData.getPM : [] // Publishing Manga
+export const dataPN = allData?.getPN ? allData.getPN : [] // Publishing Novel
 
 // aside
 export const dataMPA = allData?.getMPA ? allData.getMPA : [] // Most Popular Anime
