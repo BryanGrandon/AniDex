@@ -22,6 +22,7 @@ const $dataCS: default_data = dataCS
         $dataCS?.data?.map((data) => (
           <div class='swiper-slide'>
             <DefaultCard
+              client:load
               id={data?.mal_id}
               image={data?.images.webp.large_image_url}
               title={data?.title}
