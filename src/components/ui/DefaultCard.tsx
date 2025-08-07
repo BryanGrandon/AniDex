@@ -1,5 +1,4 @@
-import { contentModal } from '../../utils/storage/data-modal'
-import { isOpenModal } from '../../utils/storage/data-modal'
+import { idModal, isOpenModal } from '../../utils/storage/data-modal'
 
 type Default_Card = {
   id: number
@@ -11,9 +10,8 @@ type Default_Card = {
 
 const DefaultCard = ({ image, title, highlightText, highlightClass, id }: Default_Card) => {
   const handleClick = () => {
-    console.log('sss ' + id)
-    isOpenModal.set(true) // Update the modal state to open
-    contentModal.set(<span>{id}</span>) // Set the content of the modal
+    isOpenModal.set(true)
+    idModal.set(id)
   }
 
   return (

@@ -1,4 +1,5 @@
 import { atom } from 'nanostores'
 
 export const isOpenModal = atom(false)
-export const contentModal = atom()
+export const typeModal = atom('anime')
+export const idModal = atom(0)
