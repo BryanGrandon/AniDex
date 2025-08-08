@@ -30,9 +30,17 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
           </section>
           <section>
             <p>Score: {data?.data?.score}</p>
-            <p>Episodes: {data?.data?.episodes}</p>
             <p>Status: {data?.data?.status}</p>
-            <p>Synopsis: {data?.data?.synopsis}</p>
+            <p>Type: {data?.data?.type}</p>
+            <p>Trailer: {data?.data?.trailer.embed_url}</p>
+            <p>source: {data?.data?.source}</p>
+            <p>duration: {data?.data?.duration}</p>
+            <p>favorites: {data?.data?.favorites}</p>
+            <p>rank: {data?.data?.rank}</p>
+            <p>ranting: {data?.data?.rating}</p>
+            <p>genre: {data?.data?.genres.map((data) => data.name)}</p>
+            <p>producers: {data?.data?.producers.map((data) => data.name)}</p>
+            <p className='prose text-white'>Synopsis: {data?.data?.synopsis}</p>
           </section>
         </article>
       </article>
