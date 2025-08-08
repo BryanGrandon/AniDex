@@ -12,6 +12,7 @@ const DefaultCard = ({ image, title, highlightText, highlightClass, id }: Defaul
   const handleClick = () => {
     isOpenModal.set(true)
     idModal.set(id)
+    console.log(id)
   }
 
   return (

@@ -5,14 +5,18 @@ const Navbar = () => {
   const { links } = data.header
 
   const handlerClick = () => {
-    const $list = document.querySelector('.navbar__list')
-    const $button = document.querySelector('.navbar__button')
-    $list?.classList.toggle('d-none')
-    $button?.classList.toggle('start-animation-icon')
+    const $lists = document.querySelectorAll('.navbar__list')
+    const $buttons = document.querySelectorAll('.navbar__button')
+    $lists.forEach(($list) => {
+      $list.classList.toggle('d-none')
+    })
+    $buttons.forEach(($button) => {
+      $button.classList.toggle('start-animation-icon')
+    })
   }
 
   return (
-    <nav className='relative'>
+    <nav className='relative z-10'>
       <section className='flex justify-between items-center text-white relative py-2 text-xl font-basicaline'>
         <a href='#'>Logo</a>
 
