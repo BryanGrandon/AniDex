@@ -21,6 +21,7 @@ const $dataPN: default_data = dataPN
         $dataLEU?.data?.map((data) => (
           <div class='swiper-slide'>
             <DefaultCard
+              client:load
               id={data.entry.mal_id}
               image={data.entry.images.webp.large_image_url}
               title={data.entry.title}
@@ -39,6 +40,7 @@ const $dataPN: default_data = dataPN
         $dataTUA?.data?.map((data) => (
           <div class='swiper-slide'>
             <DefaultCard
+              client:load
               id={data.mal_id}
               title={data.title}
               highlightText={String(data.year ? data.year : 'TBA')}
@@ -57,6 +59,7 @@ const $dataPN: default_data = dataPN
         $dataPM?.data?.map((data) => (
           <div class='swiper-slide'>
             <DefaultCard
+              client:load
               id={data.mal_id}
               title={data.title}
               highlightText={`⭐ ${data.score}`}
@@ -75,6 +78,7 @@ const $dataPN: default_data = dataPN
         $dataPN?.data?.map((data) => (
           <div class='swiper-slide'>
             <DefaultCard
+              client:load
               id={data.mal_id}
               title={data.title}
               highlightText={`⭐ ${data.score}`}
@@ -91,8 +95,6 @@ const $dataPN: default_data = dataPN
 <style>
   main {
     grid-area: main;
-    /* background-color: #100b3e; */
     background-color: #161922;
-    /* background-color: #f00; */
   }
 </style>

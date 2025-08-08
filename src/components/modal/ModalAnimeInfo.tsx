@@ -5,7 +5,7 @@ type Modal_Anime = {
   id: number
 }
 
-const ModalAnime = ({ id }: Modal_Anime) => {
+const ModalAnimeInfo = ({ id }: Modal_Anime) => {
   const [data, setData] = useState<data_modal_anime>()
 
   const getAnime = async () => {
@@ -39,4 +39,4 @@ const ModalAnime = ({ id }: Modal_Anime) => {
     )
 }
 
-export default ModalAnime
+export default ModalAnimeInfo

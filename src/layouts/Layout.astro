@@ -17,32 +17,6 @@ import '../styles/base.css'
   </body>
 </html>
 
-<style>
-  body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr) 400px;
-    grid-template-areas:
-      'header header header header'
-      'main main main aside'
-      'main main main aside'
-      'main main main aside'
-      'footer footer footer footer'
-      'modal modal modal modal';
-  }
-  @media screen and (max-width: 1050px) {
-    body {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-areas:
-        'header header header header'
-        'main main main main'
-        'main main main main'
-        'aside aside aside aside'
-        'footer footer footer footer'
-        'modal modal modal modal';
-    }
-  }
-</style>
-
 <script>
   import 'swiper/css'
   import 'swiper/css/pagination'

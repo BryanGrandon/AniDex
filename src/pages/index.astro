@@ -4,22 +4,42 @@ import Layout from '../layouts/Layout.astro'
 import Aside from '../components/content/index/layout/Aside.astro'
 import Main from '../components/content/index/layout/Main.astro'
 import Footer from '../components/content/index/layout/Footer.astro'
-import ModalContent from '../components/layout/ModalContent'
+import Modal from '../components/modal/Modal'
 ---
 
 <Layout>
-  <Header />
-  <Main />
-  <Aside />
-  <Footer />
-  <ModalContent client:only />
+  <article class='home'>
+    <Header />
+    <Main />
+    <Aside />
+    <Footer />
+  </article>
+  <Modal client:only />
 </Layout>
 
 <style>
-  footer {
-    grid-area: footer;
-    padding: 1rem;
-    background-color: cadetblue;
-    border-top: 1px solid #dee2e6;
+  .home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 400px;
+    grid-template-areas:
+      'header header header header'
+      'main main main aside'
+      'main main main aside'
+      'main main main aside'
+      'footer footer footer footer';
+  }
+  .home-hidden {
+    display: none;
+  }
+  @media screen and (max-width: 1050px) {
+    .home {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-areas:
+        'header header header header'
+        'main main main main'
+        'main main main main'
+        'aside aside aside aside'
+        'footer footer footer footer';
+    }
   }
 </style>
