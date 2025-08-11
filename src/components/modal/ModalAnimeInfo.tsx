@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 import type { data_modal_anime } from '../../utils/interfaces/data-modal-anime'
+import StarIcon from '../icons/StarIcon'
 
 type Modal_Anime = {
   id: number
@@ -20,20 +21,49 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
 
   if (data)
     return (
-      <article className='p-4'>
-        <header>
-          <h2 className='text-2xl font-basicaline'>{data?.title}</h2>
-        </header>
-        <article className='flex flex-col lg:flex-row gap-4 text-white test'>
-          <section className='flex justify-center items-center p-4'>
-            <img src={data?.images?.webp?.large_image_url} alt={data?.title} className='rounded-xl min-h-80' />
-          </section>
+      <article className='p-4 max-w-[1400px] m-auto'>
+        <main className='overlay rounded-xl overflow-hidden p-4'>
+          <article className=' flex flex-col items-center sm:flex-row sm:items-start gap-4 relative'>
+            <article>
+              <img src={data?.images?.webp?.large_image_url} alt={data?.title} className='rounded h-85 ' />
+            </article>
+
+            <article className='pt-4 flex flex-col justify-between gap-3 h-full'>
+              <section>
+                <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{data?.title}</h2>
+                <p>Titles alternative: {data?.titles.map((e) => e.title)}</p>
+                <p>genre: {data?.genres.map((data) => data.name)}</p>
+                <p>themes: {data?.themes.map((item) => item.name)} </p>
+              </section>
+
+              <section className='flex gap-4 p-4 border rounded'>
+                <p class='flex gap-2'>
+                  Score:{' '}
+                  <span className='flex items-center gap-1'>
+                    <StarIcon /> {data?.score}
+                  </span>
+                </p>
+                <p>
+                  Ranked: <span>#{data?.rank}</span>
+                </p>
+                <p>
+                  Popularity: <span>#{data?.popularity}</span>
+                </p>
+                <p>
+                  Members: <span>#{data?.members}</span>
+                </p>
+              </section>
+            </article>
+          </article>
+        </main>
+
+        <section className='flex justify-center items-center p-4'></section>
+        <article className='p-4'></article>
+        <article>
           <section>
-            <p>Score: {data?.score}</p>
             <p>Status: {data?.status}</p>
             <p>Trailer: {data?.trailer.embed_url}</p>
             <p>favorites: {data?.favorites}</p>
-            <p>rank: {data?.rank}</p>
             <p>ranting: {data?.rating}</p>
           </section>
           <section>
@@ -47,8 +77,6 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
             <p>aired</p>
             <p>producers: {data?.producers.map((data) => data.name)}</p>
             <p>source: {data?.source}</p>
-            <p>genre: {data?.genres.map((data) => data.name)}</p>
-            <p>themes: </p>
           </section>
         </article>
       </article>
