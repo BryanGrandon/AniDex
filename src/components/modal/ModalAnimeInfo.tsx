@@ -33,20 +33,19 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
             <article className='pt-4 flex flex-col justify-between gap-3 w-full'>
               <section>
                 <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{data?.title}</h2>
-                <TextModal text={`Titles alternative: ${data?.titles.map((item) => item.title)}`} />
-                <TextModal text={`genre: ${data?.genres.map((item) => ' ' + item.name)}`} />
-                <TextModal text={`themes: ${data?.themes.map((item) => ' ' + item.name)}`} />
-                <TextModal text={`status: ${data?.status}`} />
-                <TextModal text={`Rating: ${data?.rating}`} />
-                <TextModal text={`source: ${data?.source}`} />
-                <TextModal text={`type: ${data?.type}`} />
+                <TextModal textMain={`Titles alternative:`} textSecondary={`${data?.titles.map((item) => item.title)}`} />
+                <TextModal textMain={`genre:`} textSecondary={`${data?.genres.map((item) => ' ' + item.name)}`} />
+                <TextModal textMain={`themes:`} textSecondary={`${data?.themes.map((item) => ' ' + item.name)}`} />
+                <TextModal textMain={`status:`} textSecondary={`${data?.status}`} />
+                <TextModal textMain={`rating:`} textSecondary={`${data?.rating}`} />
+                <TextModal textMain={`type:`} textSecondary={`${data?.type}`} />
               </section>
 
               <section className='flex gap-4 p-4 border rounded w-max'>
-                <TextModal text='score:' highlight={`#${data?.score}`} />
-                <TextModal text='ranked:' highlight={`#${data?.rank}`} />
-                <TextModal text='Popularity:' highlight={`#${data?.popularity}`} />
-                <TextModal text='Members:' highlight={`#${data?.members}`} />
+                <TextModal textMain={`score:`} textSecondary={`${data?.score}`} highlight={true} />
+                <TextModal textMain={`ranked:`} textSecondary={`${data?.rank}`} highlight={true} />
+                <TextModal textMain={`Popularity:`} textSecondary={`${data?.popularity}`} highlight={true} />
+                <TextModal textMain={`Members:`} textSecondary={`${data?.members}`} highlight={true} />
               </section>
             </article>
           </article>
@@ -62,7 +61,7 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
           <article className='min-w-90 overlay p-4 rounded-xl overflow-hidden m-auto'>
             <section className='relative flex flex-col gap-2'>
               <LiteYouTubeEmbed id={data?.trailer.youtube_id} title={data?.title} poster='maxresdefault' webp />
-              <TextModal text='Duration:' highlight={`${data?.duration}`} />
+              <TextModal textMain={`Duration:`} textSecondary={`${data?.duration}`} highlight={true} />
             </section>
           </article>
         </article>

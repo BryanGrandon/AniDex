@@ -1,12 +1,13 @@
 type text_modal = {
-  text: string
-  highlight?: string
+  textMain: string
+  textSecondary?: string
+  highlight?: boolean
 }
 
-const TextModal = ({ text, highlight }: text_modal) => {
+const TextModal = ({ textMain, textSecondary, highlight = false }: text_modal) => {
   return (
     <p className='font-basicaline font-medium capitalize tracking-wider'>
-      {text} <span className='text-primary'>{highlight}</span>
+      {textMain} {highlight ? <span className='text-primary'>{textSecondary}</span> : <span>{textSecondary}</span>}
     </p>
   )
 }
