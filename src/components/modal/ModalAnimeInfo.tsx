@@ -1,8 +1,13 @@
+import Swiper from 'swiper'
+import { Pagination, Autoplay } from 'swiper/modules'
 import { useEffect, useState } from 'preact/hooks'
-import type { data_modal_anime } from '../../utils/interfaces/data-modal-anime'
 import TextModal from './TextModal'
+import DefaultCard from '../ui/DefaultCard'
+import type { data_modal_anime } from '../../utils/interfaces/data-modal-anime'
+import type { data_recommendation } from '../../utils/interfaces/data-recommendation'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import type { latest_episodes_updates } from '../../utils/interfaces/latest-episodes-updates'
 
 type Modal_Anime = {
   id: number
@@ -10,6 +15,7 @@ type Modal_Anime = {
 
 const ModalAnimeInfo = ({ id }: Modal_Anime) => {
   const [data, setData] = useState<data_modal_anime>()
+  const [dataRecommendations, setDataRecommendations] = useState<data_recommendation>()
 
   const getAnime = async () => {
     const res = fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
@@ -17,15 +23,24 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
     setData(json.data)
   }
 
+  const getRecommendations = async () => {
+    const res = fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations?limit=7`)
+    const json = await (await res).json()
+    setDataRecommendations(json)
+  }
+
   useEffect(() => {
     getAnime()
-  }, [])
+    getRecommendations()
+  }, [data, dataRecommendations])
+
+  const recommendations = dataRecommendations?.data.slice(0, 7)
 
   if (data)
     return (
       <main className='p-4 max-w-[1400px] m-auto flex flex-col gap-8'>
         <article className='overlay rounded-xl overflow-hidden p-4'>
-          <article className=' flex flex-col items-center md:flex-row sm:items-start gap-4 relative'>
+          <article className=' flex flex-col items-center md:flex-row lg:items-start gap-4 relative'>
             <article>
               <img src={data?.images?.webp?.large_image_url} alt={data?.title} className='rounded w-75' />
             </article>
@@ -51,19 +66,43 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
           </article>
         </article>
 
-        <article className='flex justify-between w-full gap-4'>
-          <article className='overlay p-4 rounded-xl overflow-hidden w-full'>
+        <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+          <article className='overlay p-4 rounded-xl overflow-hidden col-span-2'>
             <section className='relative h-auto'>
               <h2 className='text-2xl font-basicaline'>Synopsis</h2>
-              <p className=''>{data?.synopsis}</p>
+              <p className='prose px-4 w-full h-45 overflow-auto text-white'>{data?.synopsis}</p>
             </section>
           </article>
-          <article className='min-w-90 overlay p-4 rounded-xl overflow-hidden m-auto'>
+          <article className=' overlay p-4 rounded-xl overflow-hidden '>
             <section className='relative flex flex-col gap-2'>
-              <LiteYouTubeEmbed id={data?.trailer.youtube_id} title={data?.title} poster='maxresdefault' webp />
-              <TextModal textMain={`Duration:`} textSecondary={`${data?.duration}`} highlight={true} />
+              <h2 className='font-basicaline text-2xl'>Trailer</h2>
+              <LiteYouTubeEmbed id={data?.trailer.youtube_id} title={data?.title} poster='maxresdefault' />
             </section>
           </article>
+          <article className='overlay  p-4 rounded-xl overflow-hidden'>
+            <section className='relative'>
+              <h2 className='font-basicaline text-2xl'>More info</h2>
+              <section className='px-4'>
+                <TextModal textMain={`Year:`} textSecondary={`${data?.year}`} highlight={true} />
+                <TextModal textMain={`Episodes:`} textSecondary={`${data?.episodes}`} highlight={true} />
+                <TextModal textMain={`Duration:`} textSecondary={`${data?.duration}`} highlight={true} />
+                <TextModal textMain={`Studios:`} textSecondary={`${data?.studios.map((item) => ' ' + item.name)}`} highlight={true} />
+              </section>
+            </section>
+          </article>
+        </article>
+
+        <article className='overlay p-4 rounded-xl overflow-hidden '>
+          <section className='relative'>
+            <h2 className='font-basicaline text-2xl'>Recommendations</h2>
+            <article class='flex gap-4 flex-wrap justify-evenly'>
+              {recommendations?.map((data) => (
+                <section className='w-40 test overflow-hidden object-contain'>
+                  <img src={data.entry.images.webp.large_image_url} alt='' className='object-contain rounded-lg' />
+                </section>
+              ))}
+            </article>
+          </section>
         </article>
       </main>
     )

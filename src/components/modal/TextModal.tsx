@@ -6,8 +6,8 @@ type text_modal = {
 
 const TextModal = ({ textMain, textSecondary, highlight = false }: text_modal) => {
   return (
-    <p className='font-basicaline font-medium capitalize tracking-wider'>
-      {textMain} {highlight ? <span className='text-primary'>{textSecondary}</span> : <span>{textSecondary}</span>}
+    <p className='font-basicaline font-medium capitalize tracking-wider text-white text-lg'>
+      {textMain} {highlight ? <span className='text-primary text-base font-normal'>{textSecondary}</span> : <span className='text-base font-normal'>{textSecondary}</span>}
     </p>
   )
 }

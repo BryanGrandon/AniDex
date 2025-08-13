@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/preact'
 import { idModal, isOpenModal } from '../../utils/storage/data-modal'
 import ModalAnimeInfo from './ModalAnimeInfo'
+import ArrowLeftIcon from '../icons/ArrowLeftIcon'
 
 const ModalContent = () => {
   const isOpen = useStore(isOpenModal)
@@ -22,16 +23,14 @@ const ModalContent = () => {
     idModal.set(0)
     closeModal()
   }
-
+  const bgCustom = 'https://i.pinimg.com/originals/62/c4/c8/62c4c8894109a2db88fe82a5fe8c41aa.png'
   if (isOpen) {
     return (
-      <article className='fixed top-0 left-0 w-full h-full z-20 bg-gray-800 overflow-auto modal' style={{ gridArea: 'modal', scrollBehavior: '' }}>
-        <header className='p-4'>
-          <section>
-            <button className='text-white text-2xl font-bold' onClick={handlerClickClose}>
-              Close
-            </button>
-          </section>
+      <article className='fixed top-0 left-0 w-full h-full z-20 bg-cover overflow-auto modal' style={{ gridArea: 'modal', backgroundImage: `url(${bgCustom})` }}>
+        <header className='pt-4 pl-4'>
+          <button className='text-white text-2xl font-bold  cursor-pointer' onClick={handlerClickClose}>
+            <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary' />
+          </button>
         </header>
         <ModalAnimeInfo key={id} id={id} />
       </article>
