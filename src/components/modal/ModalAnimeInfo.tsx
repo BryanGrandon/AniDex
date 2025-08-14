@@ -4,6 +4,8 @@ import type { data_modal_anime } from '../../utils/interfaces/data-modal-anime'
 import type { data_recommendation } from '../../utils/interfaces/data-recommendation'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import MiniCard from '../ui/MiniCard'
+import Title from '../ui/Title.astro'
 
 type Modal_Anime = {
   id: number
@@ -91,11 +93,18 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
         <article className='overlay p-4 rounded-xl overflow-hidden '>
           <section className='relative'>
             <h2 className='font-basicaline text-2xl'>Recommendations</h2>
-            <article class='flex gap-4 flex-wrap justify-evenly'>
+            <article class='flex flex-col gap-2'>
               {recommendations?.map((data) => (
-                <section className='w-40 test overflow-hidden object-contain'>
-                  <img src={data.entry.images.webp.large_image_url} alt='' className='object-contain rounded-lg' />
-                </section>
+                <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={data.entry.title} highlight='' />
+              ))}
+            </article>
+          </section>
+
+          <section className='relative'>
+            <h2 className='font-basicaline text-2xl'>Recommendations</h2>
+            <article class='flex flex-col gap-2'>
+              {recommendations?.map((data) => (
+                <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={data.entry.title} highlight='' />
               ))}
             </article>
           </section>
