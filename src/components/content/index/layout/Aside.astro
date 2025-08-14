@@ -4,6 +4,7 @@ import MiniCard from '../../../ui/MiniCard'
 import type { default_data } from '../../../../utils/interfaces/default-data'
 import type { most_popular_manga } from '../../../../utils/interfaces/most-popular-manga'
 import { dataMPA, dataMPM, dataTAA } from '../../../../utils/storage/data-index'
+import AsideContent from '../ui/AsideContent'
 
 const $dataMPA: default_data = dataMPA
 const $dataMPM: most_popular_manga = dataMPM
@@ -11,26 +12,17 @@ const $dataTAA: default_data = dataTAA
 ---
 
 <aside class='gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-start'>
-  <article class='flex flex-col gap-4'>
-    <Title text='Top Airing Anime' theSecondary={true} />
-    <section>
-      {$dataTAA?.data?.map((data) => <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.rank}`} image={data?.images.webp.large_image_url} />)}
-    </section>
-  </article>
+  <AsideContent title='Top Airing Anime'>
+    {$dataTAA?.data?.map((data) => <MiniCard title={data?.title} text={data?.rating} highlight={`#${data?.rank}`} image={data?.images.webp.large_image_url} />)}
+  </AsideContent>
 
-  <article class='flex flex-col gap-4'>
-    <Title text='Most Popular Anime' theSecondary={true} />
-    <section>
-      {$dataMPA?.data?.map((data) => <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />)}
-    </section>
-  </article>
+  <AsideContent title='Top Popular Anime'>
+    {$dataMPA?.data?.map((data) => <MiniCard title={data?.title} text={data?.rating} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />)}
+  </AsideContent>
 
-  <article class='flex flex-col gap-4'>
-    <Title text='Most Popular Manga' theSecondary={true} />
-    <section>
-      {$dataMPM?.data?.map((data) => <MiniCard title={data?.title} text={data?.status} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />)}
-    </section>
-  </article>
+  <AsideContent title='Most Popular Manga'>
+    {$dataMPM?.data?.map((data) => <MiniCard title={data?.title} text={data?.status} highlight={`⭐ ${data?.popularity}`} image={data?.images.webp.large_image_url} />)}
+  </AsideContent>
 </aside>
 
 <style>

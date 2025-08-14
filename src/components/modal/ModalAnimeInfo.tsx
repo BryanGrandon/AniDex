@@ -5,7 +5,6 @@ import type { data_recommendation } from '../../utils/interfaces/data-recommenda
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import MiniCard from '../ui/MiniCard'
-import Title from '../ui/Title.astro'
 
 type Modal_Anime = {
   id: number
@@ -32,7 +31,7 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
     fetchWithDelay()
   }, [dataRecommendations])
 
-  const recommendations = dataRecommendations?.data.slice(0, 7)
+  const recommendations = dataRecommendations?.data.slice(0, 7) ? dataRecommendations?.data.slice(0, 7) : []
 
   if (data)
     return (
@@ -90,24 +89,17 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
           </article>
         </article>
 
-        <article className='overlay p-4 rounded-xl overflow-hidden '>
-          <section className='relative'>
-            <h2 className='font-basicaline text-2xl'>Recommendations</h2>
-            <article class='flex flex-col gap-2'>
-              {recommendations?.map((data) => (
-                <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={data.entry.title} highlight='' />
-              ))}
-            </article>
-          </section>
-
-          <section className='relative'>
-            <h2 className='font-basicaline text-2xl'>Recommendations</h2>
-            <article class='flex flex-col gap-2'>
-              {recommendations?.map((data) => (
-                <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={data.entry.title} highlight='' />
-              ))}
-            </article>
-          </section>
+        <article className=''>
+          {recommendations?.length > 0 ? (
+            <section className='overlay p-4 rounded-xl overflow-hidden'>
+              <h2 className='font-basicaline text-2xl relative'>Recommendations</h2>
+              <article class='flex flex-col gap-2 relative'>
+                {recommendations?.map((data) => (
+                  <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={data.entry.title} highlight='' />
+                ))}
+              </article>
+            </section>
+          ) : null}
         </article>
       </main>
     )

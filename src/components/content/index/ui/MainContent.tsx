@@ -3,7 +3,7 @@ import type { JSX } from 'preact'
 type Props = {
   title: string
   description: string
-  children?: JSX.Element
+  children?: JSX.Element[]
 }
 
 const MainContent = ({ title, description, children }: Props) => {

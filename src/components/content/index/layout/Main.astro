@@ -16,79 +16,71 @@ const $dataPN: default_data = dataPN
 
 <main class='flex flex-col gap-8'>
   <MainContent title={LEU.title} description={LEU.description}>
-    <>
-      {
-        $dataLEU?.data?.map((data) => (
-          <div class='swiper-slide'>
-            <DefaultCard
-              client:load
-              id={data.entry.mal_id}
-              image={data.entry.images.webp.large_image_url}
-              title={data.entry.title}
-              highlightText={`Episode: ${data.episodes[0].mal_id}`}
-              highlightClass='bottom-12 px-2 rounded-r-lg  '
-            />
-          </div>
-        ))
-      }
-    </>
+    {
+      $dataLEU?.data?.map((data) => (
+        <div class='swiper-slide'>
+          <DefaultCard
+            client:load
+            id={data.entry.mal_id}
+            image={data.entry.images.webp.large_image_url}
+            title={data.entry.title}
+            highlightText={`Episode: ${data.episodes[0].mal_id}`}
+            highlightClass='bottom-12 px-2 rounded-r-lg  '
+          />
+        </div>
+      ))
+    }
   </MainContent>
 
   <MainContent title={TUA.title} description={TUA.description}>
-    <>
-      {
-        $dataTUA?.data?.map((data) => (
-          <div class='swiper-slide'>
-            <DefaultCard
-              client:load
-              id={data.mal_id}
-              title={data.title}
-              highlightText={String(data.year ? data.year : 'TBA')}
-              image={data.images.webp.large_image_url}
-              highlightClass='top-0 right-0 left-0 text-center p-1 font-semibold'
-            />
-          </div>
-        ))
-      }
-    </>
+    {
+      $dataTUA?.data?.map((data) => (
+        <div class='swiper-slide'>
+          <DefaultCard
+            client:load
+            id={data.mal_id}
+            title={data.title}
+            highlightText={String(data.year ? data.year : 'TBA')}
+            image={data.images.webp.large_image_url}
+            highlightClass='top-0 right-0 left-0 text-center p-1 font-semibold'
+          />
+        </div>
+      ))
+    }
   </MainContent>
 
   <MainContent title={TPM.title} description={TPM.description}>
-    <>
-      {
-        $dataPM?.data?.map((data) => (
-          <div class='swiper-slide'>
-            <DefaultCard
-              client:load
-              id={data.mal_id}
-              title={data.title}
-              highlightText={`⭐ ${data.score}`}
-              image={data.images.webp.large_image_url}
-              highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
-            />
-          </div>
-        ))
-      }
-    </>
+    {
+      $dataPM?.data?.map((data) => (
+        <div class='swiper-slide'>
+          <DefaultCard
+            client:load
+            id={data.mal_id}
+            title={data.title}
+            highlightText={`⭐ ${data.score}`}
+            image={data.images.webp.large_image_url}
+            highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
+          />
+        </div>
+      ))
+    }
   </MainContent>
 
   <MainContent title={TPN.title} description={TPN.description}>
-    <>
-      {
-        $dataPN?.data?.map((data) => (
-          <div class='swiper-slide'>
-            <DefaultCard
-              client:load
-              id={data.mal_id}
-              title={data.title}
-              highlightText={`⭐ ${data.score}`}
-              image={data.images.webp.large_image_url}
-              highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
-            />
-          </div>
-        ))
-      }
-    </>
+    {
+      $dataPN?.data?.map((data) => (
+        <div class='swiper-slide'>
+          <DefaultCard
+            client:load
+            id={data.mal_id}
+            title={data.title}
+            highlightText={`⭐ ${data.score}`}
+            image={data.images.webp.large_image_url}
+            highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'
+          />
+        </div>
+      ))
+    }
   </MainContent>
 </main>
 
