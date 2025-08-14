@@ -1,13 +1,9 @@
-import Swiper from 'swiper'
-import { Pagination, Autoplay } from 'swiper/modules'
 import { useEffect, useState } from 'preact/hooks'
 import TextModal from './TextModal'
-import DefaultCard from '../ui/DefaultCard'
 import type { data_modal_anime } from '../../utils/interfaces/data-modal-anime'
 import type { data_recommendation } from '../../utils/interfaces/data-recommendation'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
-import type { latest_episodes_updates } from '../../utils/interfaces/latest-episodes-updates'
 
 type Modal_Anime = {
   id: number
@@ -17,22 +13,22 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
   const [data, setData] = useState<data_modal_anime>()
   const [dataRecommendations, setDataRecommendations] = useState<data_recommendation>()
 
-  const getAnime = async () => {
-    const res = fetch(`https://api.jikan.moe/v4/anime/${id}/full`)
-    const json = await (await res).json()
-    setData(json.data)
-  }
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
 
-  const getRecommendations = async () => {
-    const res = fetch(`https://api.jikan.moe/v4/anime/${id}/recommendations?limit=7`)
-    const json = await (await res).json()
-    setDataRecommendations(json)
+  const fetchWithDelay = async () => {
+    const urls = [`https://api.jikan.moe/v4/anime/${id}/full`, `https://api.jikan.moe/v4/anime/${id}/recommendations`]
+    for (const url of urls) {
+      const res = await fetch(url)
+      let json = await res.json()
+      if (url == `https://api.jikan.moe/v4/anime/${id}/full`) setData(json.data)
+      else if (url == `https://api.jikan.moe/v4/anime/${id}/recommendations`) setDataRecommendations(json)
+      await delay(500)
+    }
   }
 
   useEffect(() => {
-    getAnime()
-    getRecommendations()
-  }, [data, dataRecommendations])
+    fetchWithDelay()
+  }, [dataRecommendations])
 
   const recommendations = dataRecommendations?.data.slice(0, 7)
 
