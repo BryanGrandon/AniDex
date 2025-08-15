@@ -23,6 +23,7 @@ interface data_modal_anime {
     type: string
     title: string
   }[]
+
   title: string
   title_english: string
   title_japanese: string
@@ -79,33 +80,62 @@ interface data_modal_anime {
     name: string
     url: string
   }[]
+
   studios: {
     mal_id: number
     type: string
     name: string
     url: string
   }[]
+
   genres: {
     mal_id: number
     type: string
     name: string
     url: string
   }[]
+
   explicit_genres: {
     mal_id: number
     type: string
     name: string
     url: string
   }[]
+
   themes: {
     mal_id: number
     type: string
     name: string
     url: string
   }[]
+
   demographics: {
     mal_id: number
     type: string
+    name: string
+    url: string
+  }[]
+
+  relations: {
+    relation: string
+    entry: {
+      mal_id: number
+      type: string
+      name: string
+      url: string
+    }[]
+  }[]
+
+  theme: {
+    openings: string[]
+    endings: string[]
+  }
+  external: {
+    name: string
+    url: string
+  }[]
+
+  streaming: {
     name: string
     url: string
   }[]
