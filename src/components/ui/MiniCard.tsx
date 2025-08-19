@@ -11,7 +11,7 @@ const MiniCard = ({ image, title, text, highlight }: mini_card) => {
     <section class='rounded-lg overflow-hidden z-10 glassmorphism'>
       <section className='grid grid-cols-[60px_calc(100%_-_60px)]'>
         <img src={image} alt={`${title}-img`} className='w-15 h-21 object-contain' />
-        <section className='p-2'>
+        <section className='p-2 overflow-hidden'>
           <abbr title={title} className='no-underline'>
             <h3 className='overflow-hidden whitespace-nowrap text-ellipsis'>{title}</h3>
           </abbr>

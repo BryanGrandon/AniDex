@@ -17,7 +17,7 @@ const removeDuplicate = (array: string[]) => {
   return newArray
 }
 
-const fetchWithDelay = async (urls: string[]) => {
+const getDataApi = async (urls: string[]) => {
   let allData: any = {}
 
   for (const url of urls) {
@@ -40,4 +40,4 @@ const fetchWithDelay = async (urls: string[]) => {
   return allData
 }
 
-export default fetchWithDelay
+export default getDataApi

@@ -8,10 +8,10 @@ import {
   URL_TOP_AIRING_ANIME,
   URL_TOP_UPCOMING_ANIME,
 } from '../../utils/constants/urls-api'
-import fetchWithDelay from '../../services/api/getDataApi'
+import getDataApi from '../../services/api/getDataApi'
 
 const urls = [URL_MOST_POPULAR_ANIME, URL_MOST_POPULAR_MANGA, URL_TOP_AIRING_ANIME, URL_CURRENT_SEASON, URL_LATEST_EPISODES_UPDATES, URL_TOP_UPCOMING_ANIME, URL_PUBLISHING_MANGA, URL_PUBLISHING_NOVEL]
-const allData = await fetchWithDelay(urls)
+const allData = await getDataApi(urls)
 
 export const dataCS = allData?.getCS ? allData.getCS : [] // Current Season
 

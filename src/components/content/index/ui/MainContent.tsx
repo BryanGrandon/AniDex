@@ -10,10 +10,7 @@ const MainContent = ({ title, description, children }: Props) => {
   return (
     <article className='flex flex-col gap-4 p-4 relative'>
       <section>
-        <section class='flex items-center'>
-          <h2 className='font-basicaline text-3xl whitespace-nowrap'>{title}</h2>
-          <span className='w-full h-[1px] bg-primary mx-4 rounded-2xl' />
-        </section>
+        <h2 className='font-basicaline text-3xl  border-b border-primary'>{title}</h2>
         <p className='prose-sm text-gray-400'>{description}</p>
       </section>
       <article className='swiper swiperMC w-full'>
