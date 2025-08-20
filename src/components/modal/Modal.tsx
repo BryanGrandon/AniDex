@@ -29,10 +29,10 @@ const ModalContent = () => {
   const bgCustom = 'https://i.pinimg.com/originals/62/c4/c8/62c4c8894109a2db88fe82a5fe8c41aa.png'
   if (isOpen) {
     return (
-      <article className='fixed top-0 left-0 w-full h-full z-20 bg-cover overflow-auto modal' style={{ gridArea: 'modal', backgroundImage: `url(${bgCustom})` }}>
-        <header className='pt-4 pl-4'>
-          <button className='text-white text-2xl font-bold  cursor-pointer' onClick={handlerClickClose}>
-            <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary' />
+      <article className='fixed top-0 left-0 w-full h-full z-20 bg-cover overflow-auto ' style={{ gridArea: 'modal', backgroundImage: `url(${bgCustom})` }}>
+        <header className='flex items-center font-bold px-4 py-2'>
+          <button className='text-white flex items-center font-bold  cursor-pointer' onClick={handlerClickClose}>
+            <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary ' />
           </button>
         </header>
         {type === 'anime' ? <ModalAnimeInfo key={id} id={id} type={type} /> : type === 'manga' ? <ModalMangaInfo key={id} id={id} /> : null}

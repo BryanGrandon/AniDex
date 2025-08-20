@@ -9,8 +9,8 @@ const ModalList = ({ items }: modal_list) => {
     <>
       {list.map((el) =>
         String(el[1]).length > 0 ? (
-          <p className='font-basicaline text-lg tracking-wider'>
-            <span className='capitalize text-orange-400 font-semibold'>{el[0]}</span>: <span>{String(el[1])}</span>
+          <p>
+            <span className='capitalize text-orange-400 font-medium'>{el[0]}</span>: <span>{String(el[1])}</span>
           </p>
         ) : null
       )}
