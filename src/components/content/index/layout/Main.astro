@@ -22,6 +22,7 @@ const $dataPN: default_data = dataPN
           <DefaultCard
             client:load
             id={data.entry.mal_id}
+            type={'anime'}
             image={data.entry.images.webp.large_image_url}
             title={data.entry.title}
             highlightText={`Episode: ${data.episodes[0].mal_id}`}
@@ -39,6 +40,7 @@ const $dataPN: default_data = dataPN
           <DefaultCard
             client:load
             id={data.mal_id}
+            type={'anime'}
             title={data.title}
             highlightText={String(data.year ? data.year : 'TBA')}
             image={data.images.webp.large_image_url}
@@ -56,6 +58,7 @@ const $dataPN: default_data = dataPN
           <DefaultCard
             client:load
             id={data.mal_id}
+            type={'manga'}
             title={data.title}
             highlightText={`⭐ ${data.score}`}
             image={data.images.webp.large_image_url}
@@ -74,6 +77,7 @@ const $dataPN: default_data = dataPN
             client:load
             id={data.mal_id}
             title={data.title}
+            type={'manga'}
             highlightText={`⭐ ${data.score}`}
             image={data.images.webp.large_image_url}
             highlightClass='absolute top-2 right-2 rounded-xl px-2 bg-dark-transparent'

@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'preact/hooks'
-import TextModal from './TextModal'
 import type { data_modal_anime } from '../../utils/interfaces/data-modal-anime'
 import type { data_recommendation } from '../../utils/interfaces/data-recommendation'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import MiniCard from '../ui/MiniCard'
 import fetchWithDelay from '../../services/api/fetchWithDelay'
+import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
+import ModalList from './ModalList'
 
 type Modal_Anime = {
   id: number
+  type: string
 }
 
-const ModalAnimeInfo = ({ id }: Modal_Anime) => {
+const ModalAnimeInfo = ({ id, type }: Modal_Anime) => {
   const [dataAnimeFull, setDataAnimeFull] = useState<data_modal_anime>()
   const [dataAnimeRecommendations, setDataAnimeRecommendations] = useState<data_recommendation>()
 
-  const urlAnimeFull = `https://api.jikan.moe/v4/anime/${id}/full`
-  const urlAnimeRecommendations = `https://api.jikan.moe/v4/anime/${id}/recommendations`
+  const urlAnimeFull = `https://api.jikan.moe/v4/${type}/${id}/full`
+  const urlAnimeRecommendations = `https://api.jikan.moe/v4/${type}/${id}/recommendations`
 
   const getData = (url: string, json: any) => {
     if (url == urlAnimeFull) setDataAnimeFull(json.data)
@@ -26,42 +28,63 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
     fetchWithDelay({ getData, urls: [urlAnimeFull, urlAnimeRecommendations] })
   }, [])
 
+  const handleClick = (id: number, type: string) => {
+    const $home = document.querySelector('.home')
+    $home?.classList.add('home-hidden')
+    typeModal.set(type)
+    isOpenModal.set(true)
+    idModal.set(id)
+  }
+
   const recommendations = dataAnimeRecommendations?.data.slice(0, 6) ? dataAnimeRecommendations?.data.slice(0, 6) : []
   const relations = dataAnimeFull?.relations ? dataAnimeFull?.relations : []
+
+  const mainList = {
+    ['alternative title']: dataAnimeFull?.titles ? dataAnimeFull?.titles.map((item) => ' ' + item.title).slice(0, 3) : [],
+    type: dataAnimeFull?.type ? dataAnimeFull?.type : '',
+    status: dataAnimeFull?.status ? dataAnimeFull?.status : '',
+    year: dataAnimeFull?.year ? dataAnimeFull?.year : 'TBA',
+    genre: dataAnimeFull?.genres ? dataAnimeFull?.genres.map((item) => ' ' + item.name) : [],
+    themes: dataAnimeFull?.themes ? dataAnimeFull?.themes.map((item) => ' ' + item.name) : [],
+  }
+
+  const moreInfoList = {
+    episode: dataAnimeFull?.episodes ? dataAnimeFull?.episodes : 0,
+    duration: dataAnimeFull?.duration ? dataAnimeFull?.duration : '',
+    studios: dataAnimeFull?.studios ? dataAnimeFull?.studios.map((item) => ' ' + item.name) : [],
+    score: dataAnimeFull?.score ? dataAnimeFull?.score : 0,
+    ranked: dataAnimeFull?.rank ? dataAnimeFull?.rank : 0,
+    popularity: dataAnimeFull?.popularity ? dataAnimeFull?.popularity : 0,
+  }
 
   if (dataAnimeFull)
     return (
       <main className='p-4 max-w-[1400px] m-auto flex flex-col gap-8'>
         <article className='overlay glassmorphism rounded-xl overflow-hidden p-4'>
-          <article className=' flex flex-col items-center md:flex-row lg:items-start gap-4 relative'>
+          <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
             <article>
               <img src={dataAnimeFull?.images?.webp?.large_image_url} alt={dataAnimeFull?.title} className='rounded w-75' />
             </article>
 
-            <article className='pt-4 flex flex-col justify-between gap-2 w-full'>
-              <section>
-                <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{dataAnimeFull?.title}</h2>
-                <TextModal textMain={`Alternative titles:`} textSecondary={`${dataAnimeFull?.titles.map((item) => ' ' + item.title).slice(0, 3)}`} />
-                <TextModal textMain={`Type:`} textSecondary={`${dataAnimeFull?.type}`} />
-                <TextModal textMain={`Status:`} textSecondary={`${dataAnimeFull?.status}`} />
-                <TextModal textMain={`Year:`} textSecondary={`${dataAnimeFull?.year}`} highlight={true} />
-                <TextModal textMain={`Genre:`} textSecondary={`${dataAnimeFull?.genres.map((item) => ' ' + item.name)}`} />
-                {dataAnimeFull?.themes.length > 0 ? <TextModal textMain={`Themes:`} textSecondary={`${dataAnimeFull?.themes.map((item) => ' ' + item.name)}`} /> : null}
-              </section>
-
-              {relations.length > 0 ? (
-                <section>
-                  {relations.map((el) => (
-                    <section className='flex flex-col gap-1'>
-                      <p className='text-orange-400'>{el.relation}:</p>
-                      <p className='hover:text-primary px-6 cursor-pointer'>{el.entry.map((e) => e.name)}</p>
-                    </section>
-                  ))}
-                </section>
-              ) : null}
+            <article className='pt-4 flex flex-col justify-start w-full'>
+              <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{dataAnimeFull?.title}</h2>
+              <ModalList items={mainList} />
             </article>
           </article>
         </article>
+
+        {relations.length > 0 ? (
+          <section className='flex gap-4 flex-wrap'>
+            {relations.map((el) => (
+              <section className='flex flex-col gap-1 p-1 px-4  rounded overlay glassmorphism overflow-hidden'>
+                <p className='text-orange-400 relative'>{el.relation}:</p>
+                <abbr title={el.entry[0].name} className='no-underline' onClick={() => handleClick(el.entry[0].mal_id, el.entry[0].type)}>
+                  <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer w-90 p-2 hover:text-primary'>{el.entry[0].name}</h3>
+                </abbr>
+              </section>
+            ))}
+          </section>
+        ) : null}
 
         <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
           <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism md:col-span-2'>
@@ -70,22 +93,19 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
               <p className='px-4 w-full h-45 overflow-auto text-white'>{dataAnimeFull?.synopsis}</p>
             </section>
           </article>
-          <article className=' overlay p-4 rounded-xl overflow-hidden'>
+
+          <article className='overlay glassmorphism p-4 rounded-xl overflow-hidden'>
             <section className='relative flex flex-col gap-2'>
               <h2 className='font-basicaline text-2xl'>Trailer</h2>
               <LiteYouTubeEmbed id={dataAnimeFull?.trailer.youtube_id} title={dataAnimeFull?.title} poster='maxresdefault' />
             </section>
           </article>
+
           <article className='overlay glassmorphism p-4 rounded-xl overflow-hidden'>
             <section className='relative'>
               <h2 className='font-basicaline text-2xl'>More info</h2>
               <section className='px-4'>
-                <TextModal textMain={`Episodes:`} textSecondary={`${dataAnimeFull?.episodes}`} highlight={true} />
-                <TextModal textMain={`Duration:`} textSecondary={`${dataAnimeFull?.duration}`} highlight={true} />
-                <TextModal textMain={`Studios:`} textSecondary={`${dataAnimeFull?.studios.map((item) => ' ' + item.name)}`} highlight={true} />
-                <TextModal textMain={`Score:`} textSecondary={`#${dataAnimeFull?.score}`} highlight={true} />
-                <TextModal textMain={`Ranked:`} textSecondary={`#${dataAnimeFull?.rank}`} highlight={true} />
-                <TextModal textMain={`Popularity:`} textSecondary={`#${dataAnimeFull?.popularity}`} highlight={true} />
+                <ModalList items={moreInfoList} />
               </section>
             </section>
           </article>

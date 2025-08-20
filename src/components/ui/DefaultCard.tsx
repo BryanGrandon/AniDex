@@ -1,17 +1,19 @@
-import { idModal, isOpenModal } from '../../utils/storage/data-modal'
+import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
 
 type Default_Card = {
   id: number
+  type: string
   image: string
   title: string
   highlightText: string
   highlightClass: string
 }
 
-const DefaultCard = ({ image, title, highlightText, highlightClass, id }: Default_Card) => {
+const DefaultCard = ({ image, title, highlightText, highlightClass, id, type }: Default_Card) => {
   const handleClick = () => {
     const $home = document.querySelector('.home')
     $home?.classList.add('home-hidden')
+    typeModal.set(type)
     isOpenModal.set(true)
     idModal.set(id)
   }

@@ -1,11 +1,14 @@
 import { useStore } from '@nanostores/preact'
-import { idModal, isOpenModal } from '../../utils/storage/data-modal'
+import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
 import ModalAnimeInfo from './ModalAnimeInfo'
+import ModalMangaInfo from './ModalMangaInfo'
 import ArrowLeftIcon from '../icons/ArrowLeftIcon'
 
 const ModalContent = () => {
   const isOpen = useStore(isOpenModal)
   const id = useStore(idModal)
+  const type = useStore(typeModal)
+  console.log(type)
 
   const closeModal = () => {
     const $home = document.querySelector('.home')
@@ -32,7 +35,7 @@ const ModalContent = () => {
             <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary' />
           </button>
         </header>
-        <ModalAnimeInfo key={id} id={id} />
+        {type === 'anime' ? <ModalAnimeInfo key={id} id={id} type={type} /> : type === 'manga' ? <ModalMangaInfo key={id} id={id} /> : null}
       </article>
     )
   }
