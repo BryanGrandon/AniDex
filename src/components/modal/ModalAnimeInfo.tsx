@@ -7,6 +7,7 @@ import MiniCard from '../ui/MiniCard'
 import fetchWithDelay from '../../services/api/fetchWithDelay'
 import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
 import ModalList from './ModalList'
+import openModalOnClick from '../../utils/scripts/openModalOnClick'
 
 type Modal_Anime = {
   id: number
@@ -27,14 +28,6 @@ const ModalAnimeInfo = ({ id, type }: Modal_Anime) => {
   useEffect(() => {
     fetchWithDelay({ getData, urls: [urlAnimeFull, urlAnimeRecommendations] })
   }, [])
-
-  const handleClick = (id: number, type: string) => {
-    const $home = document.querySelector('.home')
-    $home?.classList.add('home-hidden')
-    typeModal.set(type)
-    isOpenModal.set(true)
-    idModal.set(id)
-  }
 
   const recommendations = dataAnimeRecommendations?.data.slice(0, 6) ? dataAnimeRecommendations?.data.slice(0, 6) : []
   const relations = dataAnimeFull?.relations ? dataAnimeFull?.relations : []
@@ -78,7 +71,7 @@ const ModalAnimeInfo = ({ id, type }: Modal_Anime) => {
             {relations.map((el) => (
               <section className='flex flex-col gap-1 p-1 px-4  rounded overlay glassmorphism overflow-hidden'>
                 <p className='text-orange-400 relative'>{el.relation}:</p>
-                <abbr title={el.entry[0].name} className='no-underline' onClick={() => handleClick(el.entry[0].mal_id, el.entry[0].type)}>
+                <abbr title={el.entry[0].name} className='no-underline' onClick={() => openModalOnClick({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
                   <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer w-90 p-2 hover:text-primary'>{el.entry[0].name}</h3>
                 </abbr>
               </section>

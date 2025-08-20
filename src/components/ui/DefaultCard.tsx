@@ -1,4 +1,4 @@
-import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
+import openModalOnClick from '../../utils/scripts/openModalOnClick'
 
 type Default_Card = {
   id: number
@@ -10,16 +10,8 @@ type Default_Card = {
 }
 
 const DefaultCard = ({ image, title, highlightText, highlightClass, id, type }: Default_Card) => {
-  const handleClick = () => {
-    const $home = document.querySelector('.home')
-    $home?.classList.add('home-hidden')
-    typeModal.set(type)
-    isOpenModal.set(true)
-    idModal.set(id)
-  }
-
   return (
-    <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={handleClick}>
+    <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={() => openModalOnClick({ id, type })}>
       <img src={image} alt={id + '-img'} className='object-cover rounded-lg ' />
       <abbr title={title} className='no-underline'>
         <h3 className='overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2'>{title}</h3>
