@@ -1,16 +1,22 @@
+import openModalOnClick from '../../utils/scripts/openModalOnClick'
+
 type mini_card = {
   image: string
   title: string
   text?: string
   highlight?: string
-  id?: number
+  id: number
+  type: string
 }
 
-const MiniCard = ({ image, title, text, highlight }: mini_card) => {
+const MiniCard = ({ image, title, text, highlight, id, type }: mini_card) => {
   return (
-    <section class='rounded-lg overflow-hidden z-10 glassmorphism'>
-      <section className='grid grid-cols-[60px_calc(100%_-_60px)]'>
-        <img src={image} alt={`${title}-img`} className='w-15 h-21 object-contain' />
+    <section
+      className='rounded-lg overflow-hidden glassmorphism border  hover:border-[color:var(--color-primary)_!important] hover:scale-105 active:scale-95 cursor-pointer'
+      onClick={() => openModalOnClick({ id, type })}
+    >
+      <section className='grid grid-cols-[64px_calc(100%_-_64px)] grid-rows-[84px]'>
+        <img src={image} alt={`${title}-img`} className='w-17 object-contain' />
         <section className='p-2 overflow-hidden'>
           <abbr title={title} className='no-underline'>
             <h3 className='overflow-hidden whitespace-nowrap text-ellipsis'>{title}</h3>
@@ -18,7 +24,7 @@ const MiniCard = ({ image, title, text, highlight }: mini_card) => {
           <abbr title={text} className='no-underline'>
             <h3 className='overflow-hidden whitespace-nowrap text-ellipsis text-sm text-gray-400'>{text}</h3>
           </abbr>
-          <p class='text-end'>{highlight}</p>
+          <p className='text-end'>{highlight}</p>
         </section>
       </section>
     </section>

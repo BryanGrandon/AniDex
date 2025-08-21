@@ -24,10 +24,18 @@ const ModalMangaInfo = ({ id }: Props) => {
     ['alternative titles']: dataMangaFull?.titles ? dataMangaFull?.titles.map((el) => ' ' + el.title) : [],
     type: dataMangaFull?.type ? dataMangaFull?.type : '',
     status: dataMangaFull?.status ? dataMangaFull?.status : '',
-    chapters: dataMangaFull?.chapters ? dataMangaFull?.chapters : 'Undefined',
+    chapters: dataMangaFull?.chapters ? dataMangaFull?.chapters : 'Unknown',
     genres: dataMangaFull?.genres ? dataMangaFull.genres.map((el) => ' ' + el.name) : [],
     themes: dataMangaFull?.themes ? dataMangaFull.themes.map((el) => ' ' + el.name) : [],
+    ['Explicit Genres']: dataMangaFull?.explicit_genres ? dataMangaFull?.explicit_genres : '',
     volumes: dataMangaFull?.volumes ? dataMangaFull?.volumes : '',
+  }
+
+  const moreInfoList = {
+    authors: dataMangaFull?.authors.map((e) => ' ' + e.name),
+    score: dataMangaFull?.score ? '#' + dataMangaFull?.score : '',
+    ranked: dataMangaFull?.rank ? '#' + dataMangaFull?.rank : '',
+    popularity: dataMangaFull?.popularity ? '#' + dataMangaFull?.popularity : '',
   }
 
   const relations = dataMangaFull?.relations ? dataMangaFull?.relations : []
@@ -46,6 +54,31 @@ const ModalMangaInfo = ({ id }: Props) => {
               <ModalList items={mainList} />
             </section>
           </article>
+        </article>
+      </article>
+
+      <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism '>
+        <section className='relative h-auto'>
+          <h2 className='text-2xl font-basicaline pb-2'>Background</h2>
+          <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.background}</p>
+        </section>
+      </article>
+
+      <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+        <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism md:col-span-2'>
+          <section className='relative h-auto'>
+            <h2 className='text-2xl font-basicaline'>Synopsis</h2>
+            <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.synopsis}</p>
+          </section>
+        </article>
+
+        <article className='overlay glassmorphism p-4 rounded-xl overflow-hidden w-full'>
+          <section className='relative'>
+            <h2 className='font-basicaline text-2xl'>More info</h2>
+            <section className='px-4'>
+              <ModalList items={moreInfoList} />
+            </section>
+          </section>
         </article>
       </article>
 

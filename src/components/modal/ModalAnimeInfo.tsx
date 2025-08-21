@@ -34,6 +34,8 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
   const mainList = {
     ['alternative title']: dataAnimeFull?.titles ? dataAnimeFull?.titles.map((item) => ' ' + item.title).slice(0, 3) : [],
     type: dataAnimeFull?.type ? dataAnimeFull?.type : '',
+    episode: dataAnimeFull?.episodes ? dataAnimeFull?.episodes : 0,
+    duration: dataAnimeFull?.duration ? dataAnimeFull?.duration : '',
     status: dataAnimeFull?.status ? dataAnimeFull?.status : '',
     year: dataAnimeFull?.year ? dataAnimeFull?.year : 'TBA',
     genre: dataAnimeFull?.genres ? dataAnimeFull?.genres.map((item) => ' ' + item.name) : [],
@@ -41,8 +43,6 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
   }
 
   const moreInfoList = {
-    episode: dataAnimeFull?.episodes ? dataAnimeFull?.episodes : 0,
-    duration: dataAnimeFull?.duration ? dataAnimeFull?.duration : '',
     studios: dataAnimeFull?.studios ? dataAnimeFull?.studios.map((item) => ' ' + item.name) : [],
     score: dataAnimeFull?.score ? '#' + dataAnimeFull?.score : 0,
     ranked: dataAnimeFull?.rank ? '#' + dataAnimeFull?.rank : 0,
@@ -108,7 +108,7 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
             <h2 className='font-basicaline text-2xl relative'>Recommendations</h2>
             <article class='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
               {recommendations?.map((data) => (
-                <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} highlight='' />
+                <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} id={data.entry.mal_id} type={'anime'} />
               ))}
             </article>
           </section>
