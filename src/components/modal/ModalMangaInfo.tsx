@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'preact/hooks'
-import fetchWithDelay from '../../services/api/fetchWithDelay'
 import ModalList from './ModalList'
-import type { data_modal_manga } from '../../utils/interfaces/data-modal-manga'
+import MiniCard from '../ui/MiniCard'
+import fetchWithDelay from '../../services/api/fetchWithDelay'
 import openModalOnClick from '../../utils/scripts/openModalOnClick'
+import type { data_modal_manga } from '../../utils/interfaces/data-modal-manga'
+import type { data_recommendation } from '../../utils/interfaces/data-recommendation'
 
 type Props = {
   id: number
@@ -10,14 +12,17 @@ type Props = {
 
 const ModalMangaInfo = ({ id }: Props) => {
   const [dataMangaFull, setDataMangaFull] = useState<data_modal_manga>()
+  const [dataMangaRecommendations, setDataMangaRecommendations] = useState<data_recommendation>()
 
-  const urlAnimeFull = `https://api.jikan.moe/v4/manga/${id}/full`
+  const urlMangaFull = `https://api.jikan.moe/v4/manga/${id}/full`
+  const urlMangaRecommendations = `https://api.jikan.moe/v4/manga/${id}/recommendations`
 
   const getData = (url: string, json: any) => {
-    if (url == urlAnimeFull) setDataMangaFull(json.data)
+    if (url == urlMangaRecommendations) setDataMangaRecommendations(json)
+    else if (url == urlMangaFull) setDataMangaFull(json.data)
   }
   useEffect(() => {
-    fetchWithDelay({ getData, urls: [urlAnimeFull] })
+    fetchWithDelay({ getData, urls: [urlMangaFull, urlMangaRecommendations] })
   }, [])
 
   const mainList = {
@@ -39,13 +44,16 @@ const ModalMangaInfo = ({ id }: Props) => {
   }
 
   const relations = dataMangaFull?.relations ? dataMangaFull?.relations : []
+  const recommendations = dataMangaRecommendations?.data ? dataMangaRecommendations?.data.slice(0, 6) : []
+  console.log(recommendations)
 
   return (
-    <main className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-8'>
+    <main className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
       <article className='overlay glassmorphism rounded-xl overflow-hidden p-4'>
         <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
           <article>
             <img src={dataMangaFull?.images?.webp?.large_image_url} alt={dataMangaFull?.title} className='rounded w-75' />
+            <p>{id}</p>
           </article>
 
           <article className='pt-4 flex flex-col justify-start w-full'>
@@ -57,15 +65,8 @@ const ModalMangaInfo = ({ id }: Props) => {
         </article>
       </article>
 
-      <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism '>
-        <section className='relative h-auto'>
-          <h2 className='text-2xl font-basicaline pb-2'>Background</h2>
-          <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.background}</p>
-        </section>
-      </article>
-
       <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-        <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism md:col-span-2'>
+        <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism md:col-span-2 lg:col-span-3'>
           <section className='relative h-auto'>
             <h2 className='text-2xl font-basicaline'>Synopsis</h2>
             <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.synopsis}</p>
@@ -82,6 +83,13 @@ const ModalMangaInfo = ({ id }: Props) => {
         </article>
       </article>
 
+      <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism '>
+        <section className='relative h-auto'>
+          <h2 className='text-2xl font-basicaline pb-2'>Background</h2>
+          <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.background}</p>
+        </section>
+      </article>
+
       {relations.length > 0 ? (
         <section className='gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
           {relations.map((el) => (
@@ -94,6 +102,17 @@ const ModalMangaInfo = ({ id }: Props) => {
               </abbr>
             </section>
           ))}
+        </section>
+      ) : null}
+
+      {recommendations?.length > 0 ? (
+        <section className='p-4 rounded-xl flex flex-col gap-4 overflow-hidden overlay glassmorphism'>
+          <h2 className='font-basicaline text-2xl relative'>Recommendations</h2>
+          <article class='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            {recommendations?.map((data) => (
+              <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} id={data.entry.mal_id} type={'manga'} />
+            ))}
+          </article>
         </section>
       ) : null}
     </main>
