@@ -7,6 +7,7 @@ import fetchWithDelay from '../../services/api/fetchWithDelay'
 import MiniCard from '../ui/MiniCard'
 import ModalList from './ModalList'
 import openModalOnClick from '../../utils/scripts/openModalOnClick'
+import ModalInfo from './ModalInfo'
 
 type Modal_Anime = {
   id: number
@@ -51,7 +52,7 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
 
   if (dataAnimeFull)
     return (
-      <main className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
+      <article className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
         <article className='overlay glassmorphism rounded-xl overflow-hidden p-4'>
           <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
             <img src={dataAnimeFull?.images?.webp?.large_image_url} alt={dataAnimeFull?.title} className='rounded max-w-50' />
@@ -64,28 +65,17 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
         </article>
 
         <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-          <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism md:col-span-2'>
-            <section className='relative h-auto'>
-              <h2 className='text-2xl font-basicaline'>Synopsis</h2>
-              <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataAnimeFull?.synopsis}</p>
-            </section>
-          </article>
+          <ModalInfo title='Synopsis' moreClass='md:col-span-2' children={dataAnimeFull?.synopsis} />
 
-          <article className='overlay glassmorphism p-4 rounded-xl overflow-hidden'>
-            <section className='relative flex flex-col gap-2'>
-              <h2 className='font-basicaline text-2xl'>Trailer</h2>
-              <LiteYouTubeEmbed id={dataAnimeFull?.trailer.youtube_id} title={dataAnimeFull?.title} poster='maxresdefault' />
-            </section>
-          </article>
+          <ModalInfo title='Trailer'>
+            <LiteYouTubeEmbed id={dataAnimeFull?.trailer.youtube_id} title={dataAnimeFull?.title} poster='maxresdefault' />
+          </ModalInfo>
 
-          <article className='overlay glassmorphism p-4 rounded-xl overflow-hidden'>
-            <section className='relative'>
-              <h2 className='font-basicaline text-2xl'>More info</h2>
-              <section className='px-4'>
-                <ModalList items={moreInfoList} />
-              </section>
+          <ModalInfo title='More Info'>
+            <section className='px-4'>
+              <ModalList items={moreInfoList} />
             </section>
-          </article>
+          </ModalInfo>
         </article>
 
         {relations.length > 0 ? (
@@ -113,7 +103,7 @@ const ModalAnimeInfo = ({ id }: Modal_Anime) => {
             </article>
           </section>
         ) : null}
-      </main>
+      </article>
     )
 }
 

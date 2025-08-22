@@ -5,6 +5,7 @@ import fetchWithDelay from '../../services/api/fetchWithDelay'
 import openModalOnClick from '../../utils/scripts/openModalOnClick'
 import type { data_modal_manga } from '../../utils/interfaces/data-modal-manga'
 import type { data_recommendation } from '../../utils/interfaces/data-recommendation'
+import ModalInfo from './ModalInfo'
 
 type Props = {
   id: number
@@ -45,7 +46,6 @@ const ModalMangaInfo = ({ id }: Props) => {
 
   const relations = dataMangaFull?.relations ? dataMangaFull?.relations : []
   const recommendations = dataMangaRecommendations?.data ? dataMangaRecommendations?.data.slice(0, 6) : []
-  console.log(recommendations)
 
   return (
     <main className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
@@ -66,29 +66,16 @@ const ModalMangaInfo = ({ id }: Props) => {
       </article>
 
       <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-        <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism md:col-span-2 lg:col-span-3'>
-          <section className='relative h-auto'>
-            <h2 className='text-2xl font-basicaline'>Synopsis</h2>
-            <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.synopsis}</p>
-          </section>
-        </article>
+        <ModalInfo title='Synopsis' moreClass='md:col-span-2 lg:col-span-3' children={String(dataMangaFull?.synopsis)} />
 
-        <article className='overlay glassmorphism p-4 rounded-xl overflow-hidden w-full'>
-          <section className='relative'>
-            <h2 className='font-basicaline text-2xl'>More info</h2>
-            <section className='px-4'>
-              <ModalList items={moreInfoList} />
-            </section>
+        <ModalInfo title='More info'>
+          <section className='px-4'>
+            <ModalList items={moreInfoList} />
           </section>
-        </article>
+        </ModalInfo>
       </article>
 
-      <article className='overlay p-4 rounded-xl overflow-hidden glassmorphism '>
-        <section className='relative h-auto'>
-          <h2 className='text-2xl font-basicaline pb-2'>Background</h2>
-          <p className='px-4 w-full max-h-45 overflow-auto text-white'>{dataMangaFull?.background}</p>
-        </section>
-      </article>
+      <ModalInfo title='Background' children={String(dataMangaFull?.background)} />
 
       {relations.length > 0 ? (
         <section className='gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
