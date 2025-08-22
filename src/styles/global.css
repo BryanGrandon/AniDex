@@ -54,6 +54,12 @@
   .test {
     border: 1px solid #f00;
   }
+  .hidden-button {
+    display: none;
+  }
+  .visible-in-modal {
+    display: fixed;
+  }
 }
 
 /* Structure */
