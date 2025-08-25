@@ -2,10 +2,10 @@ import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import MiniCard from '../ui/MiniCard'
 import ModalList from './ModalList'
-import openModalOnClick from '../../utils/scripts/openModalOnClick'
 import ModalInfo from './ModalInfo'
 import useFetchModal from '../../utils/hooks/useFetchModal'
 import useDataAnimeModal from '../../utils/hooks/useDataAnimeModal'
+import useModalInteraction from '../../utils/hooks/useModalInteraction'
 
 type Modal_Anime = {
   id: number
@@ -14,6 +14,7 @@ type Modal_Anime = {
 const AnimeModal = ({ id }: Modal_Anime) => {
   const { data, recommendations } = useFetchModal(id)
   const { title, youtube_id, synopsis, image, primaryList, secondaryList, relations } = useDataAnimeModal(data)
+  const { openModal } = useModalInteraction()
 
   return (
     <article className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
@@ -49,7 +50,7 @@ const AnimeModal = ({ id }: Modal_Anime) => {
               <p className='text-orange-400 relative text-xl font-basicaline tracking-wider'>
                 {el.relation}: {el.entry[0].type}
               </p>
-              <abbr title={el.entry[0].name} className='no-underline' onClick={() => openModalOnClick({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
+              <abbr title={el.entry[0].name} className='no-underline' onClick={() => openModal({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
                 <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2 hover:text-primary'>{el.entry[0].name}</h3>
               </abbr>
             </section>

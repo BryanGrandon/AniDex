@@ -1,4 +1,4 @@
-import openModalOnClick from '../../utils/scripts/openModalOnClick'
+import useModalInteraction from '../../utils/hooks/useModalInteraction'
 
 type Default_Card = {
   id: number
@@ -10,8 +10,10 @@ type Default_Card = {
 }
 
 const DefaultCard = ({ image, title, highlightText, highlightClass, id, type }: Default_Card) => {
+  const { openModal } = useModalInteraction()
+
   return (
-    <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={() => openModalOnClick({ id, type })}>
+    <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={() => openModal({ id, type })}>
       <img src={image} alt={id + '-img'} className='object-cover rounded-lg ' />
       <abbr title={title} className='no-underline'>
         <h3 className='overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2'>{title}</h3>

@@ -1,9 +1,10 @@
 import ModalList from './ModalList'
 import MiniCard from '../ui/MiniCard'
-import openModalOnClick from '../../utils/scripts/openModalOnClick'
+
 import ModalInfo from './ModalInfo'
 import useFetchModal from '../../utils/hooks/useFetchModal'
 import useDataMangaModal from '../../utils/hooks/useDataMangaModal'
+import useModalInteraction from '../../utils/hooks/useModalInteraction'
 
 type Props = {
   id: number
@@ -11,6 +12,7 @@ type Props = {
 const MangaModal = ({ id }: Props) => {
   const { data, recommendations } = useFetchModal(id)
   const { title, image, synopsis, background, primaryList, secondaryList, relations } = useDataMangaModal(data)
+  const { openModal } = useModalInteraction()
 
   return (
     <main className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
@@ -49,7 +51,7 @@ const MangaModal = ({ id }: Props) => {
               <p className='text-orange-400 relative text-xl font-basicaline tracking-wider'>
                 {el.relation}: {el.entry[0].type}
               </p>
-              <abbr title={el.entry[0].name} className='no-underline' onClick={() => openModalOnClick({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
+              <abbr title={el.entry[0].name} className='no-underline' onClick={() => openModal({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
                 <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2 hover:text-primary'>{el.entry[0].name}</h3>
               </abbr>
             </section>
