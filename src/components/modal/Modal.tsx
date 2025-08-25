@@ -1,10 +1,11 @@
 import { useStore } from '@nanostores/preact'
 import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
-import ModalAnimeInfo from './ModalAnimeInfo'
-import ModalMangaInfo from './ModalMangaInfo'
+
+import MangaModal from './MangaModal'
 import ArrowLeftIcon from '../icons/ArrowLeftIcon'
 import ArrowTopIcon from '../icons/ArrowTopIcon'
 import HomeIcon from '../icons/HomeIcon'
+import AnimeModal from './AnimeModal'
 
 const ModalContent = () => {
   const isOpen = useStore(isOpenModal)
@@ -33,8 +34,6 @@ const ModalContent = () => {
   const scrollUmbral = 50
 
   document.addEventListener('scroll', (ev) => {
-    console.log(ev)
-
     if (window.scrollY > scrollUmbral) $buttonTop?.classList.remove('hidden-button')
     else $buttonTop?.classList.add('hidden-button')
   })
@@ -47,7 +46,8 @@ const ModalContent = () => {
             <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary ' />
           </button>
         </header>
-        {type === 'anime' ? <ModalAnimeInfo key={id} id={id} type={type} /> : type === 'manga' ? <ModalMangaInfo key={id} id={id} /> : null}
+        {type === 'anime' ? <AnimeModal key={id} id={id} /> : null}
+        {type == 'manga' ? <MangaModal key={id} id={id} /> : null}
         <button className='fixed bottom-20 right-5 z-10 rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black' onClick={handlerClickClose}>
           <HomeIcon />
         </button>
