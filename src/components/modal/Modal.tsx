@@ -7,6 +7,7 @@ import ArrowTopIcon from '../icons/ArrowTopIcon'
 import HomeIcon from '../icons/HomeIcon'
 import AnimeModal from './AnimeModal'
 import useModalInteraction from '../../utils/hooks/useModalInteraction'
+import FloatingPanel from '../ui/FloatingPanel'
 
 const ModalContent = () => {
   const isOpen = useStore(isOpenModal)
@@ -17,17 +18,6 @@ const ModalContent = () => {
   document.addEventListener('mouseup', (ev) => {
     if (ev.button === 3) closeModal()
   })
-
-  const handlerClickMoveTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
-
-  const $buttonTop = document.querySelector('.button-top')
-  const scrollUmbral = 50
-
-  document.addEventListener('scroll', (ev) => {
-    if (window.scrollY > scrollUmbral) $buttonTop?.classList.remove('hidden-button')
-    else $buttonTop?.classList.add('hidden-button')
-  })
-
   if (isOpen) {
     return (
       <main className=' h-full w-full bg-cover overflow-auto modal home-hidden'>
@@ -38,12 +28,8 @@ const ModalContent = () => {
         </header>
         {type === 'anime' ? <AnimeModal key={id} id={id} /> : null}
         {type == 'manga' ? <MangaModal key={id} id={id} /> : null}
-        <button className='fixed bottom-20 right-5 z-10 rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black' onClick={closeModal}>
-          <HomeIcon />
-        </button>
-        <button className='fixed bottom-5 right-5 z-10 rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black hidden-button button-top' onClick={handlerClickMoveTop}>
-          <ArrowTopIcon />
-        </button>
+
+        <FloatingPanel callback={closeModal} />
       </main>
     )
   }
