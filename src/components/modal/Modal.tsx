@@ -3,8 +3,6 @@ import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
 
 import MangaModal from './MangaModal'
 import ArrowLeftIcon from '../icons/ArrowLeftIcon'
-import ArrowTopIcon from '../icons/ArrowTopIcon'
-import HomeIcon from '../icons/HomeIcon'
 import AnimeModal from './AnimeModal'
 import useModalInteraction from '../../utils/hooks/useModalInteraction'
 import FloatingPanel from '../ui/FloatingPanel'
@@ -16,7 +14,10 @@ const ModalContent = () => {
   const { closeModal } = useModalInteraction()
 
   document.addEventListener('mouseup', (ev) => {
-    if (ev.button === 3) closeModal()
+    if (ev.button === 3) {
+      ev.preventDefault()
+      closeModal()
+    }
   })
   if (isOpen) {
     return (

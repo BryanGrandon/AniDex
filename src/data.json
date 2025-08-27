@@ -8,6 +8,10 @@
         },
         "links": [
             {
+                "title": "Home",
+                "href": "/"
+            },
+            {
                 "title": "Anime",
                 "href": "/anime"
             },
@@ -17,10 +21,6 @@
             },
             {
                 "title": "Seasons",
-                "href": "#"
-            },
-            {
-                "title": "Producers",
                 "href": "#"
             },
             {

@@ -1,18 +1,64 @@
 ---
+import Footer from '../components/layout/Footer.astro'
+import Navbar from '../components/layout/Navbar'
 import Layout from '../layouts/Layout.astro'
+
+const typesOfAnime = ['tv', 'movie', 'ova', 'ona', 'special', 'music', 'cm', 'pv', 'tv_special']
+const statusOptions = ['airing', 'completed', 'upcoming']
+const sfwOptions = true
+const genres = [1, 2, 3] // utils/constants/type-of-genres
+const genres_exclude = [1, 2, 3] // utils/constants/type-of-genres
+const order_by = ['score', 'popularity', 'favorites', 'rank', '']
+const sort = ['asc', 'desc']
+const start_date = '' // YYYY-MM-DD
 ---
 
 <Layout>
-  <section>
-    <p>navbar</p>
-  </section>
-  <section>
-    <p>search</p>
-  </section>
-  <section>
-    <p>Filter</p>
-  </section>
-  <article>
-    <p>result</p>
-  </article>
+  <header class='test w-full overlay p-4'>
+    <Navbar />
+    <article class='relative flex flex-col justify-center items-center text-center gap-4 min-h-64'>
+      <h1 class='font-basicaline text-3xl'>Anime Search</h1>
+      <p class='prose text-center text-white'>
+        Find your favorite anime instantly. Search and explore a database with synopses, genres, recommendations, and new releases so you don't miss out on anything in the world of anime.
+      </p>
+    </article>
+  </header>
+
+  <main class='test'>
+    <section class='test flex flex-col md:flex-row gap-4 p-4 max-w-200 align-center'>
+      <input type='text' placeholder='Search for anime...' class='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary' />
+      <button class='px-4'>Search</button>
+    </section>
+    <section>
+      <p>Filter</p>
+      <section class='flex flex-col flex-wrap gap-2 p-4 list'>
+        <details>
+          <summary>Type of Anime</summary>
+          <p>[] tv</p>
+          <p>[] ova</p>
+        </details>
+        <details>
+          <summary>Status</summary>
+          <p>Airing</p>
+          <p>Completed</p>
+          <p>Upcoming</p>
+        </details>
+        <details>
+          <summary>SFW</summary>
+          <p>[] true</p>
+          <p>[] false</p>
+        </details>
+        <p>genres</p>
+        <p>genres_exclude</p>
+        <p>order_by</p>
+        <p>sort</p>
+        <p>start_date</p>
+      </section>
+    </section>
+    <article>
+      <p>result</p>
+    </article>
+  </main>
+
+  <Footer />
 </Layout>

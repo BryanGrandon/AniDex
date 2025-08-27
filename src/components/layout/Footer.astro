@@ -1,9 +1,15 @@
 ---
-import GithubIcon from '../../../icons/GithubIcon'
-import LinkedinIcon from '../../../icons/LinkedinIcon'
+import GithubIcon from '../icons/GithubIcon'
+import LinkedinIcon from '../icons/LinkedinIcon'
+
+type Props = {
+  gridArea?: string
+}
+
+const { gridArea } = Astro.props
 ---
 
-<footer style={{ gridArea: 'footer' }} class='py-2 bg-cadetblue border-t border-gray-300 overlay flex flex-col gap-2'>
+<footer style={{ gridArea: gridArea }} class='py-2 bg-cadetblue border-t border-gray-300 overlay flex flex-col gap-2'>
   <nav class='relative'>
     <section class='flex gap-4 items-center justify-center'>
       <a href='https://www.linkedin.com/in/bryan-grandon/' class='hover:text-primary' target='_blank'><LinkedinIcon /></a>
