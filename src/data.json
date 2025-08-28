@@ -1,54 +1,72 @@
 {
-    "header": {
-        "title": "AniDex",
-        "description": "All the information you are looking for about anime, in one place. Synopsis, dates, studios, characters and more, always updated and organized for you to discover and explore your passion for anime, easily and quickly.",
-        "logo": {
-            "text": "API",
-            "href": "#"
-        },
-        "links": [
-            {
-                "title": "Home",
-                "href": "/"
-            },
-            {
-                "title": "Anime",
-                "href": "/anime"
-            },
-            {
-                "title": "Manga",
-                "href": "#"
-            },
-            {
-                "title": "Seasons",
-                "href": "#"
-            },
-            {
-                "title": "Characters",
-                "href": "#"
-            }
-        ]
+  "header": {
+    "title": "AniDex",
+    "description": "All the information you are looking for about anime, in one place. Synopsis, dates, studios, characters and more, always updated and organized for you to discover and explore your passion for anime, easily and quickly.",
+    "logo": {
+      "text": "API",
+      "href": "#"
     },
-    "content": {
-        "CS": {
-            "title": "Current Seasons",
-            "description": "Explore the latest anime releases of the current season. Stay updated with the newest episodes, series, and movies that are captivating audiences right now."
-        },
-        "LEU": {
-            "title": "Latest Episodes Updates",
-            "description": "Keep up to date with the latest episode releases Don't miss a moment of your favorite shows"
-        },
-        "TUA": {
-            "title": "Top Upcoming Anime You Can’t Miss",
-            "description": "Get ready for the next big hits! Our list of upcoming anime highlights the most anticipated series and movies coming soon."
-        },
-        "TPM": {
-            "title": "Top Publishing Manga Ranked by Score",
-            "description": "Discover the highest-rated manga that are currently being published. This list showcases the top-performing series based on user scores, critical acclaim, and community popularity."
-        },
-        "TPN": {
-            "title": "Top Publishing Novel Ranked by Score",
-            "description": "Explore the top-rated novels that are currently being published. This list features the best-performing novels based on user ratings, critical reviews, and community feedback."
-        }
+    "links": [
+      {
+        "title": "Home",
+        "href": "/"
+      },
+      {
+        "title": "Anime",
+        "href": "/anime"
+      },
+      {
+        "title": "Manga",
+        "href": "#"
+      },
+      {
+        "title": "Seasons",
+        "href": "#"
+      },
+      {
+        "title": "Characters",
+        "href": "#"
+      }
+    ]
+  },
+  "content": {
+    "CS": {
+      "title": "Current Seasons",
+      "description": "Explore the latest anime releases of the current season. Stay updated with the newest episodes, series, and movies that are captivating audiences right now."
+    },
+    "LEU": {
+      "title": "Latest Episodes Updates",
+      "description": "Keep up to date with the latest episode releases Don't miss a moment of your favorite shows"
+    },
+    "TUA": {
+      "title": "Top Upcoming Anime You Can’t Miss",
+      "description": "Get ready for the next big hits! Our list of upcoming anime highlights the most anticipated series and movies coming soon."
+    },
+    "TPM": {
+      "title": "Top Publishing Manga Ranked by Score",
+      "description": "Discover the highest-rated manga that are currently being published. This list showcases the top-performing series based on user scores, critical acclaim, and community popularity."
+    },
+    "TPN": {
+      "title": "Top Publishing Novel Ranked by Score",
+      "description": "Explore the top-rated novels that are currently being published. This list features the best-performing novels based on user ratings, critical reviews, and community feedback."
     }
+  },
+  "search": {
+    "anime": {
+      "types": ["tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"],
+      "status": ["airing", "completed", "upcoming"],
+      "sfw": false,
+      "order_by": ["score", "popularity", "rank", "favorites"],
+      "sort": ["asc", "desc"],
+      "start_date": ""
+    },
+    "manga": {
+      "types": ["manga", "novel", "lightnovel", "oneshot", "doujin", "manhwa", "manhua"],
+      "status": ["publishing", "complete", "hiatus", "discontinued", "upcoming"],
+      "sfw": false,
+      "order_by": ["score", "popularity", "rank", "favorites"],
+      "sort": ["asc", "desc"],
+      "start_date": ""
+    }
+  }
 }
