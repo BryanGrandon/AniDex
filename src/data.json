@@ -55,7 +55,7 @@
     "anime": {
       "types": ["tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"],
       "status": ["airing", "completed", "upcoming"],
-      "sfw": false,
+      "sfw": ["true", "false"],
       "order_by": ["score", "popularity", "rank", "favorites"],
       "sort": ["asc", "desc"],
       "start_date": ""
@@ -63,7 +63,7 @@
     "manga": {
       "types": ["manga", "novel", "lightnovel", "oneshot", "doujin", "manhwa", "manhua"],
       "status": ["publishing", "complete", "hiatus", "discontinued", "upcoming"],
-      "sfw": false,
+      "sfw": ["true", "false"],
       "order_by": ["score", "popularity", "rank", "favorites"],
       "sort": ["asc", "desc"],
       "start_date": ""
