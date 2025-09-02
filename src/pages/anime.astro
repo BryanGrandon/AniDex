@@ -4,11 +4,12 @@ import Footer from '../components/layout/Footer.astro'
 import Navbar from '../components/layout/Navbar'
 import Search from '../components/layout/Search'
 import Layout from '../layouts/Layout.astro'
+import ResultA from '../components/layout/ResultA'
 ---
 
 <Layout>
   <header class='test w-full overlay p-4'>
-    <Navbar />
+    <Navbar client:only />
     <article class='relative flex flex-col justify-center items-center text-center gap-4 min-h-64'>
       <h1 class='font-basicaline text-3xl'>Anime Search</h1>
       <p class='prose text-center text-white'>
@@ -21,17 +22,18 @@ import Layout from '../layouts/Layout.astro'
     <article class='flex flex-col gap-4 p-4 sm:items-center'>
       <Search client:load />
     </article>
-  </main>
 
-  <section>
-    <p>Filter</p>
-    <section class='flex flex-col flex-wrap gap-2 p-4 list'>
-      <Filter client:load />
+    <section>
+      <p>Filter</p>
+      <section class='flex flex-col flex-wrap gap-2 p-4 list'>
+        <Filter client:load />
+      </section>
     </section>
-  </section>
-  <article>
-    <p>result</p>
-  </article>
+    <article>
+      <p>result</p>
+      <ResultA client:load />
+    </article>
+  </main>
 </Layout>
 
 <Footer />

@@ -53,11 +53,11 @@
   },
   "search": {
     "anime": {
-      "types": ["tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"],
-      "status": ["airing", "completed", "upcoming"],
-      "sfw": ["true", "false"],
-      "order_by": ["score", "popularity", "rank", "favorites"],
-      "sort": ["asc", "desc"],
+      "types": ["view all", "tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"],
+      "status": ["view all", "airing", "completed", "upcoming"],
+      "sfw": ["view all", "true", "false"],
+      "order_by": ["view all", "score", "popularity", "rank", "favorites"],
+      "sort": ["desc", "asc"],
       "start_date": ""
     },
     "manga": {

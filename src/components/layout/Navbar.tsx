@@ -7,12 +7,8 @@ const Navbar = () => {
   const handlerClick = () => {
     const $lists = document.querySelectorAll('.navbar__list')
     const $buttons = document.querySelectorAll('.navbar__button')
-    $lists.forEach(($list) => {
-      $list.classList.toggle('d-none')
-    })
-    $buttons.forEach(($button) => {
-      $button.classList.toggle('start-animation-icon')
-    })
+    $lists.forEach(($list) => $list.classList.toggle('d-none'))
+    $buttons.forEach(($button) => $button.classList.toggle('start-animation-icon'))
   }
 
   return (

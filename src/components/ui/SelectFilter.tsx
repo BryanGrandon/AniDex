@@ -18,7 +18,7 @@ const SelectFilter = ({ theClassMain = '', title, array, highlight, callbacks }:
   }
 
   return (
-    <section className='items-center justify-between gap-4 text-lg grid grid-cols-2'>
+    <section className='items-center justify-between gap-4 text-lg grid grid-cols-2 cursor-pointer'>
       <p>{title}</p>
       <details className={`relative ${theClassMain}`}>
         <summary className='font-basicaline tracking-wide border border-primary px-3 py-0.5 rounded-md '>{highlight}</summary>
