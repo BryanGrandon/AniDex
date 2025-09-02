@@ -1,28 +1,10 @@
+import { useState } from 'preact/hooks'
 import json from '../../data.json'
 import { useStore } from '@nanostores/preact'
-import { searchOptions, searchQuery } from '../storage/storage-search'
+import { search } from '../storage/storage-search'
 
 const useSearch = (thisIs: string) => {
   const data = thisIs == 'anime' ? json.search.anime : json.search.manga
-  let { type, status, orderBy, sort, sfw, year } = useStore(searchOptions) // filterOptions
-
-  type checking = {
-    check: string
-    defaultValue: string
-  }
-
-  //   check if  there is a better function
-  const checking = ({ check, defaultValue }: checking) => {
-    return check == '' ? defaultValue : check
-  }
-
-  // Create Object : filterOptions
-  type = checking({ check: type, defaultValue: data.types[0] })
-  status = checking({ check: status, defaultValue: data.status[0] })
-  orderBy = checking({ check: orderBy, defaultValue: data.order_by[0] })
-  sort = checking({ check: sort, defaultValue: data.sort[0] })
-  sfw = checking({ check: sfw, defaultValue: data.sfw[0] })
-  year = checking({ check: year, defaultValue: 'view all' })
 
   const dateStart = new Date('1988-01-01').getFullYear()
   const now = new Date().getFullYear()
@@ -32,33 +14,62 @@ const useSearch = (thisIs: string) => {
   years.push('view all')
   years = years.reverse()
 
-  // Filter Data
-  const getData = {
-    types: data.types,
-    status: data.status,
-    order_by: data.order_by,
-    sort: data.sort,
-    sfw: data.sfw,
-    years: years,
-  }
+  // Filter Options
 
-  const update = {
-    setType: (value: string) => searchOptions.set({ type: value, status, orderBy, sort, sfw, year }),
-    setStatus: (value: string) => searchOptions.set({ type, status: value, orderBy, sort, sfw, year }),
-    setOrderBy: (value: string) => searchOptions.set({ type, status, orderBy: value, sort, sfw, year }),
-    setSort: (value: string) => searchOptions.set({ type, status, orderBy, sort: value, sfw, year }),
-    setSfw: (value: string) => searchOptions.set({ type, status, orderBy, sort, sfw: value, year }),
-    setYear: (value: string) => searchOptions.set({ type, status, orderBy, sort, sfw, year: value }),
+  const [type, setType] = useState(data.types[0])
+  const [status, setStatus] = useState(data.status[0])
+  const [orderBy, setOrderBy] = useState(data.order_by[0])
+  const [sort, setSort] = useState(data.sort[0])
+  const [sfw, setSfw] = useState(data.sfw[0])
+  const [year, setYear] = useState('view all')
+
+  const filter = {
+    type: {
+      get: type,
+      set: (value: string) => setType(value),
+      data: data.types,
+    },
+    status: {
+      get: status,
+      set: (value: string) => setStatus(value),
+      data: data.status,
+    },
+    orderBy: {
+      get: orderBy,
+      set: (value: string) => setOrderBy(value),
+      data: data.order_by,
+    },
+    sort: {
+      get: sort,
+      set: (value: string) => setSort(value),
+      data: data.sort,
+    },
+    sfw: {
+      get: sfw,
+      set: (value: string) => setSfw(value),
+      data: data.sfw,
+    },
+    year: {
+      get: year,
+      set: (value: string) => setYear(value),
+      data: years,
+    },
   }
 
   // Query
 
+  const [querySearch, setQuerySearch] = useState('')
+
   const query = {
-    get: useStore(searchQuery),
-    set: (value: string) => searchQuery.set(value),
+    get: querySearch,
+    set: (value: string) => setQuerySearch(value),
   }
 
-  // All
+  // Search
+
+  const url = useStore(search)
+
+  // handler Clicks
 
   const allFilterOptions = {
     type: type != data.types[0] ? `&type=${type}` : '',
@@ -70,7 +81,14 @@ const useSearch = (thisIs: string) => {
     query: query.get != '' ? `&q=${query.get}` : '',
   }
 
-  return { type, status, orderBy, sort, sfw, year, update, getData }
+  const applyFilter = () => {
+    const { type, status, orderBy, sort, sfw, year } = allFilterOptions
+    search.set(`https://api.jikan.moe/v4/${thisIs}?${type}${status}${orderBy}${sort}${sfw}${year}`)
+  }
+
+  // All
+
+  return { filter, url, applyFilter }
 }
 
 export default useSearch

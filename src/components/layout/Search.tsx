@@ -1,11 +1,9 @@
 import { useState } from 'preact/hooks'
-import { searchQuery } from '../../utils/storage/storage-search'
 
 const Search = () => {
   const [query, setQuery] = useState<string>('')
 
-  const handleClickSearch = () => searchQuery.set(query)
-
+  const handleClickSearch = () => ''
   return (
     <section class='flex flex-col sm:flex-row gap-4 sm:w-140 sm:align-center'>
       <input

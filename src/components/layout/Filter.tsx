@@ -2,16 +2,18 @@ import SelectFilter from '../ui/SelectFilter'
 import useSearch from '../../utils/hooks/useSearch'
 
 const Filter = () => {
-  const { type, status, orderBy, sort, sfw, year, update, getData } = useSearch('anime')
+  const { filter, applyFilter } = useSearch('anime')
+  const { type, sfw, sort, status, orderBy, year } = filter
 
   return (
     <article className='flex flex-col gap-2 max-w-60'>
-      <SelectFilter title='Type:' theClassMain='filter-type' callbacks={update.setType} array={getData.types} highlight={type} />
-      <SelectFilter title='Status:' theClassMain='filter-status' callbacks={update.setStatus} array={getData.status} highlight={status} />
-      <SelectFilter title='Order by:' theClassMain='filter-order_by' callbacks={update.setOrderBy} array={getData.order_by} highlight={orderBy} />
-      <SelectFilter title='Sort:' theClassMain='filter-sort' callbacks={update.setSort} array={getData.sort} highlight={sort} />
-      <SelectFilter title='SFW:' theClassMain='filter-sfw' callbacks={update.setSfw} array={getData.sfw} highlight={sfw} />
-      <SelectFilter title='Year:' theClassMain='filter-years' callbacks={update.setYear} array={getData.years} highlight={year} />
+      <SelectFilter title='Type:' theClassMain='filter-type' callbacks={type.set} array={type.data} highlight={type.get} />
+      <SelectFilter title='Status:' theClassMain='filter-status' callbacks={status.set} array={status.data} highlight={status.get} />
+      <SelectFilter title='Order by:' theClassMain='filter-order_by' callbacks={orderBy.set} array={orderBy.data} highlight={orderBy.get} />
+      <SelectFilter title='Sort:' theClassMain='filter-sort' callbacks={sort.set} array={sort.data} highlight={sort.get} />
+      <SelectFilter title='SFW:' theClassMain='filter-sfw' callbacks={sfw.set} array={sfw.data} highlight={sfw.get} />
+      <SelectFilter title='Year:' theClassMain='filter-years' callbacks={year.set} array={year.data} highlight={year.get} />
+      <button onClick={applyFilter}>Apply filter</button>
     </article>
   )
 }
