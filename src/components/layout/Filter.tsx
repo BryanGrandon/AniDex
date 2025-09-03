@@ -6,7 +6,7 @@ const Filter = () => {
   const { type, sfw, sort, status, orderBy, year } = filter
 
   return (
-    <article className='flex flex-col gap-2 max-w-60'>
+    <article className='flex flex-col gap-2 max-w-75'>
       <SelectFilter title='Type:' theClassMain='filter-type' callbacks={type.set} array={type.data} highlight={type.get} />
       <SelectFilter title='Status:' theClassMain='filter-status' callbacks={status.set} array={status.data} highlight={status.get} />
       <SelectFilter title='Order by:' theClassMain='filter-order_by' callbacks={orderBy.set} array={orderBy.data} highlight={orderBy.get} />
