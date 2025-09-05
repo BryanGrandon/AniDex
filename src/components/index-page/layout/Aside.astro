@@ -1,9 +1,8 @@
 ---
-import Title from '../../../ui/Title.astro'
-import MiniCard from '../../../ui/MiniCard'
-import type { default_data } from '../../../../utils/interfaces/default-data'
-import type { most_popular_manga } from '../../../../utils/interfaces/most-popular-manga'
-import { dataMPA, dataMPM, dataTAA } from '../../../../utils/storage/data-index'
+import type { default_data } from '../../../utils/interfaces/default-data'
+import type { most_popular_manga } from '../../../utils/interfaces/most-popular-manga'
+import { dataMPA, dataMPM, dataTAA } from '../../../utils/storage/data-index'
+import MiniCard from '../../core/ui/MiniCard'
 import AsideContent from '../ui/AsideContent'
 
 const $dataMPA: default_data = dataMPA

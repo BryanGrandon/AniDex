@@ -3,34 +3,31 @@ import { idModal, isOpenModal, typeModal } from '../../utils/storage/data-modal'
 
 import MangaModal from './MangaModal'
 import AnimeModal from './AnimeModal'
-import ArrowLeftIcon from '../icons/ArrowLeftIcon'
-import FloatingPanel from '../ui/FloatingPanel'
-import useModal from '../../utils/hooks/useModal'
+import ArrowLeftIcon from '../core/icons/ArrowLeftIcon'
+import FloatingPanel from '../core/ui/FloatingPanel'
 
 const ModalContent = () => {
   const isOpen = useStore(isOpenModal)
   const id = useStore(idModal)
   const type = useStore(typeModal)
-  const { handlerClick } = useModal({})
+  const handlerClick = () => {}
 
   document.addEventListener('mouseup', (ev) => {
     if (ev.button === 3) {
       ev.preventDefault()
-      handlerClick.close()
+      handlerClick
     }
   })
   if (isOpen) {
     return (
       <main className=' h-full w-full bg-cover overflow-auto modal home-hidden'>
         <header className='flex items-center font-bold px-4 py-2'>
-          <button className='text-white flex items-center font-bold  cursor-pointer' onClick={handlerClick.close}>
+          <button className='text-white flex items-center font-bold  cursor-pointer' onClick={handlerClick}>
             <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary ' />
           </button>
         </header>
-        {type === 'anime' ? <AnimeModal key={id} id={id} /> : null}
-        {type == 'manga' ? <MangaModal key={id} id={id} /> : null}
 
-        <FloatingPanel callback={handlerClick.close} />
+        <FloatingPanel callback={handlerClick} />
       </main>
     )
   }

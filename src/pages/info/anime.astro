@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import LiteYouTubeEmbed from 'react-lite-youtube-embed'
+import ArrowLeftIcon from '../../components/core/icons/ArrowLeftIcon'
+import ModalInfo from '../../components/modal/ModalInfo'
+import ModalList from '../../components/modal/ModalList'
+---
+
+<Layout>
+  <header class='flex items-center font-bold px-4 py-2'>
+    <button class='text-white flex items-center font-bold cursor-pointer'>
+      <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary ' />
+    </button>
+  </header>
+
+  <main class='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
+    <article class='overlay glassmorphism rounded-xl overflow-hidden p-4'>
+      <article class='flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
+        <!-- <img src={data?.image} alt={data?.title + '-img'} class='rounded max-w-50' /> -->
+
+        <article class='pt-4 flex flex-col justify-start w-full'>
+          <!-- <h2 class='text-3xl font-basicaline border-b-2 border-primary mb-4'>{data?.title}</h2> -->
+          <!-- <ModalList items={data?.primaryList} /> -->
+        </article>
+      </article>
+    </article>
+
+    <article class='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+      <!-- <ModalInfo title='Synopsis' moreClass='md:col-span-2' children={data?.synopsis} /> -->
+
+      <!-- <ModalInfo title='Trailer'>
+      <LiteYouTubeEmbed id={data?.youtube_id} title={data?.title} poster='maxresdefault' />
+    </ModalInfo>
+
+    <ModalInfo title='More Info'>
+      <section class='px-4'>
+        <ModalList items={data?.secondaryList} />
+      </section>
+    </ModalInfo> -->
+    </article>
+
+    <!-- {
+    data?.relations.length > 0 ? (
+      <section class='gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+        {data?.relations.map((el) => (
+          <section class='flex flex-col p-1 px-4 py-2  rounded overlay glassmorphism overflow-hidden'>
+            <p class='text-orange-400 relative text-xl font-basicaline tracking-wider'>
+              {el.relation}: {el.entry[0].type}
+            </p>
+            <abbr title={el.entry[0].name} class='no-underline' onClick={() => handlerClick.open({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
+              <h3 class='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2 hover:text-primary'>{el.entry[0].name}</h3>
+            </abbr>
+          </section>
+        ))}
+      </section>
+    ) : null
+  }
+
+  {
+    recommendations?.length > 0 ? (
+      <section class='p-4 rounded-xl flex flex-col gap-4 overflow-hidden overlay glassmorphism'>
+        <h2 class='font-basicaline text-2xl relative'>Recommendations</h2>
+        <article class='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {recommendations?.map((data) => (
+            <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} id={data.entry.mal_id} type={'anime'} />
+          ))}
+        </article>
+      </section>
+    ) : null
+  } -->
+  </main>
+
+  <article class='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'></article>
+</Layout>

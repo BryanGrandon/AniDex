@@ -1,0 +1,31 @@
+---
+import Filter from '../components/layout/Filter'
+import Footer from '../components/layout/Footer.astro'
+import Navbar from '../components/core/layout/Navbar'
+import Layout from '../layouts/Layout.astro'
+import ResultA from '../components/layout/ResultA'
+---
+
+<Layout>
+  <header class='test w-full overlay p-4'>
+    <Navbar client:only />
+    <article class='relative flex flex-col justify-center items-center text-center gap-4 min-h-64'>
+      <h1 class='font-basicaline text-3xl'>Search</h1>
+      <p class='prose text-center text-white'></p>
+    </article>
+  </header>
+
+  <main class='test'>
+    <article class='flex flex-col gap-4 p-4 sm:items-center'>
+      <!-- <Search client:load /> -->
+    </article>
+
+    <Filter client:only />
+
+    <article>
+      <ResultA client:only />
+    </article>
+  </main>
+</Layout>
+
+<Footer />

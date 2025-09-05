@@ -1,5 +1,5 @@
-import ArrowTopIcon from '../icons/ArrowTopIcon'
-import HomeIcon from '../icons/HomeIcon'
+import ArrowTopIcon from '../../core/icons/ArrowTopIcon'
+import HomeIcon from '../../core/icons/HomeIcon'
 
 type floating_panel = {
   callback: () => void

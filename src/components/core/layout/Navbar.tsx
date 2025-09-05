@@ -1,4 +1,4 @@
-import data from '../../data.json'
+import data from '../../../data.json'
 import BarsToCloseIcon from '../icons/BarsToCloseIcon'
 
 const Navbar = () => {

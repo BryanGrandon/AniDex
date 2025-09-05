@@ -1,9 +1,9 @@
 ---
-import Navbar from '../../../layout/Navbar'
-import data from '../../../../data.json' assert { type: 'json' }
-import { dataCS } from '../../../../utils/storage/data-index'
-import type { default_data } from '../../../../utils/interfaces/default-data'
-import DefaultCard from '../../../ui/DefaultCard'
+import Navbar from '../../core/layout/Navbar'
+import data from '../../../data.json' assert { type: 'json' }
+import { dataCS } from '../../../utils/storage/data-index'
+import type { default_data } from '../../../utils/interfaces/default-data'
+import DefaultCard from '../../core/ui/DefaultCard'
 
 const { CS } = data.content
 const $dataCS: default_data = dataCS
