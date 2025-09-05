@@ -9,7 +9,7 @@ type Default_Card = {
 
 const DefaultCard = ({ image, title, highlightText, highlightClass, id, type }: Default_Card) => {
   const handlerClickCard = () => {
-    console.log(id)
+    localStorage.setItem('id', String(id))
     window.location.href = `/info/${type}`
   }
 

@@ -15,60 +15,60 @@ const AnimeModal = ({ id }: Modal_Anime) => {
   // const { handlerClick } = useModal()
   // const data = getModalInfo({ id, type: 'anime' })
 
-  return
-  //   <article className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
-  //     <article className='overlay glassmorphism rounded-xl overflow-hidden p-4'>
-  //       <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
-  //         <img src={data?.image} alt={data?.title + '-img'} className='rounded max-w-50' />
+//   return
+//     <article className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
+//       <article className='overlay glassmorphism rounded-xl overflow-hidden p-4'>
+//         <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
+//           <img src={data?.image} alt={data?.title + '-img'} className='rounded max-w-50' />
 
-  //         <article className='pt-4 flex flex-col justify-start w-full'>
-  //           <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{data?.title}</h2>
-  //           <ModalList items={data?.primaryList} />
-  //         </article>
-  //       </article>
-  //     </article>
+//           <article className='pt-4 flex flex-col justify-start w-full'>
+//             <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{data?.title}</h2>
+//             <ModalList items={data?.primaryList} />
+//           </article>
+//         </article>
+//       </article>
 
-  //     <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-  //       <ModalInfo title='Synopsis' moreClass='md:col-span-2' children={data?.synopsis} />
+//       <article className='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+//         <ModalInfo title='Synopsis' moreClass='md:col-span-2' children={data?.synopsis} />
 
-  //       <ModalInfo title='Trailer'>
-  //         <LiteYouTubeEmbed id={data?.youtube_id} title={data?.title} poster='maxresdefault' />
-  //       </ModalInfo>
+//         <ModalInfo title='Trailer'>
+//           <LiteYouTubeEmbed id={data?.youtube_id} title={data?.title} poster='maxresdefault' />
+//         </ModalInfo>
 
-  //       <ModalInfo title='More Info'>
-  //         <section className='px-4'>
-  //           <ModalList items={data?.secondaryList} />
-  //         </section>
-  //       </ModalInfo>
-  //     </article>
+//         <ModalInfo title='More Info'>
+//           <section className='px-4'>
+//             <ModalList items={data?.secondaryList} />
+//           </section>
+//         </ModalInfo>
+//       </article>
 
-  //     {data?.relations.length > 0 ? (
-  //       <section className='gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-  //         {data?.relations.map((el) => (
-  //           <section className='flex flex-col p-1 px-4 py-2  rounded overlay glassmorphism overflow-hidden'>
-  //             <p className='text-orange-400 relative text-xl font-basicaline tracking-wider'>
-  //               {el.relation}: {el.entry[0].type}
-  //             </p>
-  //             <abbr title={el.entry[0].name} className='no-underline' onClick={() => handlerClick.open({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
-  //               <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2 hover:text-primary'>{el.entry[0].name}</h3>
-  //             </abbr>
-  //           </section>
-  //         ))}
-  //       </section>
-  //     ) : null}
+//       {data?.relations.length > 0 ? (
+//         <section className='gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+//           {data?.relations.map((el) => (
+//             <section className='flex flex-col p-1 px-4 py-2  rounded overlay glassmorphism overflow-hidden'>
+//               <p className='text-orange-400 relative text-xl font-basicaline tracking-wider'>
+//                 {el.relation}: {el.entry[0].type}
+//               </p>
+//               <abbr title={el.entry[0].name} className='no-underline' onClick={() => handlerClick.open({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
+//                 <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2 hover:text-primary'>{el.entry[0].name}</h3>
+//               </abbr>
+//             </section>
+//           ))}
+//         </section>
+//       ) : null}
 
-  //     {recommendations?.length > 0 ? (
-  //       <section className='p-4 rounded-xl flex flex-col gap-4 overflow-hidden overlay glassmorphism'>
-  //         <h2 className='font-basicaline text-2xl relative'>Recommendations</h2>
-  //         <article class='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-  //           {recommendations?.map((data) => (
-  //             <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} id={data.entry.mal_id} type={'anime'} />
-  //           ))}
-  //         </article>
-  //       </section>
-  //     ) : null}
-  //   </article>
-  // )
-}
+//       {recommendations?.length > 0 ? (
+//         <section className='p-4 rounded-xl flex flex-col gap-4 overflow-hidden overlay glassmorphism'>
+//           <h2 className='font-basicaline text-2xl relative'>Recommendations</h2>
+//           <article class='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+//             {recommendations?.map((data) => (
+//               <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} id={data.entry.mal_id} type={'anime'} />
+//             ))}
+//           </article>
+//         </section>
+//       ) : null}
+//     </article>
+//   )
+// }
 
-export default AnimeModal
+// export default AnimeModal

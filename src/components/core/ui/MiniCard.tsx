@@ -9,7 +9,8 @@ type mini_card = {
 
 const MiniCard = ({ image, title, text, highlight, id, type }: mini_card) => {
   const handlerClick = () => {
-    console.log('s')
+    localStorage.setItem('id', String(id))
+    window.location.href = `/info/${type}`
   }
   return (
     <section className='rounded-lg overflow-hidden glassmorphism border  hover:border-[color:var(--color-primary)_!important] hover:scale-105 active:scale-95 cursor-pointer' onClick={handlerClick}>
