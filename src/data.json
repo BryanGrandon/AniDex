@@ -12,16 +12,8 @@
         "href": "/"
       },
       {
-        "title": "Anime",
-        "href": "/anime"
-      },
-      {
-        "title": "Manga",
-        "href": "#"
-      },
-      {
-        "title": "Seasons",
-        "href": "#"
+        "title": "Search",
+        "href": "/search"
       },
       {
         "title": "Characters",

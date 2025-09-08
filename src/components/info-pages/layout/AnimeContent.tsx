@@ -1,12 +1,13 @@
+import { useEffect, useState } from 'preact/hooks'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
-import { useEffect, useState } from 'preact/hooks'
-import type { anime_data, specific_info_about_anime } from '../../../utils/interfaces/anime-data'
-import type { recommendation_data } from '../../../utils/interfaces/recommendation-data'
-import { getIndividualInfo } from '../../../services/api/getIndividualInfo'
 import ObjectList from '../ui/ObjectList'
 import ContainerInfo from '../ui/ContainerInfo'
 import MiniCard from '../../core/ui/MiniCard'
+import { getIndividualInfo } from '../../../services/api/getIndividualInfo'
+import type { anime_data, specific_info_about_anime } from '../../../utils/interfaces/anime-data'
+import type { recommendation_data } from '../../../utils/interfaces/recommendation-data'
+import FloatingPanel from '../../core/ui/FloatingPanel'
 
 const AnimeContent = () => {
   let id = localStorage.getItem('id')
@@ -18,8 +19,9 @@ const AnimeContent = () => {
 
   const getInfo = async () => {
     const json = await getIndividualInfo({ url: urlFullData })
+
     const info: anime_data = json.data
-    const object:specific_info_about_anime = {
+    const object: specific_info_about_anime = {
       title: info?.title,
       image: info?.images.webp.large_image_url,
       synopsis: info?.synopsis,
@@ -61,7 +63,7 @@ const AnimeContent = () => {
 
   if (data)
     return (
-      <article className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
+      <main className='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'>
         <article className='overlay glassmorphism rounded-xl overflow-hidden p-4'>
           <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
             <img src={data?.image} alt={data?.title + '-img'} className='rounded max-w-50' />
@@ -112,7 +114,8 @@ const AnimeContent = () => {
             </article>
           </section>
         ) : null}
-      </article>
+        <FloatingPanel />
+      </main>
     )
 }
 
