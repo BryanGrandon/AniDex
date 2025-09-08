@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import ArrowLeftIcon from '../../components/core/icons/ArrowLeftIcon'
+import MangaContent from '../../components/info-pages/layout/MangaContent'
+
+const handlerClick = () => {
+  window.location.href = `/`
+}
+---
+
+<Layout>
+  <header class='flex items-center font-bold px-4 py-2'>
+    <a href='/' class='text-white flex items-center font-bold cursor-pointer'>
+      <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary ' />
+    </a>
+  </header>
+
+  <MangaContent client:only />
+
+  <article class='px-4 pb-4 max-w-[1400px] m-auto flex flex-col gap-4'></article>
+</Layout>

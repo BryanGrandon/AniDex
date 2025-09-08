@@ -1,11 +1,7 @@
 import ArrowTopIcon from '../../core/icons/ArrowTopIcon'
 import HomeIcon from '../../core/icons/HomeIcon'
 
-type floating_panel = {
-  callback: () => void
-}
-
-const FloatingPanel = ({ callback }: floating_panel) => {
+const FloatingPanel = () => {
   const $buttonTop = document.querySelector('.button-top')
   const scrollUmbral = 50
 
@@ -18,9 +14,9 @@ const FloatingPanel = ({ callback }: floating_panel) => {
 
   return (
     <div className='fixed bottom-5 right-5 z-10 flex flex-col gap-3'>
-      <button className='rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black' onClick={callback}>
+      <a href={'/'} className='rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black'>
         <HomeIcon />
-      </button>
+      </a>
       <button className='z-10 rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black hidden-button button-top' onClick={handlerClickMoveTop}>
         <ArrowTopIcon />
       </button>
