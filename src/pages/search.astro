@@ -17,7 +17,7 @@ import Layout from '../layouts/Layout.astro'
 
   <main class='test'>
     <article class='flex flex-col gap-4 p-4 sm:items-center'>
-      <ContentSearch />
+      <ContentSearch client:only />
     </article>
 
     <Filter client:only />

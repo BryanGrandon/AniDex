@@ -1,9 +1,30 @@
 import SelectFilter from '../ui/SelectFilter'
 import useSearch from '../../../utils/hooks/useSearch'
+import { TYPES_OF_GENRES } from '../../../utils/constants/type-of-genres'
+import { useState } from 'preact/hooks'
 
 const Filter = () => {
   const { filter } = useSearch('anime')
   const { type, sfw, sort, status, orderBy, year } = filter
+  const [genres, setGenres] = useState<number[]>([])
+  const [genresExclude, setGenresExclude] = useState<number[]>([])
+
+  const handlerClickGenres = (el: number) => {
+    const check = genres.some((e) => e === el)
+    if (check) {
+      const newArray = genres.filter((e) => e !== el)
+      setGenres(newArray)
+    } else setGenres([...genres, el])
+  }
+  const handlerClickGenresExclude = (el: number) => {
+    const check = genresExclude.some((e) => e === el)
+    if (check) {
+      const newArray = genresExclude.filter((e) => e !== el)
+      setGenresExclude(newArray)
+    } else setGenresExclude([...genresExclude, el])
+  }
+
+  const allGenres = [...TYPES_OF_GENRES.genres, ...TYPES_OF_GENRES.explicit_genres, ...TYPES_OF_GENRES.themes]
 
   return (
     <>
@@ -19,10 +40,26 @@ const Filter = () => {
         </article>
       </details>
       <details className=''>
-        <summary className='test'>Genres</summary>
+        <summary className='test px-4 py-2'>Genres, Explicit Genres, Themes</summary>
+        <article className='flex flex-col p-4 gap-1 max-h-100 overflow-auto'>
+          {allGenres.map((e) => (
+            <label className='flex gap-1'>
+              <input type='checkbox' onClick={() => handlerClickGenres(e.id)} />
+              {e.title}
+            </label>
+          ))}
+        </article>
       </details>
       <details className=''>
-        <summary className='test'>Genres</summary>
+        <summary className='test px-4 py-2'>Genres Exclude</summary>
+        <article className='flex flex-col p-4 gap-1 max-h-100 overflow-auto'>
+          {allGenres.map((e) => (
+            <label className='flex gap-1'>
+              <input type='checkbox' onClick={() => handlerClickGenresExclude(e.id)} />
+              {e.title}
+            </label>
+          ))}
+        </article>
       </details>
     </>
   )
