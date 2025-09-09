@@ -1,5 +1,5 @@
 import SelectFilter from '../ui/SelectFilter'
-import useSearch from '../../utils/hooks/useSearch'
+import useSearch from '../../../utils/hooks/useSearch'
 
 const Filter = () => {
   const { filter } = useSearch('anime')

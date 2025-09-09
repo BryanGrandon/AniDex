@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks'
 
-const Search = () => {
+const ContentSearch = () => {
   const [query, setQuery] = useState<string>('')
 
   const handleClickSearch = () => ''
@@ -13,7 +13,7 @@ const Search = () => {
         onKeyDown={(e) => {
           if (e.key == 'Enter') handleClickSearch()
         }}
-        placeholder='Search for anime...'
+        placeholder='Search for anime, manga or seasons...'
         class='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary'
       />
       <button class='px-4 py-2 bg-primary text-black rounded-md' onClick={handleClickSearch}>
@@ -23,4 +23,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default ContentSearch
