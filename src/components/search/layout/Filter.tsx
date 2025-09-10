@@ -2,12 +2,18 @@ import SelectFilter from '../ui/SelectFilter'
 import useSearch from '../../../utils/hooks/useSearch'
 
 const Filter = () => {
-  const { filter, applyFilter } = useSearch('anime')
+  const { filter, applyFilter, assignSearchApproach } = useSearch()
   const { type, sfw, sort, status, orderBy, year, genres, genresExclude } = filter
   const allGenres = genres.data
 
   return (
     <>
+      <section>
+        <p onClick={() => assignSearchApproach('anime')}>Anime</p>
+        <p onClick={() => assignSearchApproach('manga')}>Manga</p>
+        <p onClick={() => assignSearchApproach('season')}>Season</p>
+      </section>
+
       <details className=''>
         <summary className='px-4 py-2 border rounded border-primary cursor-pointer'>Filter</summary>
         <article className='flex flex-col gap-2 p-4'>

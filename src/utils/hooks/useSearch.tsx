@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'preact/hooks'
 import json from '../../data.json'
 import { useStore } from '@nanostores/preact'
-import { search, searchPage } from '../storage/storage-search'
+import { search, searchApproach, searchPage } from '../storage/storage-search'
 import { TYPES_OF_GENRES } from '../constants/type-of-genres'
-import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 
-const useSearch = (thisIs: string) => {
-  const data = thisIs == 'anime' ? json.search.anime : json.search.manga
+const useSearch = () => {
+  const data = searchApproach.get() == 'anime' ? json.search.anime : json.search.manga
 
   let years = []
   for (let i = new Date('1988-01-01').getFullYear(); i <= new Date().getFullYear(); i++) years.push(i)
@@ -101,16 +100,17 @@ const useSearch = (thisIs: string) => {
 
   const applyFilter = () => {
     const { type, status, orderBy, sort, sfw, year, genres, genresExclude } = allFilterOptions
-    const url = `https://api.jikan.moe/v4/${thisIs}?page=${numberPage}&limit=20${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}`
+    const url = `https://api.jikan.moe/v4/${searchApproach.get()}?page=${numberPage}&limit=20${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}`
     search.set(url)
   }
 
-  const getData = async (url: string) => {
-    const json = await getIndividualInfo({ url })
-    return json
+  // Search Approach
+  const assignSearchApproach = (val: string) => {
+    searchApproach.set(val)
+    applyFilter()
   }
 
-  return { filter, applyFilter, getData }
+  return { filter, applyFilter, assignSearchApproach }
 }
 
 export default useSearch

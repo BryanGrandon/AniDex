@@ -2,11 +2,10 @@ import { getIndividualInfo } from '../../../services/api/getIndividualInfo'
 import { useEffect, useState } from 'preact/hooks'
 import { useStore } from '@nanostores/preact'
 import { search } from '../../../utils/storage/storage-search'
-import useSearch from '../../../utils/hooks/useSearch'
 
 const ResultA = () => {
   const url = useStore(search)
-  const { getData } = useSearch('anime')
+
   const [info, setInfo] = useState()
 
   const getInfo = async () => {
