@@ -5,7 +5,7 @@ const ContentSearch = () => {
 
   const handleClickSearch = () => ''
   return (
-    <section class='flex flex-col sm:flex-row gap-4 sm:w-140 sm:align-center'>
+    <section class='flex flex-col sm:flex-row gap-4 sm:w-140 sm:align-center test'>
       <input
         type='text'
         value={query}

@@ -1,7 +1,9 @@
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import json from '../../data.json'
 import { useStore } from '@nanostores/preact'
-import { search } from '../storage/storage-search'
+import { search, searchPage } from '../storage/storage-search'
+import { TYPES_OF_GENRES } from '../constants/type-of-genres'
+import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 
 const useSearch = (thisIs: string) => {
   const data = thisIs == 'anime' ? json.search.anime : json.search.manga
@@ -18,6 +20,9 @@ const useSearch = (thisIs: string) => {
   const [sort, setSort] = useState(data.sort[0])
   const [sfw, setSfw] = useState(data.sfw[0])
   const [year, setYear] = useState('view all')
+  const [genres, setGenres] = useState<number[]>([])
+  const [genresExclude, setGenresExclude] = useState<number[]>([])
+
   const filter = {
     type: {
       get: type,
@@ -49,6 +54,25 @@ const useSearch = (thisIs: string) => {
       set: (value: string) => setYear(value),
       data: years,
     },
+    genres: {
+      data: [...TYPES_OF_GENRES.genres, ...TYPES_OF_GENRES.explicit_genres, ...TYPES_OF_GENRES.themes],
+      set: (el: number) => {
+        const check = genres.some((e) => e === el)
+        if (check) {
+          const newArray = genres.filter((e) => e !== el)
+          setGenres(newArray)
+        } else setGenres([...genres, el])
+      },
+    },
+    genresExclude: {
+      set: (el: number) => {
+        const check = genresExclude.some((e) => e === el)
+        if (check) {
+          const newArray = genresExclude.filter((e) => e !== el)
+          setGenresExclude(newArray)
+        } else setGenresExclude([...genresExclude, el])
+      },
+    },
   }
 
   // Query
@@ -58,10 +82,7 @@ const useSearch = (thisIs: string) => {
     set: (value: string) => setQuerySearch(value),
   }
 
-  // Search
-  const url = useStore(search)
-
-  // handler Clicks
+  // Apply filters
   const allFilterOptions = {
     type: type != data.types[0] ? `&type=${type}` : '',
     status: status != data.status[0] ? `&status=${status}` : '',
@@ -70,14 +91,26 @@ const useSearch = (thisIs: string) => {
     sfw: sfw != data.sfw[0] ? `&sfw=${sfw}` : '',
     year: year != 'view all' ? `&year=${year}` : '',
     query: query.get != '' ? `&q=${query.get}` : '',
+    genres: genres.length > 0 ? `&genres=${genres.join(',')}` : '',
+    genresExclude: genresExclude.length > 0 ? `&genres_exclude=${genresExclude.join(',')}` : '',
   }
+
+  const numberPage = useStore(searchPage)
+
+  // Search
 
   const applyFilter = () => {
-    const { type, status, orderBy, sort, sfw, year } = allFilterOptions
-    search.set(`https://api.jikan.moe/v4/${thisIs}?${type}${status}${orderBy}${sort}${sfw}${year}`)
+    const { type, status, orderBy, sort, sfw, year, genres, genresExclude } = allFilterOptions
+    const url = `https://api.jikan.moe/v4/${thisIs}?page=${numberPage}&limit=20${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}`
+    search.set(url)
   }
 
-  return { filter, url, applyFilter }
+  const getData = async (url: string) => {
+    const json = await getIndividualInfo({ url })
+    return json
+  }
+
+  return { filter, applyFilter, getData }
 }
 
 export default useSearch

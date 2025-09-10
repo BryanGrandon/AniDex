@@ -1,5 +1,3 @@
-import { useEffect } from 'preact/hooks'
-
 type select_filter = {
   title?: string
   highlight: string
@@ -19,12 +17,18 @@ const SelectFilter = ({ theClassMain = '', title, array, highlight, callbacks }:
     closeDetails()
   }
 
-  useEffect(() => {
-    document.addEventListener('click', (ev) => {
-      const target = ev.target as HTMLInputElement
-      if (!target.matches(theClassMain)) closeDetails()
-    })
-  }, [])
+  document.addEventListener('click', (ev) => {
+    const target = ev.target as HTMLInputElement
+    if (target.matches(`.${theClassMain}  *`)) {
+      const $details = document.querySelector(`.${theClassMain}`)
+      const isOpen = $details?.hasAttribute('open')
+      if (isOpen) {
+        ev.preventDefault()
+        $details?.removeAttribute('open')
+      }
+    }
+    if (!target.matches(theClassMain)) closeDetails()
+  })
 
   return (
     <section className='items-center justify-between gap-4 text-lg grid grid-cols-2 cursor-pointer'>
