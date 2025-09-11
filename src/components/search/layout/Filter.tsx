@@ -2,18 +2,12 @@ import SelectFilter from '../ui/SelectFilter'
 import useSearch from '../../../utils/hooks/useSearch'
 
 const Filter = () => {
-  const { filter, applyFilter, assignSearchApproach } = useSearch()
+  const { filter, applyFilter, resetFilter } = useSearch()
   const { type, sfw, sort, status, orderBy, year, genres, genresExclude } = filter
   const allGenres = genres.data
 
   return (
     <>
-      <section>
-        <p onClick={() => assignSearchApproach('anime')}>Anime</p>
-        <p onClick={() => assignSearchApproach('manga')}>Manga</p>
-        <p onClick={() => assignSearchApproach('season')}>Season</p>
-      </section>
-
       <details className=''>
         <summary className='px-4 py-2 border rounded border-primary cursor-pointer'>Filter</summary>
         <article className='flex flex-col gap-2 p-4'>
@@ -31,7 +25,7 @@ const Filter = () => {
         <article className='flex flex-col p-4 gap-1 max-h-80 overflow-auto'>
           {allGenres.map((e) => (
             <label className='flex gap-1'>
-              <input type='checkbox' onClick={() => genres.set(e.id)} />
+              <input type='checkbox' name={`genres_id-${e.id}`} onClick={() => genres.set(e.id)} />
               {e.title}
             </label>
           ))}
@@ -43,7 +37,7 @@ const Filter = () => {
         <article className='flex flex-col p-4 gap-1 max-h-80 overflow-auto'>
           {allGenres.map((e) => (
             <label className='flex gap-1'>
-              <input type='checkbox' onClick={() => genresExclude.set(e.id)} />
+              <input type='checkbox' name={`genres_exclude_id-${e.id}`} onClick={() => genresExclude.set(e.id)} />
               {e.title}
             </label>
           ))}
@@ -51,6 +45,7 @@ const Filter = () => {
       </details>
 
       <button onClick={applyFilter}>Apply Filters</button>
+      <button onClick={resetFilter}>Reset Filters</button>
     </>
   )
 }

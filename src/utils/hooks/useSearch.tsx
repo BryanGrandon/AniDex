@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useState } from 'preact/hooks'
 import json from '../../data.json'
 import { useStore } from '@nanostores/preact'
 import { search, searchApproach, searchPage } from '../storage/storage-search'
 import { TYPES_OF_GENRES } from '../constants/type-of-genres'
+import type { pagination } from '../interfaces/pagination'
 
 const useSearch = () => {
   const data = searchApproach.get() == 'anime' ? json.search.anime : searchApproach.get() == 'manga' ? json.search.manga : json.search.manga
@@ -78,9 +79,12 @@ const useSearch = () => {
 
   // Query
   const [querySearch, setQuerySearch] = useState('')
+
   const query = {
     get: querySearch,
-    set: (value: string) => setQuerySearch(value),
+    set: (value: string) => {
+      setQuerySearch(value)
+    },
   }
 
   // Apply filters
@@ -96,23 +100,76 @@ const useSearch = () => {
     genresExclude: excludedGenres.length > 0 ? `&genres_exclude=${excludedGenres.join(',')}` : '',
   }
 
-  const numberPage = useStore(searchPage)
+  // Navigation buttons
+  const [pagination, setPagination] = useState<pagination>({
+    last_visible_page: 0,
+    has_next_page: false,
+    current_page: 0,
+    items: {
+      count: 0,
+      total: 0,
+      per_page: 0,
+    },
+  })
 
-  // Search
+  const navigation = {
+    general: (value: pagination) => setPagination(value),
+    prev: {
+      isDisabled: !(pagination.current_page > 1),
+      click: () => {
+        if (pagination.current_page > 1) {
+          searchPage.set(searchPage.get() - 1)
+          applyFilter()
+        }
+      },
+    },
+    next: {
+      isDisabled: !pagination?.has_next_page,
+      click: () => {
+        if (pagination?.has_next_page) {
+          searchPage.set(searchPage.get() + 1)
+          applyFilter()
+        }
+      },
+    },
+  }
 
+  // Apply Filters
   const applyFilter = () => {
-    const { type, status, orderBy, sort, sfw, year, genres, genresExclude } = allFilterOptions
-    const url = `https://api.jikan.moe/v4/${searchApproach.get()}?page=${numberPage}&limit=20${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}`
+    const { type, status, orderBy, sort, sfw, year, genres, genresExclude, query } = allFilterOptions
+    const url = `https://api.jikan.moe/v4/${searchApproach.get()}?page=${searchPage.get()}&limit=20${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}${query}`
     search.set(url)
   }
 
-  // Search Approach
-  const assignSearchApproach = (val: string) => {
-    searchApproach.set(val)
-    applyFilter()
+  // Reset Filters
+  const resetFilter = () => {
+    setMediaType(types.value_default)
+    setMediaStatus(status.value_default)
+    setOrderField(order_by.value_default)
+    setSortDirection(sort.value_default)
+    setSafeMode(sfw.value_default)
+    setReleaseYear(date.value_default)
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+      ;(checkbox as HTMLInputElement).checked = false
+    })
+    setIncludedGenres([])
+    setExcludedGenres([])
   }
 
-  return { filter, applyFilter, assignSearchApproach }
+  // Search Approach
+  const [assignSearch, setAssignSearch] = useState('anime')
+
+  const assignSearchApproach = {
+    get: assignSearch,
+    set: (val: string) => {
+      searchApproach.set(val)
+      setAssignSearch(val)
+      resetFilter()
+      applyFilter()
+    },
+  }
+
+  return { filter, applyFilter, assignSearchApproach, query, resetFilter, navigation }
 }
 
 export default useSearch
