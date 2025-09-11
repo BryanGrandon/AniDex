@@ -5,71 +5,73 @@ import { search, searchApproach, searchPage } from '../storage/storage-search'
 import { TYPES_OF_GENRES } from '../constants/type-of-genres'
 
 const useSearch = () => {
-  const data = searchApproach.get() == 'anime' ? json.search.anime : json.search.manga
+  const data = searchApproach.get() == 'anime' ? json.search.anime : searchApproach.get() == 'manga' ? json.search.manga : json.search.manga
 
   let years = []
-  for (let i = new Date('1988-01-01').getFullYear(); i <= new Date().getFullYear(); i++) years.push(i)
-  years.push('view all')
-  years = years.reverse()
+  for (let i = new Date('1988-01-01').getFullYear(); i <= new Date().getFullYear(); i++) years.unshift(i)
+  years.unshift('view all')
+  // years = years.reverse()
+
+  const { types, status, sfw, sort, date, order_by } = data
 
   // Filter Options
-  const [type, setType] = useState(data.types[0])
-  const [status, setStatus] = useState(data.status[0])
-  const [orderBy, setOrderBy] = useState(data.order_by[0])
-  const [sort, setSort] = useState(data.sort[0])
-  const [sfw, setSfw] = useState(data.sfw[0])
-  const [year, setYear] = useState('view all')
-  const [genres, setGenres] = useState<number[]>([])
-  const [genresExclude, setGenresExclude] = useState<number[]>([])
+  const [mediaType, setMediaType] = useState(types.value_default)
+  const [mediaStatus, setMediaStatus] = useState(status.value_default)
+  const [orderField, setOrderField] = useState(order_by.value_default)
+  const [sortDirection, setSortDirection] = useState(sort.value_default)
+  const [safeMode, setSafeMode] = useState(sfw.value_default)
+  const [releaseYear, setReleaseYear] = useState(date.value_default)
+  const [includedGenres, setIncludedGenres] = useState<number[]>([])
+  const [excludedGenres, setExcludedGenres] = useState<number[]>([])
 
   const filter = {
     type: {
-      get: type,
-      set: (value: string) => setType(value),
-      data: data.types,
+      get: mediaType,
+      set: (value: string) => setMediaType(value),
+      data: types.values,
     },
     status: {
-      get: status,
-      set: (value: string) => setStatus(value),
-      data: data.status,
+      get: mediaStatus,
+      set: (value: string) => setMediaStatus(value),
+      data: status.values,
     },
     orderBy: {
-      get: orderBy,
-      set: (value: string) => setOrderBy(value),
-      data: data.order_by,
+      get: orderField,
+      set: (value: string) => setOrderField(value),
+      data: order_by.values,
     },
     sort: {
-      get: sort,
-      set: (value: string) => setSort(value),
-      data: data.sort,
+      get: sortDirection,
+      set: (value: string) => setSortDirection(value),
+      data: sort.values,
     },
     sfw: {
-      get: sfw,
-      set: (value: string) => setSfw(value),
-      data: data.sfw,
+      get: safeMode,
+      set: (value: string) => setSafeMode(value),
+      data: sfw.values,
     },
     year: {
-      get: year,
-      set: (value: string) => setYear(value),
+      get: releaseYear,
+      set: (value: string) => setReleaseYear(value),
       data: years,
     },
     genres: {
       data: [...TYPES_OF_GENRES.genres, ...TYPES_OF_GENRES.explicit_genres, ...TYPES_OF_GENRES.themes],
       set: (el: number) => {
-        const check = genres.some((e) => e === el)
+        const check = includedGenres.some((e) => e === el)
         if (check) {
-          const newArray = genres.filter((e) => e !== el)
-          setGenres(newArray)
-        } else setGenres([...genres, el])
+          const newArray = includedGenres.filter((e) => e !== el)
+          setIncludedGenres(newArray)
+        } else setIncludedGenres([...includedGenres, el])
       },
     },
     genresExclude: {
       set: (el: number) => {
-        const check = genresExclude.some((e) => e === el)
+        const check = excludedGenres.some((e) => e === el)
         if (check) {
-          const newArray = genresExclude.filter((e) => e !== el)
-          setGenresExclude(newArray)
-        } else setGenresExclude([...genresExclude, el])
+          const newArray = excludedGenres.filter((e) => e !== el)
+          setExcludedGenres(newArray)
+        } else setExcludedGenres([...excludedGenres, el])
       },
     },
   }
@@ -83,15 +85,15 @@ const useSearch = () => {
 
   // Apply filters
   const allFilterOptions = {
-    type: type != data.types[0] ? `&type=${type}` : '',
-    status: status != data.status[0] ? `&status=${status}` : '',
-    orderBy: orderBy != data.order_by[0] ? `&order_by=${orderBy}` : '',
-    sort: sort != data.sort[0] ? `&sort=${sort}` : '',
-    sfw: sfw != data.sfw[0] ? `&sfw=${sfw}` : '',
-    year: year != 'view all' ? `&year=${year}` : '',
+    type: mediaType != types.value_default ? `&type=${mediaType}` : '',
+    status: mediaStatus != status.value_default ? `&status=${mediaStatus}` : '',
+    orderBy: orderField != order_by.value_default ? `&order_by=${orderField}` : '',
+    sort: sortDirection != sort.value_default ? `&sort=${sortDirection}` : `&sort${sort.value_default}`,
+    sfw: safeMode != sfw.value_default ? `&sfw=${safeMode}` : `&sfw=${sfw.value_default}`,
+    year: releaseYear != date.value_default ? `&year=${releaseYear}` : '',
     query: query.get != '' ? `&q=${query.get}` : '',
-    genres: genres.length > 0 ? `&genres=${genres.join(',')}` : '',
-    genresExclude: genresExclude.length > 0 ? `&genres_exclude=${genresExclude.join(',')}` : '',
+    genres: includedGenres.length > 0 ? `&genres=${includedGenres.join(',')}` : '',
+    genresExclude: excludedGenres.length > 0 ? `&genres_exclude=${excludedGenres.join(',')}` : '',
   }
 
   const numberPage = useStore(searchPage)

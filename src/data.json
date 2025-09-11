@@ -45,47 +45,54 @@
   },
   "search": {
     "anime": {
-      "types": ["view all", "tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"],
-      "status": ["view all", "airing", "completed", "upcoming"],
-      "sfw": ["view all", "true", "false"],
-      "order_by": ["view all", "score", "popularity", "rank", "favorites"],
-      "sort": ["desc", "asc"],
-      "start_date": ""
-    },
-
-    "manga": {
-      "types": ["view all", "manga", "novel", "lightnovel", "oneshot", "doujin", "manhwa", "manhua"],
-      "status": ["view all", "publishing", "complete", "hiatus", "discontinued", "upcoming"],
-      "sfw": ["view all", "true", "false"],
-      "order_by": ["view all", "score", "popularity", "rank", "favorites"],
-      "sort": ["asc", "desc"],
-      "start_date": ""
-    }
-  },
-
-  "search_Test": {
-    "anime": {
       "types": {
-        "valueDefault": "view all",
-        "values": ["tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"]
+        "value_default": "view all",
+        "values": ["view all", "tv", "movie", "ova", "ona", "special", "music", "cm", "pv", "tv_special"]
       },
       "status": {
-        "valueDefault": "view all",
-        "values": ["airing", "completed", "upcoming"]
+        "value_default": "view all",
+        "values": ["view all", "airing", "completed", "upcoming"]
       },
       "order_by": {
-        "valueDefault": "view all",
-        "values": ["score", "popularity", "rank", "favorites"]
+        "value_default": "view all",
+        "values": ["view all", "score", "popularity", "rank", "favorites"]
       },
       "sort": {
-        "valueDefault": "desc",
+        "value_default": "desc",
         "values": ["desc", "asc"]
       },
       "sfw": {
-        "valueDefault": "false",
+        "value_default": "false",
         "values": ["true", "false"]
       },
-      "start_date": ""
+      "date": {
+        "value_default": "view all"
+      }
+    },
+    "manga": {
+      "types": {
+        "value_default": "view all",
+        "values": ["view all", "manga", "novel", "lightnovel", "oneshot", "doujin", "manhwa", "manhua"]
+      },
+      "status": {
+        "value_default": "view all",
+        "values": ["view all", "publishing", "complete", "hiatus", "discontinued", "upcoming"]
+      },
+      "sfw": {
+        "value_default": "false",
+        "values": ["true", "false"]
+      },
+      "order_by": {
+        "value_default": "view all",
+        "values": ["view all", "score", "popularity", "rank", "favorites"]
+      },
+      "sort": {
+        "value_default": "desc",
+        "values": ["desc", "asc"]
+      },
+      "date": {
+        "value_default": "view all"
+      }
     }
   }
 }
