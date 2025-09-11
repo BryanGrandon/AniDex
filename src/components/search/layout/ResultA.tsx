@@ -3,6 +3,7 @@ import { useEffect, useState } from 'preact/hooks'
 import { useStore } from '@nanostores/preact'
 import { search } from '../../../utils/storage/storage-search'
 import useSearch from '../../../utils/hooks/useSearch'
+import NavigationButton from '../ui/NavigationButton'
 
 const ResultA = () => {
   const url = useStore(search)
@@ -31,12 +32,8 @@ const ResultA = () => {
           ))}
         </article>
         <article>
-          <button className={`test py-1 px-3 ${navigation.prev.isDisabled ? 'bg-gray-700' : ''}`} onClick={navigation.prev.click}>
-            Prev
-          </button>
-          <button className={`test py-1 px-3 ${navigation.next.isDisabled ? 'bg-gray-700' : ''}`} onClick={navigation.next.click}>
-            Next
-          </button>
+          <NavigationButton text='Prev' isDisabled={navigation.prev.isDisabled} onClick={navigation.prev.click} />
+          <NavigationButton text='Next' isDisabled={navigation.next.isDisabled} onClick={navigation.next.click} />
         </article>
       </section>
     )
