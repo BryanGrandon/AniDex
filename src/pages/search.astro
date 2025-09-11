@@ -5,6 +5,7 @@ import Footer from '../components/core/layout/Footer.astro'
 import Navbar from '../components/core/layout/Navbar'
 import Layout from '../layouts/Layout.astro'
 import ResultA from '../components/search/layout/ResultA'
+import SelectSearchApproach from '../components/search/ui/SelectSearchApproach'
 ---
 
 <Layout>
@@ -17,7 +18,8 @@ import ResultA from '../components/search/layout/ResultA'
   </header>
 
   <main class='test filter'>
-    <article class='flex flex-col gap-4 p-4 sm:items-center justify-center' style={{ gridArea: 'search' }}>
+    <article class='' style={{ gridArea: 'search' }}>
+      <SelectSearchApproach client:only />
       <ContentSearch client:only />
     </article>
 
