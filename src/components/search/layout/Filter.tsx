@@ -1,22 +1,28 @@
 import SelectFilter from '../ui/SelectFilter'
 import useSearch from '../../../utils/hooks/useSearch'
+import { mediaStatusSelected, mediaTypeSelected, orderFieldSelected, releaseYearSelected, safeModeSelected, sortDirectionSelected } from '../../../utils/storage/storage-search'
+import { useEffect } from 'preact/hooks'
 
 const Filter = () => {
   const { filter, applyFilter, resetFilter } = useSearch()
   const { type, sfw, sort, status, orderBy, year, genres, genresExclude } = filter
   const allGenres = genres.data
 
+  useEffect(() => {
+    resetFilter()
+  }, [])
+
   return (
     <>
       <details className=''>
         <summary className='px-4 py-2 border rounded border-primary cursor-pointer'>Filter</summary>
         <article className='flex flex-col gap-2 p-4'>
-          <SelectFilter title='Type:' theClassMain='filter-type' callbacks={type.set} array={type.data} highlight={type.get} />
-          <SelectFilter title='Status:' theClassMain='filter-status' callbacks={status.set} array={status.data} highlight={status.get} />
-          <SelectFilter title='Order by:' theClassMain='filter-order_by' callbacks={orderBy.set} array={orderBy.data} highlight={orderBy.get} />
-          <SelectFilter title='Sort:' theClassMain='filter-sort' callbacks={sort.set} array={sort.data} highlight={sort.get} />
-          <SelectFilter title='SFW:' theClassMain='filter-sfw' callbacks={sfw.set} array={sfw.data} highlight={sfw.get} />
-          <SelectFilter title='Year:' theClassMain='filter-years' callbacks={year.set} array={year.data} highlight={year.get} />
+          <SelectFilter title='Type:' theClassMain='filter-type' callbacks={type.set} array={type.data} highlight={mediaTypeSelected.get()} />
+          <SelectFilter title='Status:' theClassMain='filter-status' callbacks={status.set} array={status.data} highlight={mediaStatusSelected.get()} />
+          <SelectFilter title='Order by:' theClassMain='filter-order_by' callbacks={orderBy.set} array={orderBy.data} highlight={orderFieldSelected.get()} />
+          <SelectFilter title='Sort:' theClassMain='filter-sort' callbacks={sort.set} array={sort.data} highlight={sortDirectionSelected.get()} />
+          <SelectFilter title='SFW:' theClassMain='filter-sfw' callbacks={sfw.set} array={sfw.data} highlight={safeModeSelected.get()} />
+          <SelectFilter title='Year:' theClassMain='filter-years' callbacks={year.set} array={year.data} highlight={releaseYearSelected.get()} />
         </article>
       </details>
 

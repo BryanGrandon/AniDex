@@ -51,7 +51,7 @@
       },
       "status": {
         "value_default": "view all",
-        "values": ["view all", "airing", "completed", "upcoming"]
+        "values": ["view all", "airing", "complete", "upcoming"]
       },
       "order_by": {
         "value_default": "view all",

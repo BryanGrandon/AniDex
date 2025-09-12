@@ -1,11 +1,13 @@
 ---
 import ContentSearch from '../components/search/layout/ContentSearch'
-import Filter from '../components/search/layout/Filter'
+
 import Footer from '../components/core/layout/Footer.astro'
 import Navbar from '../components/core/layout/Navbar'
 import Layout from '../layouts/Layout.astro'
 import ResultA from '../components/search/layout/ResultA'
 import SelectSearchApproach from '../components/search/ui/SelectSearchApproach'
+import AllFilters from '../components/search/layout/AllFilters'
+import Filter from '../components/search/layout/Filter'
 ---
 
 <Layout>
@@ -24,6 +26,7 @@ import SelectSearchApproach from '../components/search/ui/SelectSearchApproach'
     </article>
 
     <article class='test p-4 flex flex-col gap-2' style={{ gridArea: 'filter' }}>
+      <AllFilters client:only />
       <Filter client:only />
     </article>
 
