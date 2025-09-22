@@ -110,7 +110,7 @@ const useSearch = () => {
     type: mediaType != types.value_default ? `&type=${mediaType}` : '',
     status: mediaStatus != status.value_default ? `&status=${mediaStatus}` : '',
     orderBy: orderField != order_by.value_default ? `&order_by=${orderField}` : '',
-    sort: sortDirection != sort.value_default ? `&sort=${sortDirection}` : `&sort${sort.value_default}`,
+    sort: sortDirection != sort.value_default ? `&sort=${sortDirection}` : `&sort=${sort.value_default}`,
     sfw: safeMode != sfw.value_default ? `&sfw=${safeMode}` : `&sfw=${sfw.value_default}`,
     year: releaseYear != date.value_default ? `&year=${releaseYear}` : '',
     query: query.get != '' ? `&q=${query.get}` : '',
@@ -155,7 +155,7 @@ const useSearch = () => {
   // Apply Filters
   const applyFilter = () => {
     const { type, status, orderBy, sort, sfw, year, genres, genresExclude, query } = allFilterOptions
-    const url = `https://api.jikan.moe/v4/${searchApproach.get()}?page=${searchPage.get()}&limit=20${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}${query}`
+    const url = `https://api.jikan.moe/v4/${searchApproach.get()}?page=${searchPage.get()}&limit=24${type}${status}${orderBy}${sort}${sfw}${year}${genres}${genresExclude}${query}`
     search.set(url)
   }
 
