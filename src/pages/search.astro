@@ -7,7 +7,6 @@ import Layout from '../layouts/Layout.astro'
 import ResultA from '../components/search/layout/ResultA'
 import SelectSearchApproach from '../components/search/ui/SelectSearchApproach'
 import AllFilters from '../components/search/layout/AllFilters'
-import Filter from '../components/search/layout/Filter'
 ---
 
 <Layout>
@@ -25,10 +24,7 @@ import Filter from '../components/search/layout/Filter'
       <ContentSearch client:only />
     </article>
 
-    <article class='test p-4 flex flex-col gap-2' style={{ gridArea: 'filter' }}>
-      <AllFilters client:only />
-      <Filter client:only />
-    </article>
+    <AllFilters client:only />
 
     <article style={{ gridArea: 'content' }}>
       <ResultA client:only />
@@ -42,6 +38,7 @@ import Filter from '../components/search/layout/Filter'
   .filter {
     display: grid;
     grid-template-columns: 300px repeat(3, 1fr);
+    grid-template-rows: 100px;
     grid-template-areas:
       'filter search search search'
       'filter  content content content'
@@ -49,6 +46,7 @@ import Filter from '../components/search/layout/Filter'
   }
   @media screen and (max-width: 800px) {
     .filter {
+      grid-template-rows: none;
       grid-template-areas:
         'search search search search'
         'filter  filter filter filter'
