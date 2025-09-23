@@ -4,7 +4,7 @@ type icons = {
 
 const HomeIcon = ({ theClass }: icons) => {
   return (
-    <svg height='2rem' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' className={theClass}>
+    <svg height='1.8rem' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' className={theClass}>
       <path stroke='none' d='M0 0h24v24H0z' fill='none' />
       <path d='M5 12l-2 0l9 -9l9 9l-2 0' />
       <path d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7' />

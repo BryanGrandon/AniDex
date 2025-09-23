@@ -4,7 +4,7 @@ type icons = {
 
 const ArrowTopIcon = ({ theClass }: icons) => {
   return (
-    <svg height='2rem' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' className={theClass}>
+    <svg height='1.8rem' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' className={theClass}>
       <path stroke='none' d='M0 0h24v24H0z' fill='none' />
       <path d='M9 12h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v3h-6v-3z' />
       <path d='M9 21h6' />
