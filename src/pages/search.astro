@@ -1,12 +1,12 @@
 ---
 import ContentSearch from '../components/search/layout/ContentSearch'
-
 import Footer from '../components/core/layout/Footer.astro'
 import Navbar from '../components/core/layout/Navbar'
 import Layout from '../layouts/Layout.astro'
 import ResultA from '../components/search/layout/ResultA'
 import SelectSearchApproach from '../components/search/ui/SelectSearchApproach'
 import AllFilters from '../components/search/layout/AllFilters'
+import FloatingPanel from '../components/core/ui/FloatingPanel'
 ---
 
 <Layout>
@@ -29,10 +29,10 @@ import AllFilters from '../components/search/layout/AllFilters'
     <article style={{ gridArea: 'content' }}>
       <ResultA client:only />
     </article>
+    <FloatingPanel client:only />
   </main>
+  <Footer />
 </Layout>
-
-<Footer />
 
 <style>
   .filter {

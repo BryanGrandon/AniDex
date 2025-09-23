@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/preact'
 import { search, searchApproach } from '../../../utils/storage/storage-search'
 import useSearch from '../../../utils/hooks/useSearch'
 import NavigationButton from '../ui/NavigationButton'
+import FloatingPanel from '../../core/ui/FloatingPanel'
 
 import type { anime_data } from '../../../utils/interfaces/anime-data'
 import type { manga_data } from '../../../utils/interfaces/manga-data'

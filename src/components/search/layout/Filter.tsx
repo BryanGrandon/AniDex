@@ -50,8 +50,12 @@ const Filter = () => {
         </article>
       </details>
 
-      <button onClick={applyFilter}>Apply Filters</button>
-      <button onClick={resetFilter}>Reset Filters</button>
+      <button className='p-2 rounded bg-primary text-black cursor-pointer hover:scale-102 active:scale-95' onClick={applyFilter}>
+        Apply Filters
+      </button>
+      <button className='p-2 rounded bg-secondary hover:scale-102 active:scale-95' onClick={resetFilter}>
+        Reset Filters
+      </button>
     </>
   )
 }
