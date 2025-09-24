@@ -9,10 +9,8 @@ const ContentSearch = () => {
         <input
           type='text'
           value={query.get}
+          onKeyUp={(e) => (e.key == 'Enter' ? applyFilter() : null)}
           onChange={(e) => query.set((e.target as HTMLInputElement).value)}
-          onKeyDown={(e) => {
-            if (e.key == 'Enter') applyFilter()
-          }}
           placeholder='Search for anime, manga or seasons...'
           className='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary'
         />
