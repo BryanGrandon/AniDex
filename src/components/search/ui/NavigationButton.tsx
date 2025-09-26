@@ -9,7 +9,7 @@ type navigation_button = {
 const NavigationButton = ({ text, isDisabled, onClick }: navigation_button) => {
   return (
     <button
-      className={`px-6  rounded text-lg font-basicaline text-black shadow-xl shadow-black  ${
+      className={`px-12 rounded text-lg font-basicaline text-black shadow-xl shadow-black  ${
         isDisabled ? 'bg-gray-800 text-gray-400 cursor-not-allowed' : 'bg-primary cursor-pointer hover:scale-105 active:scale-95'
       }`}
       onClick={onClick}

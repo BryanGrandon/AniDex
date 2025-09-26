@@ -1,14 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import ArrowLeftIcon from '../../components/core/icons/ArrowLeftIcon'
 import AnimeContent from '../../components/info/layout/AnimeContent'
+import BackButton from '../../components/info/ui/BackButton'
 ---
 
 <Layout>
   <header class='flex items-center font-bold px-4 py-2'>
-    <a href='/' class='text-white flex items-center font-bold cursor-pointer'>
-      <ArrowLeftIcon theClass='active:scale-95 hover:scale-110 hover:text-primary ' />
-    </a>
+    <BackButton client:load />
   </header>
 
   <AnimeContent client:only />

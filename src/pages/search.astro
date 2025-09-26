@@ -10,15 +10,15 @@ import FloatingPanel from '../components/core/ui/FloatingPanel'
 ---
 
 <Layout>
-  <header class='test w-full overlay p-4'>
+  <header class='w-full overlay p-4'>
     <Navbar client:only />
     <article class='relative flex flex-col justify-center items-center text-center gap-4 min-h-64'>
-      <h1 class='font-basicaline text-3xl'>Find. Discover. Enjoy!</h1>
-      <p class='prose text-center text-white'>Your next favorite anime or manga is just a search away.</p>
+      <h1 class='font-basicaline text-5xl'>Find. Discover. Enjoy!</h1>
+      <p class='prose text-xl text-center text-white'>Your next favorite anime or manga is just a search away.</p>
     </article>
   </header>
 
-  <main class='test filter'>
+  <main class='filter bg-[#00040f]'>
     <article class='' style={{ gridArea: 'search' }}>
       <SelectSearchApproach client:only />
       <ContentSearch client:only />

@@ -12,9 +12,9 @@ const ContentSearch = () => {
           onKeyUp={(e) => (e.key == 'Enter' ? applyFilter() : null)}
           onChange={(e) => query.set((e.target as HTMLInputElement).value)}
           placeholder='Search for anime, manga or seasons...'
-          className='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary'
+          className='w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:text-gray-400'
         />
-        <button className='px-4 py-2 bg-primary text-black rounded-md' onClick={() => applyFilter()}>
+        <button className='px-4 py-2 bg-primary text-black rounded-md cursor-pointer hover:scale-105 active:scale-95' onClick={() => applyFilter()}>
           Search
         </button>
       </section>
