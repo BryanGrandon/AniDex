@@ -10,7 +10,7 @@ type mini_card = {
 const MiniCard = ({ image, title, text, highlight, id, type }: mini_card) => {
   const handlerClick = () => {
     localStorage.setItem('id', String(id))
-    window.location.href = `AniDex/info/${type}`
+    window.location.href = `/AniDex/info/${type}`
   }
   return (
     <section className='rounded-lg overflow-hidden glassmorphism border  hover:border-[color:var(--color-primary)_!important] hover:scale-105 active:scale-95 cursor-pointer' onClick={handlerClick}>

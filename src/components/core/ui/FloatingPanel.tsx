@@ -12,8 +12,8 @@ const FloatingPanel = () => {
   })
 
   const handlerClickMoveTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
-  const onClickHome = () => (window.location.href = `AniDex/`)
-  const onClickSearch = () => (window.location.href = `AniDex/search`)
+  const onClickHome = () => (window.location.href = `/AniDex/`)
+  const onClickSearch = () => (window.location.href = `/AniDex/search`)
 
   return (
     <div className='fixed bottom-5 right-5 z-10 flex flex-col gap-3'>
