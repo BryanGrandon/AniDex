@@ -72,6 +72,10 @@ type specific_info_about_anime = {
   synopsis: string
   youtube_id: string
   background: string
+  streaming: {
+    name: string
+    url: string
+  }[]
   primaryList: {
     ['alternative titles']: string[]
     type: string

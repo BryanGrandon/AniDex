@@ -63,7 +63,6 @@ const MangaContent = () => {
           <article className=' flex flex-col items-center md:flex-row md:items-start gap-4 relative'>
             <article>
               <img src={data.image} alt={data.title + '-img'} className='rounded w-75' />
-              <p>{id}</p>
             </article>
 
             <article className='pt-4 flex flex-col justify-start w-full'>

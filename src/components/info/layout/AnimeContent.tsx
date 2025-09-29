@@ -27,6 +27,7 @@ const AnimeContent = () => {
       synopsis: info?.synopsis,
       youtube_id: info?.trailer.youtube_id,
       background: info?.background,
+      streaming: info?.streaming,
       primaryList: {
         ['alternative titles']: info?.titles ? info?.titles.map((item) => ' ' + item.title).slice(0, 3) : [],
         type: info?.type ? info?.type : '',
@@ -71,6 +72,17 @@ const AnimeContent = () => {
             <article className='pt-4 flex flex-col justify-start w-full'>
               <h2 className='text-3xl font-basicaline border-b-2 border-primary mb-4'>{data?.title}</h2>
               <ObjectList object={data?.primaryList} />
+              {data.streaming.length > 0 ? (
+                <p>
+                  <span class='capitalize text-orange-400 font-medium'>Streaming</span>:{' '}
+                  {data.streaming.map((el) => (
+                    <a href={el.url} target='_blank' class='no-underline hover:underline mr-2'>
+                      {el.name}
+                      {el.name !== data.streaming[data.streaming.length - 1].name ? ',' : ''}
+                    </a>
+                  ))}
+                </p>
+              ) : null}
             </article>
           </article>
         </article>

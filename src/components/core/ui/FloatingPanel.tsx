@@ -11,13 +11,6 @@ const FloatingPanel = () => {
     else $buttonTop?.classList.add('hidden-button')
   })
 
-  // document.addEventListener('mouseup', (ev) => {
-  //   if (ev.button === 3) {
-  //     ev.preventDefault()
-  //     window.location.href = '/'
-  //   }
-  // })
-
   const handlerClickMoveTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   return (
