@@ -41,7 +41,7 @@ const ResultA = () => {
         <article className='grid grid-cols-[repeat(auto-fill,_minmax(11rem,_1fr))] gap-4 '>
           {info?.map((data) => (
             <a
-              href={`/info/${type}`}
+              href={`/AniDex/info/${type}`}
               className='relative self-baseline overflow-hidden block hover:scale-105 active:scale-95 '
               onClick={() => handlerClickCard({ id: data.mal_id })}
               onMouseDown={() => handlerClickCard({ id: data.mal_id })}
