@@ -5,11 +5,11 @@
     "links": [
       {
         "title": "Home",
-        "href": "AniDex/"
+        "href": "/"
       },
       {
         "title": "Search",
-        "href": "AniDex/search"
+        "href": "/search"
       }
     ]
   },

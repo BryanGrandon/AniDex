@@ -12,15 +12,17 @@ const FloatingPanel = () => {
   })
 
   const handlerClickMoveTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const onClickHome = () => (window.location.href = `AniDex/`)
+  const onClickSearch = () => (window.location.href = `AniDex/search`)
 
   return (
     <div className='fixed bottom-5 right-5 z-10 flex flex-col gap-3'>
-      <a href={'AniDex/'} className='rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black'>
+      <p onClick={onClickHome} className='rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black'>
         <HomeIcon />
-      </a>
-      <a href={'AniDex/search'} className='rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black flex items-center justify-center'>
+      </p>
+      <p onClick={onClickSearch} className='rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black flex items-center justify-center'>
         <SearchIcon />
-      </a>
+      </p>
       <button className='z-10 rounded-full p-2 bg-primary text-black cursor-pointer shadow shadow-black hidden-button button-top' onClick={handlerClickMoveTop}>
         <ArrowTopIcon />
       </button>

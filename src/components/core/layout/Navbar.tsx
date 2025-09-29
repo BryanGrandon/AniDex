@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className='relative z-10'>
       <section className='flex justify-between items-center text-white relative py-2 text-xl font-basicaline'>
-        <a href='AniDex/'>Logo</a>
+        <a href='#'>Logo</a>
 
         <BarsToCloseIcon onClick={handlerClick} theClass='navbar__button' />
 
