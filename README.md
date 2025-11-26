@@ -1,5 +1,7 @@
 # AniDex
 
+AniDex is a website for quickly and easily searching and exploring information about anime series.
+
 - [API](https://jikan.moe/)
 - [🌐 Website Demo.](https://bryangrandon.github.io/AniDex/)
 
