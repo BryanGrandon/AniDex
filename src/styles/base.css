@@ -1,16 +1,7 @@
-:root {
-  --dark: #1d2129;
-  --light: #efefef;
-  --main-source: 'Montserrat Variable', sans-serif;
-  --primary: #ff411d;
-  --primary: #ffe64b;
-  --secondary: #4e40de;
-  --stroke: #1b1919;
-}
+@import url('./root.css');
 
 html {
   scroll-behavior: smooth;
-  /* Scroll */
   ::-webkit-scrollbar {
     width: 0.2rem;
     height: 0.3rem;
@@ -22,7 +13,7 @@ html {
   ::-webkit-scrollbar-track {
     margin-block: 0.1rem;
     margin-inline: 0.1rem;
-    background: var(--stroke);
+    background: var(--bg-selection);
   }
   ::-webkit-scrollbar-corner {
     display: none;
@@ -30,30 +21,29 @@ html {
 
   /* selection */
   ::-moz-selection {
-    background-color: var(--stroke);
+    background-color: var(--bg-selection);
     color: var(--primary);
   }
   ::selection {
-    background-color: var(--stroke);
+    background-color: var(--bg-selection);
     color: var(--primary);
   }
   scrollbar-gutter: stable;
 }
 
 body {
-  color: var(--dark);
-  background-color: var(--light);
+  color: var(--underlay-dark);
+  background-color: var(--underlay-light);
   font-family: var(--main-source);
   display: grid;
   min-height: 100dvh;
   grid-template-rows: auto 1fr auto;
-  font-family: 'JetBrains Mono Variable', monospace;
 }
 
 /* We adapt them to the dark mode.  */
 @media (prefers-color-scheme: dark) {
   body {
-    color: var(--light);
-    background-color: var(--dark);
+    color: var(--underlay-light);
+    background-color: var(--underlay-dark);
   }
 }

@@ -59,7 +59,7 @@ const AnimeContent = () => {
 
   const handlerClickRelations = ({ id, type }: { id: number; type: string }) => {
     localStorage.setItem('id', String(id))
-    window.location.href = `/info/${type}`
+    window.location.href = `./info/${type}`
   }
 
   if (data)

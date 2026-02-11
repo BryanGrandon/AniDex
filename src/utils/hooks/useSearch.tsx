@@ -1,5 +1,5 @@
-import { useState } from 'preact/hooks'
 import json from '../../data.json'
+import { useState } from 'preact/hooks'
 import { mediaStatusSelected, mediaTypeSelected, orderFieldSelected, releaseYearSelected, safeModeSelected, search, searchApproach, searchPage, sortDirectionSelected } from '../storage/storage-search'
 import { TYPES_OF_GENRES } from '../constants/type-of-genres'
 import type { pagination } from '../interfaces/pagination'
@@ -10,7 +10,6 @@ const useSearch = () => {
   let years = []
   for (let i = new Date('1988-01-01').getFullYear(); i <= new Date().getFullYear(); i++) years.unshift(i)
   years.unshift('view all')
-  // years = years.reverse()
 
   const { types, status, sfw, sort, date, order_by } = data
 

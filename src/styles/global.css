@@ -1,24 +1,22 @@
-@plugin '@tailwindcss/typography';
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography'; /* npm install -D @tailwindcss/typography */
+@import './root.css'; /* root */
+
 /* Components */
 @import './components/navbar.css';
 @import './components/barsToCloseIcon.css';
 
-@font-face {
-  font-family: 'Basicaline';
-  src: url('/fonts/Basicaline.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
-  --color-primary: #ffe64b;
-  --color-secondary: #ff411d;
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-underlay-dark: var(--underlay-dark);
+  --color-underlay-light: var(--underlay-light);
+  --font-basicaline: var(--custom-source);
+
+  /* Test and Remove */
   --color-dark-transparent: #000000b9;
   --color-background-dark: #15181e;
   --color-background-light: #e5e7eb;
-  --font-basicaline: 'Basicaline', sans-serif;
 }
 
 @layer {
@@ -54,6 +52,8 @@
   .test {
     border: 1px solid #f00;
   }
+
+  /* Components */
   .hidden-button {
     display: none;
   }
