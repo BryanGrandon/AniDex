@@ -1,3 +1,5 @@
+import useMedia from '../../../utils/hooks/useMedia'
+
 type mini_card = {
   image: string
   title: string
@@ -8,12 +10,13 @@ type mini_card = {
 }
 
 const MiniCard = ({ image, title, text, highlight, id, type }: mini_card) => {
-  const handlerClick = () => {
-    localStorage.setItem('id', String(id))
-    window.location.href = `/AniDex/info/${type}`
-  }
+  const { handleMediaSelect } = useMedia()
+
   return (
-    <section className='rounded-lg overflow-hidden glassmorphism border  hover:border-[color:var(--color-primary)_!important] hover:scale-105 active:scale-95 cursor-pointer' onClick={handlerClick}>
+    <section
+      className='rounded-lg overflow-hidden glassmorphism border  hover:border-[color:var(--color-primary)_!important] hover:scale-105 active:scale-95 cursor-pointer'
+      onClick={() => handleMediaSelect({ id, type })}
+    >
       <section className='grid grid-cols-[64px_calc(100%_-_64px)] grid-rows-[84px]'>
         <img src={image} alt={`${title}-img`} className='w-17 object-contain' />
         <section className='p-2 overflow-hidden'>

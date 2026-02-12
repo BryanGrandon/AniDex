@@ -1,3 +1,5 @@
+import useMedia from '../../../utils/hooks/useMedia'
+
 type Default_Card = {
   id: number
   type: string
@@ -8,13 +10,10 @@ type Default_Card = {
 }
 
 const DefaultCard = ({ image, title, highlightText, highlightClass, id, type }: Default_Card) => {
-  const handlerClickCard = () => {
-    localStorage.setItem('id', String(id))
-    window.location.href = `/AniDex/info/${type}`
-  }
+  const { handleMediaSelect } = useMedia()
 
   return (
-    <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={handlerClickCard}>
+    <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={() => handleMediaSelect({ id, type })}>
       <img src={image} alt={id + '-img'} className='object-cover rounded-lg ' />
       <abbr title={title} className='no-underline'>
         <h3 className='overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer p-2'>{title}</h3>
