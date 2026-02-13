@@ -1,4 +1,5 @@
 ---
+import WikiContent from '../components/wiki/layout/WikiContent'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -6,4 +7,8 @@ import Layout from '../layouts/Layout.astro'
   <section>
     <h1>Wiki</h1>
   </section>
+
+  <WikiContent client:only />
+
+  <footer></footer>
 </Layout>

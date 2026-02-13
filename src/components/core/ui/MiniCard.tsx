@@ -1,4 +1,4 @@
-import useMedia from '../../../utils/hooks/useMedia'
+import useWiki from '../../../utils/hooks/useWiki'
 
 type mini_card = {
   image: string
@@ -10,7 +10,7 @@ type mini_card = {
 }
 
 const MiniCard = ({ image, title, text, highlight, id, type }: mini_card) => {
-  const { handleMediaSelect } = useMedia()
+  const { handleMediaSelect } = useWiki()
 
   return (
     <section

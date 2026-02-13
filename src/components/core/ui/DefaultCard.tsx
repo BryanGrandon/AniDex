@@ -1,4 +1,4 @@
-import useMedia from '../../../utils/hooks/useMedia'
+import useWiki from '../../../utils/hooks/useWiki'
 
 type Default_Card = {
   id: number
@@ -10,7 +10,7 @@ type Default_Card = {
 }
 
 const DefaultCard = ({ image, title, highlightText, highlightClass, id, type }: Default_Card) => {
-  const { handleMediaSelect } = useMedia()
+  const { handleMediaSelect } = useWiki()
 
   return (
     <section className='relative self-baseline w-full flex flex-col justify-between cursor-pointer' onClick={() => handleMediaSelect({ id, type })}>
