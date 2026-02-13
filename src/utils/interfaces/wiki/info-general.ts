@@ -1,4 +1,4 @@
-type in_all = {
+type info_general = {
   mal_id: number
   url: string
   images: {
@@ -18,7 +18,7 @@ type in_all = {
     {
       type: string
       title: string
-    }
+    },
   ]
   title: string
   title_english: string
@@ -74,4 +74,4 @@ type in_all = {
   }[]
 }
 
-export type { in_all }
+export type { info_general }

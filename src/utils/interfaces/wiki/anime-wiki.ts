@@ -1,6 +1,6 @@
-import type { in_all } from './general'
+import type { info_general } from './info-general'
 
-type anime_data = in_all & {
+type anime_wiki = info_general & {
   trailer: {
     youtube_id: string
     url: string
@@ -64,9 +64,7 @@ type anime_data = in_all & {
   }[]
 }
 
-export type { anime_data }
-
-type specific_info_about_anime = {
+type specific_wiki_about_anime = {
   title: string
   image: string
   synopsis: string
@@ -104,4 +102,4 @@ type specific_info_about_anime = {
   }[]
 }
 
-export type { specific_info_about_anime }
+export type { specific_wiki_about_anime, anime_wiki }

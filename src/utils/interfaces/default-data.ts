@@ -1,4 +1,4 @@
-import type { anime_data } from './anime-data'
+import type { anime_wiki } from './wiki/anime-wiki'
 
 interface default_data {
   pagination: {
@@ -11,7 +11,7 @@ interface default_data {
       per_page: number
     }
   }
-  data: anime_data[]
+  data: anime_wiki[]
 }
 
 export type { default_data }

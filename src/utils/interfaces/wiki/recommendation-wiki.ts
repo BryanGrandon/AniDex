@@ -1,4 +1,4 @@
-interface recommendation_data {
+interface recommendation_wiki {
   data: {
     entry: {
       mal_id: number
@@ -20,4 +20,4 @@ interface recommendation_data {
   }[]
 }
 
-export type { recommendation_data }
+export type { recommendation_wiki }

@@ -1,6 +1,6 @@
-import type { in_all } from './general'
+import type { info_general } from './info-general'
 
-type manga_data = in_all & {
+type manga_wiki = info_general & {
   chapters: number
   volumes: number
   publishing: true
@@ -35,7 +35,7 @@ type manga_data = in_all & {
   }[]
 }
 
-type specific_info_about_manga = {
+type specific_wiki_about_manga = {
   title: string
   image: string
   synopsis: string
@@ -67,4 +67,4 @@ type specific_info_about_manga = {
   }[]
 }
 
-export type { manga_data, specific_info_about_manga }
+export type { manga_wiki, specific_wiki_about_manga }
