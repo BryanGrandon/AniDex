@@ -2,10 +2,6 @@
 @plugin '@tailwindcss/typography'; /* npm install -D @tailwindcss/typography */
 @import './root.css'; /* root */
 
-/* Components */
-@import './components/navbar.css';
-@import './components/barsToCloseIcon.css';
-
 @theme {
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);

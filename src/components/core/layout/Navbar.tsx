@@ -1,24 +1,21 @@
+import { useState } from 'preact/hooks'
 import data from '../../../data.json'
-import BarsToCloseIcon from '../icons/BarsToCloseIcon'
+import HamburgerMenuAnimation from '../ui/HamburgerMenuAnimation'
 
 const Navbar = () => {
   const { links } = data.header
-
-  const handlerClick = () => {
-    const $lists = document.querySelectorAll('.navbar__list')
-    const $buttons = document.querySelectorAll('.navbar__button')
-    $lists.forEach(($list) => $list.classList.toggle('d-none'))
-    $buttons.forEach(($button) => $button.classList.toggle('start-animation-icon'))
-  }
+  const [isOpenMenu, setIsOpenMenu] = useState(false)
 
   return (
     <nav className='relative z-10'>
       <section className='flex justify-between items-center text-white relative py-2 text-xl font-basicaline'>
         <a href='#'>Logo</a>
 
-        <BarsToCloseIcon onClick={handlerClick} theClass='navbar__button' />
+        <button onClick={() => setIsOpenMenu(!isOpenMenu)} className='flex lg:hidden '>
+          <HamburgerMenuAnimation />
+        </button>
 
-        <section className='flex space-evenly gap-6 navbar '>
+        <section className='hidden lg:flex space-evenly gap-6'>
           {links.map((link) => (
             <a href={link.href} className=' hover:text-primary tracking-wide'>
               {link.title}
@@ -26,13 +23,15 @@ const Navbar = () => {
           ))}
         </section>
       </section>
-      <section className='flex flex-col items-center justify-center absolute gap-4 p-4 text-xl w-full rounded-2xl font-basicaline glassmorphism navbar__list d-none'>
-        {links.map((link) => (
-          <a href={link.href} onClick={handlerClick} className='w-full text-center hover:text-primary hover:scale-110 active:scale-95'>
-            {link.title}
-          </a>
-        ))}
-      </section>
+      {isOpenMenu ? (
+        <section className='absolute right-0 left-0 md:left-auto flex flex-col gap-2 p-2 py-4 md:min-w-60 rounded-xl bg-black/90 border border-primary lg:hidden'>
+          {links.map((link) => (
+            <a href={link.href} onClick={() => setIsOpenMenu(!isOpenMenu)} className='w-full text-center hover:text-primary hover:scale-110 active:scale-95 p-1'>
+              {link.title}
+            </a>
+          ))}
+        </section>
+      ) : null}
     </nav>
   )
 }
