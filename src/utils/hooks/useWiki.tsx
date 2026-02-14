@@ -11,6 +11,12 @@ const useWiki = () => {
     type: string
   }
 
+  const getIDAndType = () => {
+    const ID = localStorage.getItem('id')
+    const TYPE = localStorage.getItem('type')
+    return { ID, TYPE }
+  }
+
   const handleMediaSelect = ({ id, type }: handle_media_select) => {
     localStorage.setItem('id', String(id))
     localStorage.setItem('type', String(type))
@@ -18,8 +24,7 @@ const useWiki = () => {
   }
 
   const getContentWiki = async () => {
-    const ID = localStorage.getItem('id')
-    const TYPE = localStorage.getItem('type')
+    const { ID, TYPE } = getIDAndType()
 
     const URL_FULL_DATA = `https://api.jikan.moe/v4/${TYPE}/${ID}/full`
 
@@ -34,8 +39,7 @@ const useWiki = () => {
   }
 
   const getRecommendationWiki = async () => {
-    const ID = localStorage.getItem('id')
-    const TYPE = localStorage.getItem('type')
+    const { ID, TYPE } = getIDAndType()
     const URL_RECOMMENDATIONS = `https://api.jikan.moe/v4/${TYPE}/${ID}/recommendations`
     const recommendationAll = await getIndividualInfo({ url: URL_RECOMMENDATIONS })
     const recommendation: recommendation_wiki = recommendationAll ? recommendationAll.data.slice(0, 6) : []
@@ -48,7 +52,7 @@ const useWiki = () => {
     return { data, recommendation }
   }
 
-  return { getDataWiki, handleMediaSelect }
+  return { getDataWiki, handleMediaSelect, getIDAndType }
 }
 
 export default useWiki

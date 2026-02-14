@@ -74,13 +74,13 @@ type specific_wiki_about_anime = {
     name: string
     url: string
   }[]
+  status: string
+  alternative_titles: string[]
   primaryList: {
-    ['alternative titles']: string[]
     type: string
     episode: number
     duration: string
-    ['Explicit Genres']: string | { mal_id: number; type: string; name: string; url: string }[]
-    status: string
+    explicit_genres: string | { mal_id: number; type: string; name: string; url: string }[]
     year: string | number
     genres: string[]
     themes: string[]

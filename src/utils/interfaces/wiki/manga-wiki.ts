@@ -40,12 +40,12 @@ type specific_wiki_about_manga = {
   image: string
   synopsis: string
   background: string
+  status: string
+  alternative_titles: string[]
   primaryList: {
-    ['alternative titles']: string[]
     type: string
-    ['Explicit Genres']: string | { mal_id: number; type: string; name: string; url: string }[]
+    explicit_genres: string | { mal_id: number; type: string; name: string; url: string }[]
     chapters: string | number
-    status: string
     genres: string[]
     volumes: string | number
     themes: string[]
