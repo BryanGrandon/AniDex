@@ -4,6 +4,8 @@ import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki
 import type { specific_wiki_about_manga } from '../interfaces/wiki/manga-wiki'
 import type { specific_wiki_about_anime } from '../interfaces/wiki/anime-wiki'
 import { WIKI } from '../constants/location'
+import { useState } from 'preact/hooks'
+import { wikiCard } from '../storage/storage-wiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -23,6 +25,9 @@ const useWiki = () => {
     window.location.href = WIKI
   }
 
+  const [animeData, setAnimeData] = useState<specific_wiki_about_anime>()
+  const [mangaData, setMangaData] = useState<specific_wiki_about_manga>()
+
   const getContentWiki = async () => {
     const { ID, TYPE } = getIDAndType()
 
@@ -30,11 +35,22 @@ const useWiki = () => {
 
     switch (TYPE) {
       case 'anime':
-        const animeWiki: specific_wiki_about_anime = await getContentAnimeWiki(URL_FULL_DATA)
-        return animeWiki
+        const animeWiki = await getContentAnimeWiki(URL_FULL_DATA)
+
+        const wikiDataCard = {
+          type: TYPE,
+          image: animeWiki.image,
+          status: animeWiki?.status,
+        }
+
+        wikiCard.set(wikiDataCard)
+
+        break
+
       case 'manga':
-        const mangaWiki: specific_wiki_about_manga = await getContentMangaWiki(URL_FULL_DATA)
-        return mangaWiki
+        const mangaWiki = await getContentMangaWiki(URL_FULL_DATA)
+        setMangaData(mangaWiki)
+        break
     }
   }
 
@@ -47,9 +63,15 @@ const useWiki = () => {
   }
 
   const getDataWiki = async () => {
-    const data = await getContentWiki()
-    const recommendation = await getRecommendationWiki()
-    return { data, recommendation }
+    const { ID, TYPE } = getIDAndType()
+    await getContentWiki()
+    let recommendation = await getRecommendationWiki()
+
+    switch (TYPE) {
+      case 'anime':
+        const data = animeData
+        return { data, recommendation }
+    }
   }
 
   return { getDataWiki, handleMediaSelect, getIDAndType }
