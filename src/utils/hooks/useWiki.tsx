@@ -1,11 +1,9 @@
 import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content/getContentWiki'
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
-import type { specific_wiki_about_manga } from '../interfaces/wiki/manga-wiki'
-import type { specific_wiki_about_anime } from '../interfaces/wiki/anime-wiki'
 import { WIKI } from '../constants/location'
 import { useState } from 'preact/hooks'
-import { wikiCard } from '../storage/storage-wiki'
+import { wikiContentCard, wikiTitles } from '../storage/storage-wiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -25,9 +23,6 @@ const useWiki = () => {
     window.location.href = WIKI
   }
 
-  const [animeData, setAnimeData] = useState<specific_wiki_about_anime>()
-  const [mangaData, setMangaData] = useState<specific_wiki_about_manga>()
-
   const getContentWiki = async () => {
     const { ID, TYPE } = getIDAndType()
 
@@ -42,14 +37,19 @@ const useWiki = () => {
           image: animeWiki.image,
           status: animeWiki?.status,
         }
+        wikiContentCard.set(wikiDataCard)
 
-        wikiCard.set(wikiDataCard)
+        const allTitles = {
+          title: animeWiki.title,
+          alternativeTitles: animeWiki.alternative_titles,
+        }
+        wikiTitles.set(allTitles)
 
         break
 
       case 'manga':
         const mangaWiki = await getContentMangaWiki(URL_FULL_DATA)
-        setMangaData(mangaWiki)
+
         break
     }
   }
@@ -63,15 +63,8 @@ const useWiki = () => {
   }
 
   const getDataWiki = async () => {
-    const { ID, TYPE } = getIDAndType()
     await getContentWiki()
-    let recommendation = await getRecommendationWiki()
-
-    switch (TYPE) {
-      case 'anime':
-        const data = animeData
-        return { data, recommendation }
-    }
+    await getRecommendationWiki()
   }
 
   return { getDataWiki, handleMediaSelect, getIDAndType }

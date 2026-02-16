@@ -1,8 +1,8 @@
 import { useStore } from '@nanostores/preact'
-import { wikiCard } from '../../../utils/storage/storage-wiki'
+import { wikiContentCard } from '../../../utils/storage/storage-wiki'
 
 const WikiCard = () => {
-  const { type, image, status } = useStore(wikiCard)
+  const { type, image, status } = useStore(wikiContentCard)
   return (
     <section>
       <h2 className='font-basicaline text-2xl text-center'>{type}</h2>
