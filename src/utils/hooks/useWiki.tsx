@@ -2,7 +2,7 @@ import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content/getContentWiki'
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
-import { wikiContentCard, wikiTitles, wikiAnimeTrailer } from '../storage/storage-wiki'
+import { wikiContentCard, wikiTitles, wikiAnimeTrailer, animeContentDetails, animeProductionStats } from '../storage/storage-wiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -48,8 +48,27 @@ const useWiki = () => {
           title: animeWiki.title,
           youtube_id: animeWiki.youtube_id,
         }
-        console.log(animeWiki.youtube_id)
         wikiAnimeTrailer.set(animeTrailer)
+
+        const wikiDataDetails = {
+          type: animeWiki.contentDetails.type,
+          episode: animeWiki.contentDetails.episode,
+          duration: animeWiki.contentDetails.duration,
+          year: animeWiki.contentDetails.year,
+          genres: animeWiki.contentDetails.genres,
+          explicit_genres: animeWiki.contentDetails.explicit_genres,
+          themes: animeWiki.contentDetails.themes,
+          streaming: animeWiki.productionStats.streaming,
+        }
+        animeContentDetails.set(wikiDataDetails)
+
+        const wikiDataProductionStats = {
+          studios: animeWiki.productionStats.studios,
+          score: animeWiki.productionStats.score,
+          ranked: animeWiki.productionStats.ranked,
+          popularity: animeWiki.productionStats.popularity,
+        }
+        animeProductionStats.set(wikiDataProductionStats)
 
         break
 

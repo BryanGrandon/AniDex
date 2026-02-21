@@ -70,26 +70,26 @@ type specific_wiki_about_anime = {
   synopsis: string
   youtube_id: string
   background: string
-  streaming: {
-    name: string
-    url: string
-  }[]
   status: string
   alternative_titles: string[]
-  primaryList: {
+  contentDetails: {
     type: string
     episode: number
     duration: string
-    explicit_genres: string | { mal_id: number; type: string; name: string; url: string }[]
+    explicit_genres: string[]
     year: string | number
     genres: string[]
     themes: string[]
   }
-  secondaryList: {
+  productionStats: {
     studios: string[]
     score: number | string
     ranked: number | string
     popularity: number | string
+    streaming: {
+      name: string
+      url: string
+    }[]
   }
   relations: {
     relation: string

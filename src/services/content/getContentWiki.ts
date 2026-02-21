@@ -12,23 +12,24 @@ const getContentAnimeWiki = async (URL: string) => {
     synopsis: animeWiki?.synopsis,
     youtube_id: animeWiki?.trailer?.youtube_id ? animeWiki?.trailer.youtube_id : animeWiki?.trailer.embed_url.split('/').slice(-1)[0].split('?')[0],
     background: animeWiki?.background,
-    streaming: animeWiki?.streaming,
+
     status: animeWiki?.status ? animeWiki?.status : '',
     alternative_titles: animeWiki?.titles ? animeWiki?.titles.map((item) => ' ' + item.title).slice(0, 3) : [],
-    primaryList: {
+    contentDetails: {
       type: animeWiki?.type ? animeWiki?.type : '',
       episode: animeWiki?.episodes ? animeWiki?.episodes : 0,
       duration: animeWiki?.duration ? animeWiki?.duration : '',
       year: animeWiki?.year ? animeWiki?.year : 'TBA',
-      explicit_genres: animeWiki?.explicit_genres ? animeWiki?.explicit_genres : '',
+      explicit_genres: animeWiki?.explicit_genres ? animeWiki?.explicit_genres.map((item) => ' ' + item.name) : [],
       genres: animeWiki?.genres ? animeWiki?.genres.map((item) => ' ' + item.name) : [],
       themes: animeWiki?.themes ? animeWiki?.themes.map((item) => ' ' + item.name) : [],
     },
-    secondaryList: {
+    productionStats: {
       studios: animeWiki?.studios ? animeWiki?.studios.map((item) => ' ' + item.name) : [],
-      score: animeWiki?.score ? '#' + animeWiki?.score : 0,
-      ranked: animeWiki?.rank ? '#' + animeWiki?.rank : 0,
-      popularity: animeWiki?.popularity ? '#' + animeWiki?.popularity : 0,
+      score: animeWiki?.score ? '⭐' + animeWiki?.score : 0,
+      ranked: animeWiki?.rank ? '🏆' + animeWiki?.rank : 0,
+      popularity: animeWiki?.popularity ? '🔥' + animeWiki?.popularity : 0,
+      streaming: animeWiki?.streaming,
     },
     relations: animeWiki?.relations ? animeWiki?.relations : [],
   }

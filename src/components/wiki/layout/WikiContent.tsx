@@ -8,6 +8,8 @@ import WikiParagraph from '../ui/WikiParagraph'
 import WikiCard from './WikiCard'
 import TitleVariants from '../ui/TitleVariants'
 import AnimeTrailer from '../ui/AnimeTrailer'
+import AnimeContentDetails from './AnimeContentDetails'
+import AnimeProductionStats from './AnimeProductionStats'
 
 const WikiContent = () => {
   const [wiki, setWiki] = useState<specific_wiki_about_anime | specific_wiki_about_manga>()
@@ -26,18 +28,12 @@ const WikiContent = () => {
         <section className='flex flex-col gap-4'>
           <TitleVariants />
 
-          <section>
-            <h3>Genres</h3>
-            <p>
-              {wiki?.primaryList.genres.map((genre) => (
-                <span>{genre}</span>
-              ))}
-            </p>
-          </section>
+          <AnimeContentDetails />
         </section>
 
         <section>
           <AnimeTrailer />
+          <AnimeProductionStats />
         </section>
       </article>
 
