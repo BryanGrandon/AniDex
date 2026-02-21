@@ -10,7 +10,7 @@ const getContentAnimeWiki = async (URL: string) => {
     title: animeWiki?.title,
     image: animeWiki?.images.webp.large_image_url,
     synopsis: animeWiki?.synopsis,
-    youtube_id: animeWiki?.trailer.youtube_id,
+    youtube_id: animeWiki?.trailer?.youtube_id ? animeWiki?.trailer.youtube_id : animeWiki?.trailer.embed_url.split('/').slice(-1)[0].split('?')[0],
     background: animeWiki?.background,
     streaming: animeWiki?.streaming,
     status: animeWiki?.status ? animeWiki?.status : '',

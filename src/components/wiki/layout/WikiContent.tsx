@@ -3,13 +3,11 @@ import useWiki from '../../../utils/hooks/useWiki'
 import type { specific_wiki_about_anime } from '../../../utils/interfaces/wiki/anime-wiki'
 import type { specific_wiki_about_manga } from '../../../utils/interfaces/wiki/manga-wiki'
 import type { recommendation_wiki } from '../../../utils/interfaces/wiki/recommendation-wiki'
-import WikiContentTitles from '../ui/TitleVariants'
 import WikiParagraph from '../ui/WikiParagraph'
 
-import LiteYouTubeEmbed from 'react-lite-youtube-embed'
-import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import WikiCard from './WikiCard'
 import TitleVariants from '../ui/TitleVariants'
+import AnimeTrailer from '../ui/AnimeTrailer'
 
 const WikiContent = () => {
   const [wiki, setWiki] = useState<specific_wiki_about_anime | specific_wiki_about_manga>()
@@ -39,10 +37,7 @@ const WikiContent = () => {
         </section>
 
         <section>
-          <section>
-            <h3>Trailer</h3>
-            {/* <LiteYouTubeEmbed id={wiki} title={wikiAnime?.youtube_id} poster='maxresdefault' /> */}
-          </section>
+          <AnimeTrailer />
         </section>
       </article>
 

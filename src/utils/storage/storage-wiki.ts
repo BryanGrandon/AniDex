@@ -21,3 +21,13 @@ export const wikiTitles = atom<wiki_titles>({
   title: '',
   alternativeTitles: [],
 })
+
+type wiki_anime_trailer = {
+  title: string
+  youtube_id: string
+}
+
+export const wikiAnimeTrailer = atom<wiki_anime_trailer>({
+  title: '',
+  youtube_id: '',
+})

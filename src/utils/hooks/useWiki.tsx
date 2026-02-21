@@ -2,8 +2,7 @@ import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content/getContentWiki'
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
-import { useState } from 'preact/hooks'
-import { wikiContentCard, wikiTitles } from '../storage/storage-wiki'
+import { wikiContentCard, wikiTitles, wikiAnimeTrailer } from '../storage/storage-wiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -44,6 +43,13 @@ const useWiki = () => {
           alternativeTitles: animeWiki.alternative_titles,
         }
         wikiTitles.set(allTitles)
+
+        const animeTrailer = {
+          title: animeWiki.title,
+          youtube_id: animeWiki.youtube_id,
+        }
+        console.log(animeWiki.youtube_id)
+        wikiAnimeTrailer.set(animeTrailer)
 
         break
 
