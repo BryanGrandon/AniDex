@@ -8,7 +8,7 @@ const AnimeTrailer = () => {
   return (
     <section className={'flex flex-col gap-2 '}>
       <h3 className='text-xl font-bold font-basicaline tracking-wide'>Trailer</h3>
-      <section className='w-80 test'>
+      <section className='w-80 rounded-xl overflow-hidden'>
         <LiteYouTubeEmbed id={youtube_id} title={title} />
       </section>
     </section>

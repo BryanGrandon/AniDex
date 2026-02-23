@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect } from 'preact/hooks'
 import useWiki from '../../../utils/hooks/useWiki'
-import type { specific_wiki_about_anime } from '../../../utils/interfaces/wiki/anime-wiki'
-import type { specific_wiki_about_manga } from '../../../utils/interfaces/wiki/manga-wiki'
-import type { recommendation_wiki } from '../../../utils/interfaces/wiki/recommendation-wiki'
 import WikiParagraph from '../ui/WikiParagraph'
 
 import WikiCard from './WikiCard'
@@ -12,8 +9,6 @@ import AnimeContentDetails from './AnimeContentDetails'
 import AnimeProductionStats from './AnimeProductionStats'
 
 const WikiContent = () => {
-  const [wiki, setWiki] = useState<specific_wiki_about_anime | specific_wiki_about_manga>()
-  const [recommendations, setRecommendations] = useState<recommendation_wiki>()
   const { getDataWiki, getIDAndType } = useWiki()
 
   useEffect(() => {
@@ -22,12 +17,11 @@ const WikiContent = () => {
 
   return (
     <main className='p-4'>
-      <article className='max-w-400 mx-auto flex flex-col lg:flex-row p-4 gap-10'>
+      <article className='max-w-400 mx-auto grid grid-cols-4 lg:flex-row p-4 gap-10 test'>
         <WikiCard />
 
-        <section className='flex flex-col gap-4'>
+        <section className='flex flex-col gap-4 col-span-2'>
           <TitleVariants />
-
           <AnimeContentDetails />
         </section>
 
@@ -37,10 +31,15 @@ const WikiContent = () => {
         </section>
       </article>
 
-      <section className='grid grid-cols-2 gap-4 p-4'>
-        <WikiParagraph title='Synopsis' paragraph={wiki?.synopsis ? wiki?.synopsis : ''} />
-        <WikiParagraph title='Background' paragraph={wiki?.background ? wiki?.background : ''} />
-      </section>
+      <article>
+        <section className='grid grid-cols-2 gap-4 p-4'>
+          <WikiParagraph title='Synopsis' paragraph={'sss'} />
+          <WikiParagraph title='Background' paragraph={'sdad'} />
+        </section>
+        <section>
+          <h3>Recommendations</h3>
+        </section>
+      </article>
     </main>
   )
 }
