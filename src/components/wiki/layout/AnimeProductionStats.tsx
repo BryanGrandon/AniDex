@@ -4,7 +4,7 @@ import { InfoItem } from '../ui/InfoItem'
 import { TagList } from '../ui/TagList'
 
 const AnimeProductionStats = () => {
-  const { studios, score, ranked, popularity } = useStore(animeProductionStats)
+  const { studios, score, ranked, popularity, streaming } = useStore(animeProductionStats)
 
   const array = [
     { label: 'Score', value: score },
@@ -18,6 +18,15 @@ const AnimeProductionStats = () => {
       {array.map((data) => (
         <InfoItem label={data.label} value={data.value} />
       ))}
+      <p>
+        Streaming:{' '}
+        {streaming.map((el, i) => (
+          <a href={el.url} target='_blank'>
+            {el.name}
+            {i < streaming.length - 1 ? ', ' : ''}
+          </a>
+        ))}
+      </p>
     </section>
   )
 }

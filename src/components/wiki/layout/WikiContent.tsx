@@ -36,6 +36,11 @@ const WikiContent = () => {
           <WikiParagraph title='Synopsis' paragraph={'sss'} />
           <WikiParagraph title='Background' paragraph={'sdad'} />
         </section>
+
+        <section>
+          <h3>Relations</h3>
+        </section>
+
         <section>
           <h3>Recommendations</h3>
         </section>

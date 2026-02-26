@@ -57,6 +57,10 @@ type anime_productions_stats = {
   score: number | string
   ranked: number | string
   popularity: number | string
+  streaming: {
+    name: string
+    url: string
+  }[]
 }
 
 export const animeProductionStats = atom<anime_productions_stats>({
@@ -64,4 +68,10 @@ export const animeProductionStats = atom<anime_productions_stats>({
   score: '',
   ranked: '',
   popularity: '',
+  streaming: [
+    {
+      name: '',
+      url: '',
+    },
+  ],
 })

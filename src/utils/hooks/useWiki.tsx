@@ -22,27 +22,39 @@ const useWiki = () => {
     window.location.href = WIKI
   }
 
+  type set_wiki_content = {
+    type: string
+    image: string
+    status: string
+  }
+
+  const setWikiContent = ({ type, image, status }: set_wiki_content) => {
+    const wikiDataCard = { type, image, status }
+    wikiContentCard.set(wikiDataCard)
+  }
+
+  type set_wiki_titles = {
+    title: string
+    alternativeTitles: string[]
+  }
+
+  const setWikiTitles = ({ title, alternativeTitles }: set_wiki_titles) => {
+    const allTitles = { title, alternativeTitles }
+    wikiTitles.set(allTitles)
+  }
+
   const getContentWiki = async () => {
     const { ID, TYPE } = getIDAndType()
 
     const URL_FULL_DATA = `https://api.jikan.moe/v4/${TYPE}/${ID}/full`
+    const URL_RECOMMENDATIONS = `https://api.jikan.moe/v4/${TYPE}/${ID}/recommendations`
 
     switch (TYPE) {
       case 'anime':
         const animeWiki = await getContentAnimeWiki(URL_FULL_DATA)
 
-        const wikiDataCard = {
-          type: TYPE,
-          image: animeWiki.image,
-          status: animeWiki?.status,
-        }
-        wikiContentCard.set(wikiDataCard)
-
-        const allTitles = {
-          title: animeWiki.title,
-          alternativeTitles: animeWiki.alternative_titles,
-        }
-        wikiTitles.set(allTitles)
+        setWikiContent({ type: TYPE, image: animeWiki.image, status: animeWiki.status })
+        setWikiTitles({ title: animeWiki.title, alternativeTitles: animeWiki.alternative_titles })
 
         const animeTrailer = {
           title: animeWiki.title,
@@ -67,6 +79,7 @@ const useWiki = () => {
           score: animeWiki.productionStats.score,
           ranked: animeWiki.productionStats.ranked,
           popularity: animeWiki.productionStats.popularity,
+          streaming: animeWiki.productionStats.streaming,
         }
         animeProductionStats.set(wikiDataProductionStats)
 
@@ -74,7 +87,8 @@ const useWiki = () => {
 
       case 'manga':
         const mangaWiki = await getContentMangaWiki(URL_FULL_DATA)
-
+        setWikiContent({ type: TYPE, image: mangaWiki.image, status: mangaWiki.status })
+        setWikiTitles({ title: mangaWiki.title, alternativeTitles: mangaWiki.alternative_titles })
         break
     }
   }
