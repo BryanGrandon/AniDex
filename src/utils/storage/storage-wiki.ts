@@ -32,25 +32,18 @@ export const wikiAnimeTrailer = atom<wiki_anime_trailer>({
   youtube_id: '',
 })
 
-type anime_content_details = {
-  type: string
-  episode?: number | string
-  duration?: string
-  year?: number | string
-  genres?: string[]
-  explicit_genres?: string[]
-  themes?: string[]
+type content_details = {
+  label: string
+  value: string | number | string[]
+  forList?: boolean
 }
 
-export const animeContentDetails = atom<anime_content_details>({
-  type: '',
-  episode: 0,
-  duration: '',
-  year: '',
-  genres: [],
-  explicit_genres: [],
-  themes: [],
-})
+export const contentDetails = atom<content_details[]>([
+  {
+    label: '',
+    value: '',
+  },
+])
 
 type anime_productions_stats = {
   studios: string[]

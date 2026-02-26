@@ -5,7 +5,7 @@ import WikiParagraph from '../ui/WikiParagraph'
 import WikiCard from './WikiCard'
 import TitleVariants from '../ui/TitleVariants'
 import AnimeTrailer from '../ui/AnimeTrailer'
-import AnimeContentDetails from './AnimeContentDetails'
+import ContentDetails from './ContentDetails'
 import AnimeProductionStats from './AnimeProductionStats'
 
 const WikiContent = () => {
@@ -22,7 +22,7 @@ const WikiContent = () => {
 
         <section className='flex flex-col gap-4 col-span-2'>
           <TitleVariants />
-          <AnimeContentDetails />
+          <ContentDetails />
         </section>
 
         <section>

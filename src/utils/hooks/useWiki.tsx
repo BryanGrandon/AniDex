@@ -2,7 +2,8 @@ import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content/getContentWiki'
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
-import { wikiContentCard, wikiTitles, wikiAnimeTrailer, animeContentDetails, animeProductionStats } from '../storage/storage-wiki'
+import { wikiAnimeTrailer, animeProductionStats } from '../storage/storage-wiki'
+import { setContentDetails, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -22,27 +23,6 @@ const useWiki = () => {
     window.location.href = WIKI
   }
 
-  type set_wiki_content = {
-    type: string
-    image: string
-    status: string
-  }
-
-  const setWikiContent = ({ type, image, status }: set_wiki_content) => {
-    const wikiDataCard = { type, image, status }
-    wikiContentCard.set(wikiDataCard)
-  }
-
-  type set_wiki_titles = {
-    title: string
-    alternativeTitles: string[]
-  }
-
-  const setWikiTitles = ({ title, alternativeTitles }: set_wiki_titles) => {
-    const allTitles = { title, alternativeTitles }
-    wikiTitles.set(allTitles)
-  }
-
   const getContentWiki = async () => {
     const { ID, TYPE } = getIDAndType()
 
@@ -56,23 +36,18 @@ const useWiki = () => {
         setWikiContent({ type: TYPE, image: animeWiki.image, status: animeWiki.status })
         setWikiTitles({ title: animeWiki.title, alternativeTitles: animeWiki.alternative_titles })
 
-        const animeTrailer = {
-          title: animeWiki.title,
-          youtube_id: animeWiki.youtube_id,
-        }
+        const animeTrailer = { title: animeWiki.title, youtube_id: animeWiki.youtube_id }
         wikiAnimeTrailer.set(animeTrailer)
 
-        const wikiDataDetails = {
-          type: animeWiki.contentDetails.type,
-          episode: animeWiki.contentDetails.episode,
-          duration: animeWiki.contentDetails.duration,
-          year: animeWiki.contentDetails.year,
-          genres: animeWiki.contentDetails.genres,
-          explicit_genres: animeWiki.contentDetails.explicit_genres,
-          themes: animeWiki.contentDetails.themes,
-          streaming: animeWiki.productionStats.streaming,
-        }
-        animeContentDetails.set(wikiDataDetails)
+        setContentDetails([
+          { label: 'Type', value: animeWiki.contentDetails.type },
+          { label: 'Episodes', value: animeWiki.contentDetails.episode },
+          { label: 'Duration', value: animeWiki.contentDetails.duration },
+          { label: 'Year', value: animeWiki.contentDetails.year },
+          { label: 'Genres', value: animeWiki.contentDetails.genres, forList: true },
+          { label: 'Explicit Genres', value: animeWiki.contentDetails.explicit_genres, forList: true },
+          { label: 'Themes', value: animeWiki.contentDetails.themes, forList: true },
+        ])
 
         const wikiDataProductionStats = {
           studios: animeWiki.productionStats.studios,
