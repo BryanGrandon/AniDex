@@ -1,10 +1,5 @@
 import { atom } from 'nanostores'
-
-type wiki_content_card = {
-  type: string
-  image: string
-  status: string
-}
+import type { details_and_production, wiki_anime_trailer, wiki_content_card, wiki_streaming, wiki_titles } from '../interfaces/wiki/logic'
 
 export const wikiContentCard = atom<wiki_content_card>({
   type: '',
@@ -12,56 +7,33 @@ export const wikiContentCard = atom<wiki_content_card>({
   status: '',
 })
 
-type wiki_titles = {
-  title: string
-  alternativeTitles: string[]
-}
-
 export const wikiTitles = atom<wiki_titles>({
   title: '',
   alternativeTitles: [],
 })
-
-type wiki_anime_trailer = {
-  title: string
-  youtube_id: string
-}
 
 export const wikiAnimeTrailer = atom<wiki_anime_trailer>({
   title: '',
   youtube_id: '',
 })
 
-type content_details = {
-  label: string
-  value: string | number | string[]
-  forList?: boolean
-}
-
-export const contentDetails = atom<content_details[]>([
+export const contentDetails = atom<details_and_production[]>([
   {
     label: '',
     value: '',
   },
 ])
 
-type anime_productions_stats = {
-  studios: string[]
-  score: number | string
-  ranked: number | string
-  popularity: number | string
-  streaming: {
-    name: string
-    url: string
-  }[]
-}
+export const productionStats = atom<details_and_production[]>([
+  {
+    label: '',
+    value: '',
+  },
+])
 
-export const animeProductionStats = atom<anime_productions_stats>({
-  studios: [],
-  score: '',
-  ranked: '',
-  popularity: '',
-  streaming: [
+export const streaming = atom<wiki_streaming>({
+  label: '',
+  items: [
     {
       name: '',
       url: '',

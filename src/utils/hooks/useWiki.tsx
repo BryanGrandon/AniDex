@@ -2,8 +2,8 @@ import { getIndividualInfo } from '../../services/api/getIndividualInfo'
 import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content/getContentWiki'
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
-import { wikiAnimeTrailer, animeProductionStats } from '../storage/storage-wiki'
-import { setContentDetails, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
+import { wikiAnimeTrailer } from '../storage/storage-wiki'
+import { setContentDetails, setProductionStats, setStreaming, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -49,14 +49,14 @@ const useWiki = () => {
           { label: 'Themes', value: animeWiki.contentDetails.themes, forList: true },
         ])
 
-        const wikiDataProductionStats = {
-          studios: animeWiki.productionStats.studios,
-          score: animeWiki.productionStats.score,
-          ranked: animeWiki.productionStats.ranked,
-          popularity: animeWiki.productionStats.popularity,
-          streaming: animeWiki.productionStats.streaming,
-        }
-        animeProductionStats.set(wikiDataProductionStats)
+        setProductionStats([
+          { label: 'Studios', value: animeWiki.productionStats.studios, forList: true },
+          { label: 'Score', value: animeWiki.productionStats.score },
+          { label: 'Ranked', value: animeWiki.productionStats.ranked },
+          { label: 'Popularity', value: animeWiki.productionStats.popularity },
+        ])
+
+        setStreaming(animeWiki.productionStats.streaming)
 
         break
 

@@ -1,32 +1,32 @@
-import { contentDetails, wikiContentCard, wikiTitles } from '../../utils/storage/storage-wiki'
+import type { details_and_production, wiki_content_card, wiki_streaming, wiki_titles } from '../../utils/interfaces/wiki/logic'
+import { contentDetails, productionStats, streaming, wikiContentCard, wikiTitles } from '../../utils/storage/storage-wiki'
 
-type set_wiki_content = {
-  type: string
-  image: string
-  status: string
-}
+// GENERAL
 
-export const setWikiContent = ({ type, image, status }: set_wiki_content) => {
+export const setWikiContent = ({ type, image, status }: wiki_content_card) => {
   const wikiDataCard = { type, image, status }
   wikiContentCard.set(wikiDataCard)
 }
 
-type set_wiki_titles = {
-  title: string
-  alternativeTitles: string[]
-}
-
-export const setWikiTitles = ({ title, alternativeTitles }: set_wiki_titles) => {
+export const setWikiTitles = ({ title, alternativeTitles }: wiki_titles) => {
   const allTitles = { title, alternativeTitles }
   wikiTitles.set(allTitles)
 }
 
-type set_content_details = {
-  label: string
-  value: string | number | string[]
-  forList?: boolean
+export const setContentDetails = (details: details_and_production[]) => {
+  contentDetails.set(details)
 }
 
-export const setContentDetails = (details: set_content_details[]) => {
-  contentDetails.set(details)
+export const setProductionStats = (stats: details_and_production[]) => {
+  productionStats.set(stats)
+}
+
+// ANIME
+
+export const setStreaming = (stream: { name: string; url: string }[]) => {
+  const streamData = {
+    label: 'Streaming',
+    items: stream,
+  }
+  streaming.set(streamData)
 }

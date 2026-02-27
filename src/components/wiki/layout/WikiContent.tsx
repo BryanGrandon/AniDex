@@ -6,7 +6,7 @@ import WikiCard from './WikiCard'
 import TitleVariants from '../ui/TitleVariants'
 import AnimeTrailer from '../ui/AnimeTrailer'
 import ContentDetails from './ContentDetails'
-import AnimeProductionStats from './AnimeProductionStats'
+import ProductionStats from './ProductionStats'
 
 const WikiContent = () => {
   const { getDataWiki, getIDAndType } = useWiki()
@@ -27,7 +27,7 @@ const WikiContent = () => {
 
         <section>
           <AnimeTrailer />
-          <AnimeProductionStats />
+          <ProductionStats />
         </section>
       </article>
 
