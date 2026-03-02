@@ -17,7 +17,12 @@ type wiki_content_card = {
   status: string
 }
 
-export type { details_and_production, wiki_titles, wiki_content_card }
+type story_details = {
+  label: string
+  value: string
+}
+
+export type { details_and_production, wiki_titles, wiki_content_card, story_details }
 
 // ANIME
 

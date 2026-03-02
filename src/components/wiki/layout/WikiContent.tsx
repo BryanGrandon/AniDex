@@ -7,6 +7,7 @@ import TitleVariants from '../ui/TitleVariants'
 import AnimeTrailer from '../ui/AnimeTrailer'
 import ContentDetails from './ContentDetails'
 import ProductionStats from './ProductionStats'
+import StoryDetails from '../ui/StoryDetails'
 
 const WikiContent = () => {
   const { getDataWiki, getIDAndType } = useWiki()
@@ -31,17 +32,14 @@ const WikiContent = () => {
         </section>
       </article>
 
-      <article>
-        <section className='grid grid-cols-2 gap-4 p-4'>
-          <WikiParagraph title='Synopsis' paragraph={'sss'} />
-          <WikiParagraph title='Background' paragraph={'sdad'} />
-        </section>
+      <article className='max-w-400 mx-auto p-4 grid grid-cols-[570px_1fr_1fr]  gap-4'>
+        <StoryDetails />
 
-        <section>
+        <section className='test'>
           <h3>Relations</h3>
         </section>
 
-        <section>
+        <section className='test'>
           <h3>Recommendations</h3>
         </section>
       </article>

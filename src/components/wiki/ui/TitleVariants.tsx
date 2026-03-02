@@ -6,8 +6,8 @@ const TitleVariants = () => {
   const filteredAlternativeTitles = alternativeTitles?.filter((el) => el.trim() != title)
 
   return (
-    <section className='flex flex-col gap-2 '>
-      <h2 className='font-basicaline font-semibold text-2xl tracking-wide'>{title}</h2>
+    <section className='flex flex-col gap-2'>
+      <h2 className=' font-semibold text-2xl'>{title}</h2>
       <div className='font-basicaline tracking-wide'>
         {filteredAlternativeTitles?.map((el) => (
           <span>{el != filteredAlternativeTitles.at(-1) ? `${el}, ` : el}</span>
