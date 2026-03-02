@@ -1,7 +1,5 @@
 import { useEffect } from 'preact/hooks'
 import useWiki from '../../../utils/hooks/useWiki'
-import WikiParagraph from '../ui/WikiParagraph'
-
 import WikiCard from './WikiCard'
 import TitleVariants from '../ui/TitleVariants'
 import AnimeTrailer from '../ui/AnimeTrailer'

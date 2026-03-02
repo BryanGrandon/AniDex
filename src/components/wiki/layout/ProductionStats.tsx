@@ -4,16 +4,21 @@ import { InfoItem } from '../ui/InfoItem'
 import { TagList } from '../ui/TagList'
 
 const ProductionStats = () => {
-  const items = useStore(productionStats)
-  const stream = useStore(streaming)
+  const allStats = useStore(productionStats)
+  const items = allStats.filter((item) => item.forList != true)
+  const list = allStats.filter((item) => item.forList == true)
+  const stream = useStore(streaming) //
 
   return (
     <section className='flex flex-col gap-2'>
-      {items.map((item) => (
-        <>
-          {item.forList ? <TagList label={item.label} items={Array.isArray(item.value) ? item.value : []} /> : <InfoItem key={item.label} label={item.label} value={item.value ? item.value : 'N/A'} />}
-        </>
+      {list.map((item) => (
+        <TagList label={item.label} items={Array.isArray(item.value) ? item.value : []} />
       ))}
+
+      {items.map((item) => (
+        <InfoItem key={item.label} label={item.label} value={item.value ? item.value : 'N/A'} />
+      ))}
+
       {/* Create a component for streaming links */}
       <p>
         {stream.label}:{' '}
