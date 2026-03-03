@@ -3,7 +3,7 @@ import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
 import { wikiAnimeTrailer } from '../storage/storage-wiki'
-import { setContentDetails, setProductionStats, setStoryDetails, setStreaming, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
+import { setContentDetails, setProductionStats, setRelations, setStoryDetails, setStreaming, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -63,6 +63,8 @@ const useWiki = () => {
           { label: 'Background', value: animeWiki.background },
         ])
 
+        setRelations(animeWiki.relations)
+
         break
 
       case 'manga':
@@ -74,6 +76,9 @@ const useWiki = () => {
           { label: 'Synopsis', value: mangaWiki.synopsis },
           { label: 'Background', value: mangaWiki.background },
         ])
+
+        setRelations(mangaWiki.relations)
+
         break
     }
   }

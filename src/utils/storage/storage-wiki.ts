@@ -1,5 +1,5 @@
 import { atom } from 'nanostores'
-import type { details_and_production, story_details, wiki_anime_trailer, wiki_content_card, wiki_streaming, wiki_titles } from '../interfaces/wiki/logic'
+import type { details_and_production, relations_data, story_details, wiki_anime_trailer, wiki_content_card, wiki_streaming, wiki_titles } from '../interfaces/wiki/logic'
 
 export const wikiContentCard = atom<wiki_content_card>({
   type: '',
@@ -45,5 +45,19 @@ export const storyDetails = atom<story_details[]>([
   {
     label: '',
     value: '',
+  },
+])
+
+export const relations = atom<relations_data[]>([
+  {
+    relation: '',
+    entry: [
+      {
+        mal_id: 0,
+        type: '',
+        name: '',
+        url: '',
+      },
+    ],
   },
 ])

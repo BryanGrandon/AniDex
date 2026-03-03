@@ -1,5 +1,7 @@
 // GENERAL
 
+import type { relations } from '../../storage/storage-wiki'
+
 type details_and_production = {
   label: string
   value: string | number | string[]
@@ -22,7 +24,17 @@ type story_details = {
   value: string
 }
 
-export type { details_and_production, wiki_titles, wiki_content_card, story_details }
+type relations_data = {
+  relation: string
+  entry: {
+    mal_id: number
+    type: string
+    name: string
+    url: string
+  }[]
+}
+
+export type { details_and_production, wiki_titles, wiki_content_card, story_details, relations_data }
 
 // ANIME
 

@@ -6,6 +6,7 @@ import AnimeTrailer from '../ui/AnimeTrailer'
 import ContentDetails from './ContentDetails'
 import ProductionStats from './ProductionStats'
 import StoryDetails from '../ui/StoryDetails'
+import Relations from './Relations'
 
 const WikiContent = () => {
   const { getDataWiki, getIDAndType } = useWiki()
@@ -33,8 +34,9 @@ const WikiContent = () => {
       <article className='max-w-400 mx-auto p-4 grid grid-cols-[570px_1fr_1fr]  gap-4'>
         <StoryDetails />
 
-        <section className='test'>
+        <section className='test flex flex-col gap-4'>
           <h3>Relations</h3>
+          <Relations />
         </section>
 
         <section className='test'>
