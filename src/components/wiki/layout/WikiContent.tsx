@@ -7,6 +7,7 @@ import ContentDetails from './ContentDetails'
 import ProductionStats from './ProductionStats'
 import StoryDetails from '../ui/StoryDetails'
 import Relations from './Relations'
+import Recommendation from './Recommendation'
 
 const WikiContent = () => {
   const { getDataWiki, getIDAndType } = useWiki()
@@ -41,6 +42,7 @@ const WikiContent = () => {
 
         <section className='test'>
           <h3>Recommendations</h3>
+          <Recommendation />
         </section>
       </article>
     </main>

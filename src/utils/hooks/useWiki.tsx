@@ -3,7 +3,7 @@ import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
 import { wikiAnimeTrailer } from '../storage/storage-wiki'
-import { setContentDetails, setProductionStats, setRelations, setStoryDetails, setStreaming, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
+import { setContentDetails, setProductionStats, setRecommendations, setRelations, setStoryDetails, setStreaming, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -32,6 +32,8 @@ const useWiki = () => {
     switch (TYPE) {
       case 'anime':
         const animeWiki = await getContentAnimeWiki(URL_FULL_DATA)
+        const recommendationAll: recommendation_wiki = await getIndividualInfo({ url: URL_RECOMMENDATIONS })
+        setRecommendations(recommendationAll ? recommendationAll.data.slice(0, 6) : [])
 
         setWikiContent({ type: TYPE, image: animeWiki.image, status: animeWiki.status })
         setWikiTitles({ title: animeWiki.title, alternativeTitles: animeWiki.alternative_titles })

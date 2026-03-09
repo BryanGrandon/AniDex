@@ -1,23 +1,25 @@
 interface recommendation_wiki {
-  data: {
-    entry: {
-      mal_id: number
-      url: string
-      images: {
-        jpg: {
-          image_url: string
-          small_image_url: string
-          large_image_url: string
-        }
-        webp: {
-          image_url: string
-          small_image_url: string
-          large_image_url: string
-        }
-      }
-      title: string
-    }
-  }[]
+  data: recommendation_entry[]
 }
 
-export type { recommendation_wiki }
+interface recommendation_entry {
+  entry: {
+    mal_id: number
+    url: string
+    images: {
+      jpg: {
+        image_url: string
+        small_image_url: string
+        large_image_url: string
+      }
+      webp: {
+        image_url: string
+        small_image_url: string
+        large_image_url: string
+      }
+    }
+    title: string
+  }
+}
+
+export type { recommendation_wiki, recommendation_entry }

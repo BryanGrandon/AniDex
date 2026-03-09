@@ -1,5 +1,6 @@
 import type { details_and_production, relations_data, story_details, wiki_content_card, wiki_titles } from '../../utils/interfaces/wiki/logic'
-import { contentDetails, productionStats, relations, storyDetails, streaming, wikiContentCard, wikiTitles } from '../../utils/storage/storage-wiki'
+import type { recommendation_entry, recommendation_wiki } from '../../utils/interfaces/wiki/recommendation-wiki'
+import { contentDetails, productionStats, recommendations, relations, storyDetails, streaming, wikiContentCard, wikiTitles } from '../../utils/storage/storage-wiki'
 
 // GENERAL
 
@@ -27,6 +28,10 @@ export const setStoryDetails = (story: story_details[]) => {
 
 export const setRelations = (relationsData: relations_data[]) => {
   relations.set(relationsData)
+}
+
+export const setRecommendations = (recommendation: recommendation_entry[]) => {
+  recommendations.set(recommendation)
 }
 
 // ANIME

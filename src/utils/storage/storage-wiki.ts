@@ -1,5 +1,6 @@
 import { atom } from 'nanostores'
 import type { details_and_production, relations_data, story_details, wiki_anime_trailer, wiki_content_card, wiki_streaming, wiki_titles } from '../interfaces/wiki/logic'
+import type { recommendation_entry, recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 
 export const wikiContentCard = atom<wiki_content_card>({
   type: '',
@@ -59,5 +60,27 @@ export const relations = atom<relations_data[]>([
         url: '',
       },
     ],
+  },
+])
+
+export const recommendations = atom<recommendation_entry[]>([
+  {
+    entry: {
+      mal_id: 0,
+      url: '',
+      images: {
+        jpg: {
+          image_url: '',
+          small_image_url: '',
+          large_image_url: '',
+        },
+        webp: {
+          image_url: '',
+          small_image_url: '',
+          large_image_url: '',
+        },
+      },
+      title: '',
+    },
   },
 ])
