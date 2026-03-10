@@ -1,5 +1,6 @@
 import { useStore } from '@nanostores/preact'
 import { relations } from '../../../utils/storage/storage-wiki'
+import Title from '../../core/ui/Title'
 
 const Relations = () => {
   const relationsData = useStore(relations)
@@ -11,9 +12,10 @@ const Relations = () => {
     // onClick button return select last id, type and delete it after use
   }
   return (
-    <>
+    <article className='flex flex-col gap-4'>
+      <Title text='Relations' />
       {relationsData?.length > 0 ? (
-        <section className='gap-1 grid grid-cols-1 test '>
+        <section className='gap-1 grid grid-cols-1'>
           {relationsData.map((el) => (
             <section className='flex flex-col p-1 px-4 py-2  rounded overflow-hidden'>
               <p className='text-orange-400 relative text-xl font-basicaline tracking-wider'>
@@ -26,7 +28,7 @@ const Relations = () => {
           ))}
         </section>
       ) : null}
-    </>
+    </article>
   )
 }
 

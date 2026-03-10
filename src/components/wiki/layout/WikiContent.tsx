@@ -17,8 +17,8 @@ const WikiContent = () => {
   }, [])
 
   return (
-    <main className='p-4'>
-      <article className='max-w-400 mx-auto grid grid-cols-4 lg:flex-row p-4 gap-10 test'>
+    <main className='flex flex-col gap-5 p-4'>
+      <article className='max-w-400 mx-auto flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-10'>
         <WikiCard />
 
         <section className='flex flex-col gap-4 col-span-2'>
@@ -26,25 +26,19 @@ const WikiContent = () => {
           <ContentDetails />
         </section>
 
-        <section>
+        <section className='flex flex-col gap-4'>
           <AnimeTrailer />
           <ProductionStats />
         </section>
       </article>
 
-      <article className='max-w-400 mx-auto p-4 grid grid-cols-[570px_1fr_1fr]  gap-4'>
+      <article className='max-w-400 mx-auto grid grid-cols-1 lg:grid-cols-[570px_1fr] gap-4'>
         <StoryDetails />
 
-        <section className='test flex flex-col gap-4'>
-          <h3>Relations</h3>
-          <Relations />
-        </section>
-
-        <section className='test'>
-          <h3>Recommendations</h3>
-          <Recommendation />
-        </section>
+        <Relations />
       </article>
+
+      <Recommendation />
     </main>
   )
 }

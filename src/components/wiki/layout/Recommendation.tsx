@@ -1,23 +1,28 @@
 import { useStore } from '@nanostores/preact'
 import { recommendations } from '../../../utils/storage/storage-wiki'
-import MiniCard from '../../core/ui/MiniCard'
+import Title from '../../core/ui/Title'
 
 const Recommendation = () => {
   const recommendationsData = useStore(recommendations)
 
   return (
-    <div>
+    <article className='max-w-400 mx-auto flex gap-4'>
       {recommendationsData?.length > 0 ? (
-        <section className='p-4 rounded-xl flex flex-col gap-4 overflow-hidden overlay glassmorphism'>
-          <h2 className='font-basicaline text-2xl relative'>Recommendations</h2>
-          <article class='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <section className=' rounded-xl flex flex-col gap-4 overflow-hidden'>
+          <Title text='Recommendations' />
+          <article class='relative flex flex-wrap justify-center gap-4'>
             {recommendationsData?.map((data) => (
-              <MiniCard image={data.entry.images.webp.large_image_url} title={data.entry.title} text={`id: ${data.entry.mal_id}`} id={data.entry.mal_id} type={'anime'} />
+              <section className='w-44'>
+                <img src={data.entry.images.webp.large_image_url} alt={data.entry.title} className='overflow-hidden rounded-xl object-fit' />
+                <abbr title={data.entry.title} className='no-underline'>
+                  <h3 className='overflow-hidden whitespace-nowrap text-ellipsis text-sm text-gray-400'>{data.entry.title}</h3>
+                </abbr>
+              </section>
             ))}
           </article>
         </section>
       ) : null}
-    </div>
+    </article>
   )
 }
 
