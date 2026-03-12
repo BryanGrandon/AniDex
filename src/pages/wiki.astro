@@ -7,8 +7,9 @@ import WikiLayout from '../layouts/WikiLayout.astro'
   <section>
     <h1>Wiki</h1>
   </section>
-
-  <WikiContent client:only />
+  <article class='max-w-400 mx-auto w-full p-4'>
+    <WikiContent client:only />
+  </article>
 
   <footer></footer>
 </WikiLayout>

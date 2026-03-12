@@ -6,7 +6,7 @@ const Recommendation = () => {
   const recommendationsData = useStore(recommendations)
 
   return (
-    <article className='max-w-400 mx-auto flex gap-4'>
+    <article className='max-w-400 mx-auto flex gap-4 w-full'>
       {recommendationsData?.length > 0 ? (
         <section className=' rounded-xl flex flex-col gap-4 overflow-hidden'>
           <Title text='Recommendations' />
