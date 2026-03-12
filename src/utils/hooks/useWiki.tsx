@@ -3,7 +3,7 @@ import { getContentAnimeWiki, getContentMangaWiki } from '../../services/content
 import type { recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
 import { WIKI } from '../constants/location'
 import { wikiAnimeTrailer } from '../storage/storage-wiki'
-import { setContentDetails, setProductionStats, setRecommendations, setRelations, setStoryDetails, setStreaming, setWikiContent, setWikiTitles } from '../../services/content/setContentWiki'
+import { setMainContent, setPosterContent, setProductionStats, setRecommendations, setStreaming } from '../../services/content/setContentWiki'
 
 const useWiki = () => {
   type handle_media_select = {
@@ -35,21 +35,32 @@ const useWiki = () => {
         const recommendationAll: recommendation_wiki = await getIndividualInfo({ url: URL_RECOMMENDATIONS })
         setRecommendations(recommendationAll ? recommendationAll.data.slice(0, 6) : [])
 
-        setWikiContent({ type: TYPE, image: animeWiki.image, status: animeWiki.status })
-        setWikiTitles({ title: animeWiki.title, alternativeTitles: animeWiki.alternative_titles })
+        setPosterContent({
+          image: { type: TYPE, url: animeWiki.image, status: animeWiki.status },
+          stats: [
+            { label: 'Genres', value: animeWiki.contentDetails.genres },
+            { label: 'Explicit Genres', value: animeWiki.contentDetails.explicit_genres },
+            { label: 'Themes', value: animeWiki.contentDetails.themes },
+          ],
+        })
+
+        setMainContent({
+          allTitles: { title: animeWiki.title, alternativeTitles: animeWiki.alternative_titles },
+          details: [
+            { label: 'Type', value: animeWiki.contentDetails.type },
+            { label: 'Episodes', value: animeWiki.contentDetails.episode },
+            { label: 'Duration', value: animeWiki.contentDetails.duration },
+            { label: 'Year', value: animeWiki.contentDetails.year },
+          ],
+          story: [
+            { label: 'Synopsis', value: animeWiki.synopsis },
+            { label: 'Background', value: animeWiki.background },
+          ],
+          relations: animeWiki.relations,
+        })
 
         const animeTrailer = { title: animeWiki.title, youtube_id: animeWiki.youtube_id }
         wikiAnimeTrailer.set(animeTrailer)
-
-        setContentDetails([
-          { label: 'Type', value: animeWiki.contentDetails.type },
-          { label: 'Episodes', value: animeWiki.contentDetails.episode },
-          { label: 'Duration', value: animeWiki.contentDetails.duration },
-          { label: 'Year', value: animeWiki.contentDetails.year },
-          { label: 'Genres', value: animeWiki.contentDetails.genres, forList: true },
-          { label: 'Explicit Genres', value: animeWiki.contentDetails.explicit_genres, forList: true },
-          { label: 'Themes', value: animeWiki.contentDetails.themes, forList: true },
-        ])
 
         setProductionStats([
           { label: 'Studios', value: animeWiki.productionStats.studios, forList: true },
@@ -60,26 +71,10 @@ const useWiki = () => {
 
         setStreaming(animeWiki.productionStats.streaming)
 
-        setStoryDetails([
-          { label: 'Synopsis', value: animeWiki.synopsis },
-          { label: 'Background', value: animeWiki.background },
-        ])
-
-        setRelations(animeWiki.relations)
-
         break
 
       case 'manga':
         const mangaWiki = await getContentMangaWiki(URL_FULL_DATA)
-        setWikiContent({ type: TYPE, image: mangaWiki.image, status: mangaWiki.status })
-        setWikiTitles({ title: mangaWiki.title, alternativeTitles: mangaWiki.alternative_titles })
-
-        setStoryDetails([
-          { label: 'Synopsis', value: mangaWiki.synopsis },
-          { label: 'Background', value: mangaWiki.background },
-        ])
-
-        setRelations(mangaWiki.relations)
 
         break
     }

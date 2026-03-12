@@ -1,29 +1,47 @@
 import { atom } from 'nanostores'
-import type { details_and_production, relations_data, story_details, wiki_anime_trailer, wiki_content_card, wiki_streaming, wiki_titles } from '../interfaces/wiki/logic'
-import type { recommendation_entry, recommendation_wiki } from '../interfaces/wiki/recommendation-wiki'
+import type { details_and_production, main_content, poster_content, wiki_anime_trailer, wiki_streaming } from '../interfaces/wiki/logic'
+import type { recommendation_entry } from '../interfaces/wiki/recommendation-wiki'
 
-export const wikiContentCard = atom<wiki_content_card>({
-  type: '',
-  image: '',
-  status: '',
+export const posterContent = atom<poster_content>({
+  image: {
+    type: '',
+    url: '',
+    status: '',
+  },
+  stats: [
+    {
+      label: '',
+      value: [''],
+    },
+  ],
 })
 
-export const wikiTitles = atom<wiki_titles>({
-  title: '',
-  alternativeTitles: [],
+export const wikiMainContent = atom<main_content>({
+  allTitles: {
+    title: '',
+    alternativeTitles: [],
+  },
+  details: [],
+  story: [],
+  relations: [
+    {
+      relation: '',
+      entry: [
+        {
+          mal_id: 0,
+          type: '',
+          name: '',
+          url: '',
+        },
+      ],
+    },
+  ],
 })
 
 export const wikiAnimeTrailer = atom<wiki_anime_trailer>({
   title: '',
   youtube_id: '',
 })
-
-export const contentDetails = atom<details_and_production[]>([
-  {
-    label: '',
-    value: '',
-  },
-])
 
 export const productionStats = atom<details_and_production[]>([
   {
@@ -41,27 +59,6 @@ export const streaming = atom<wiki_streaming>({
     },
   ],
 })
-
-export const storyDetails = atom<story_details[]>([
-  {
-    label: '',
-    value: '',
-  },
-])
-
-export const relations = atom<relations_data[]>([
-  {
-    relation: '',
-    entry: [
-      {
-        mal_id: 0,
-        type: '',
-        name: '',
-        url: '',
-      },
-    ],
-  },
-])
 
 export const recommendations = atom<recommendation_entry[]>([
   {

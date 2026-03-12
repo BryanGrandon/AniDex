@@ -1,33 +1,21 @@
-import type { details_and_production, relations_data, story_details, wiki_content_card, wiki_titles } from '../../utils/interfaces/wiki/logic'
-import type { recommendation_entry, recommendation_wiki } from '../../utils/interfaces/wiki/recommendation-wiki'
-import { contentDetails, productionStats, recommendations, relations, storyDetails, streaming, wikiContentCard, wikiTitles } from '../../utils/storage/storage-wiki'
+import type { details_and_production, main_content, poster_content } from '../../utils/interfaces/wiki/logic'
+import type { recommendation_entry } from '../../utils/interfaces/wiki/recommendation-wiki'
+import { posterContent, productionStats, recommendations, streaming, wikiMainContent } from '../../utils/storage/storage-wiki'
 
 // GENERAL
 
-export const setWikiContent = ({ type, image, status }: wiki_content_card) => {
-  const wikiDataCard = { type, image, status }
-  wikiContentCard.set(wikiDataCard)
+export const setPosterContent = ({ image, stats }: poster_content) => {
+  posterContent.set({ image, stats })
 }
 
-export const setWikiTitles = ({ title, alternativeTitles }: wiki_titles) => {
-  const allTitles = { title, alternativeTitles }
-  wikiTitles.set(allTitles)
+export const setMainContent = ({ allTitles, details, story, relations }: main_content) => {
+  wikiMainContent.set({ allTitles, details, story, relations })
 }
 
-export const setContentDetails = (details: details_and_production[]) => {
-  contentDetails.set(details)
-}
+// -----
 
 export const setProductionStats = (stats: details_and_production[]) => {
   productionStats.set(stats)
-}
-
-export const setStoryDetails = (story: story_details[]) => {
-  storyDetails.set(story)
-}
-
-export const setRelations = (relationsData: relations_data[]) => {
-  relations.set(relationsData)
 }
 
 export const setRecommendations = (recommendation: recommendation_entry[]) => {
