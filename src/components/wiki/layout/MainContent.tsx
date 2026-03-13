@@ -38,7 +38,7 @@ const MainContent = () => {
         {allStory.map((detail) => (
           <section key={detail.label} className='mb-4 flex flex-col gap-2'>
             <Title text={detail.label} />
-            <p className='text-gray-300 overflow-auto pr-1'>{detail.value}</p>
+            <p className='text-gray-400 overflow-auto pr-1'>{detail.value}</p>
           </section>
         ))}
       </section>
@@ -48,7 +48,7 @@ const MainContent = () => {
         {relations?.length > 0 ? (
           <section className='flex flex-wrap gap-4'>
             {relations.map((el) => (
-              <section className='flex flex-col p-2 rounded overflow-hidden test'>
+              <section className='flex flex-col p-2 rounded overflow-hidden border border-gray-500'>
                 <p className='text-gray-400 relative text-xl font-basicaline tracking-wider'>
                   {el.relation}: {el.entry[0].type}
                 </p>

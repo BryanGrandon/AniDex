@@ -15,7 +15,7 @@ const WikiContent = () => {
 
   return (
     <>
-      <article className='grid grid-cols-[260px_1fr_320px] gap-10 p-4 test '>
+      <article className='grid grid-cols-[260px_1fr_2px_320px] gap-10 p-4 rounded-xl border border-gray-500'>
         <article>
           <PosterContent />
         </article>
@@ -23,6 +23,8 @@ const WikiContent = () => {
         <article className='flex flex-col gap-5 lg:gap-10'>
           <MainContent />
         </article>
+
+        <div className='w-0.5 bg-gray-700' />
 
         <section className='flex flex-col gap-4'>
           <AnimeTrailer />
