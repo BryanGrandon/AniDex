@@ -2,11 +2,10 @@ import { useStore } from '@nanostores/preact'
 import { wikiMainContent } from '../../../utils/storage/storage-wiki'
 import { InfoItem } from '../ui/InfoItem'
 import Title from '../../core/ui/Title'
+import TitleAndItsVariants from '../ui/TitleAndItsVariants'
 
 const MainContent = () => {
-  const { allTitles, details, story, relations } = useStore(wikiMainContent)
-
-  const filteredAlternativeTitles = allTitles.alternativeTitles?.filter((el) => el.trim() != allTitles.title)
+  const { details, story, relations } = useStore(wikiMainContent)
   const allStory = story.filter((detail) => detail.value.length > 0)
 
   const handlerClickRelations = ({ id, type }: { id: number; type: string }) => {
@@ -19,16 +18,9 @@ const MainContent = () => {
 
   return (
     <article>
-      <section className='flex flex-col gap-2'>
-        <h2 className=' font-semibold text-2xl'>{allTitles.title}</h2>
-        <div className='font-basicaline tracking-wide'>
-          {filteredAlternativeTitles?.map((el) => (
-            <span>{el != filteredAlternativeTitles.at(-1) ? `${el}, ` : el}</span>
-          ))}
-        </div>
-      </section>
+      <TitleAndItsVariants moreClass='hidden md:flex' />
 
-      <section className='flex flex-wrap gap-4 my-4'>
+      <section className='flex flex-col md:flex-row flex-wrap gap-4 my-4'>
         {details.map((item) => (
           <InfoItem key={item.label} label={item.label} value={item.value ? item.value : 'N/A'} />
         ))}
@@ -38,7 +30,7 @@ const MainContent = () => {
         {allStory.map((detail) => (
           <section key={detail.label} className='mb-4 flex flex-col gap-2'>
             <Title text={detail.label} />
-            <p className='text-gray-400 overflow-auto pr-1'>{detail.value}</p>
+            <p className='text-gray-400 overflow-auto pr-1 max-h-40'>{detail.value}</p>
           </section>
         ))}
       </section>

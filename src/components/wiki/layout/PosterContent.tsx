@@ -1,11 +1,13 @@
 import { useStore } from '@nanostores/preact'
 import { posterContent } from '../../../utils/storage/storage-wiki'
 import { TagList } from '../ui/TagList'
+import TitleAndItsVariants from '../ui/TitleAndItsVariants'
 
 const PosterContent = () => {
   const { image, stats } = useStore(posterContent)
   return (
     <article className='flex flex-col gap-4'>
+      <TitleAndItsVariants moreClass='md:hidden' />
       <section className=''>
         <section className='flex overflow-x-hidden rounded-xl relative'>
           <h2 className='font-basicaline text-2xl text-center absolute top-0 left-0 right-0 bg-gray-700/70'>{image.type}</h2>
@@ -13,7 +15,7 @@ const PosterContent = () => {
           <p className='absolute bottom-0 left-0 right-0 bg-gray-700/70 text-center'>{image.status}</p>
         </section>
       </section>
-      <section>
+      <section className='flex flex-col gap-2'>
         {stats.map((item) => (
           <TagList label={item.label} items={Array.isArray(item.value) ? item.value : []} />
         ))}

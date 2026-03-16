@@ -58,10 +58,6 @@ const useWiki = () => {
           ],
           relations: animeWiki.relations,
         })
-
-        const animeTrailer = { title: animeWiki.title, youtube_id: animeWiki.youtube_id }
-        wikiAnimeTrailer.set(animeTrailer)
-
         setProductionStats([
           { label: 'Studios', value: animeWiki.productionStats.studios, forList: true },
           { label: 'Score', value: animeWiki.productionStats.score },
@@ -69,12 +65,45 @@ const useWiki = () => {
           { label: 'Popularity', value: animeWiki.productionStats.popularity },
         ])
 
+        const animeTrailer = { title: animeWiki.title, youtube_id: animeWiki.youtube_id }
+        wikiAnimeTrailer.set(animeTrailer)
         setStreaming(animeWiki.productionStats.streaming)
 
         break
 
       case 'manga':
         const mangaWiki = await getContentMangaWiki(URL_FULL_DATA)
+        const recommendationManga: recommendation_wiki = await getIndividualInfo({ url: URL_RECOMMENDATIONS })
+        setRecommendations(recommendationManga ? recommendationManga.data.slice(0, 6) : [])
+
+        setPosterContent({
+          image: { type: TYPE, url: mangaWiki.image, status: mangaWiki.status },
+          stats: [
+            { label: 'Genres', value: mangaWiki.contentDetails.genres },
+            { label: 'Explicit Genres', value: mangaWiki.contentDetails.explicit_genres },
+            { label: 'Themes', value: mangaWiki.contentDetails.themes },
+          ],
+        })
+        setMainContent({
+          allTitles: { title: mangaWiki.title, alternativeTitles: mangaWiki.alternative_titles },
+          details: [
+            { label: 'Type', value: mangaWiki.contentDetails.type },
+            { label: 'Chapters', value: mangaWiki.contentDetails.chapters },
+            { label: 'Volumes', value: mangaWiki.contentDetails.volumes },
+          ],
+          story: [
+            { label: 'Synopsis', value: mangaWiki.synopsis },
+            { label: 'Background', value: mangaWiki.background },
+          ],
+          relations: mangaWiki.relations,
+        })
+
+        setProductionStats([
+          { label: 'Authors', value: mangaWiki.productionStats.authors, forList: true },
+          { label: 'Score', value: mangaWiki.productionStats.score },
+          { label: 'Ranked', value: mangaWiki.productionStats.ranked },
+          { label: 'Popularity', value: mangaWiki.productionStats.popularity },
+        ])
 
         break
     }

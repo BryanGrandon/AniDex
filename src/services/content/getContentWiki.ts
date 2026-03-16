@@ -46,19 +46,19 @@ const getContentMangaWiki = async (URL: string) => {
     background: info?.background,
     status: info?.status ? info?.status : '',
     alternative_titles: info?.titles ? info?.titles.map((el) => ' ' + el.title) : [],
-    primaryList: {
+    contentDetails: {
       type: info?.type ? info?.type : '',
       chapters: info?.chapters ? info?.chapters : 'Unknown',
       genres: info?.genres ? info.genres.map((el) => ' ' + el.name) : [],
       themes: info?.themes ? info?.themes.map((el) => ' ' + el.name) : [],
-      explicit_genres: info?.explicit_genres ? info?.explicit_genres : '',
+      explicit_genres: info?.explicit_genres ? info?.explicit_genres.map((item) => ' ' + item.name) : [],
       volumes: info?.volumes ? info?.volumes : '',
     },
-    secondaryList: {
+    productionStats: {
       authors: info?.authors.map((e) => ' ' + e.name),
-      score: info?.score ? '#' + info?.score : '',
-      ranked: info?.rank ? '#' + info?.rank : '',
-      popularity: info?.popularity ? '#' + info?.popularity : '',
+      score: info?.score ? '⭐' + info?.score : '',
+      ranked: info?.rank ? '🏆' + info?.rank : '',
+      popularity: info?.popularity ? '🔥' + info?.popularity : '',
     },
     relations: info?.relations ? info?.relations : [],
   }
