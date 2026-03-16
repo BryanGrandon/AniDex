@@ -1,9 +1,12 @@
 import { useStore } from '@nanostores/preact'
 import { recommendations } from '../../../utils/storage/storage-wiki'
 import Title from '../../core/ui/Title'
+import useWiki from '../../../utils/hooks/useWiki'
 
 const Recommendation = () => {
   const recommendationsData = useStore(recommendations)
+  const { handleMediaSelect, getIDAndType } = useWiki()
+  const { TYPE } = getIDAndType()
 
   return (
     <>
@@ -13,8 +16,12 @@ const Recommendation = () => {
             <Title text='Recommendations' />
             <article class='relative flex flex-wrap justify-center gap-4'>
               {recommendationsData?.map((data) => (
-                <section className='w-40'>
-                  <img src={data.entry.images.webp.large_image_url} alt={data.entry.title} className='overflow-hidden rounded-xl object-cover object-top max-h-55 w-40 h-full' />
+                <section className='w-40 cursor-pointer group-hover:scale-105' onClick={() => handleMediaSelect({ id: data.entry.mal_id, type: TYPE ? TYPE : 'anime' })}>
+                  <img
+                    src={data.entry.images.webp.large_image_url}
+                    alt={data.entry.title}
+                    className='overflow-hidden rounded-xl object-cover object-top max-h-55 w-40 h-full hover:border-2 hover:border-primary'
+                  />
                   <abbr title={data.entry.title} className='no-underline'>
                     <h3 className='overflow-hidden whitespace-nowrap text-ellipsis text-sm text-gray-400'>{data.entry.title}</h3>
                   </abbr>

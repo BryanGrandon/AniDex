@@ -3,18 +3,12 @@ import { wikiMainContent } from '../../../utils/storage/storage-wiki'
 import { InfoItem } from '../ui/InfoItem'
 import Title from '../../core/ui/Title'
 import TitleAndItsVariants from '../ui/TitleAndItsVariants'
+import useWiki from '../../../utils/hooks/useWiki'
 
 const MainContent = () => {
   const { details, story, relations } = useStore(wikiMainContent)
+  const { handleMediaSelect } = useWiki()
   const allStory = story.filter((detail) => detail.value.length > 0)
-
-  const handlerClickRelations = ({ id, type }: { id: number; type: string }) => {
-    localStorage.setItem('id', String(id))
-    localStorage.setItem('type', String(type))
-    window.location.href = `./wiki`
-    // create array in local storage for id and type
-    // onClick button return select last id, type and delete it after use
-  }
 
   return (
     <article>
@@ -44,7 +38,7 @@ const MainContent = () => {
                 <p className='text-gray-400 relative text-xl font-basicaline tracking-wider'>
                   {el.relation}: {el.entry[0].type}
                 </p>
-                <abbr title={el.entry[0].name} className='no-underline' onClick={() => handlerClickRelations({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
+                <abbr title={el.entry[0].name} className='no-underline' onClick={() => handleMediaSelect({ id: el.entry[0].mal_id, type: el.entry[0].type })}>
                   <h3 className='relative overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer hover:text-primary'>{el.entry[0].name}</h3>
                 </abbr>
               </section>
