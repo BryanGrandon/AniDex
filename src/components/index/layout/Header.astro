@@ -31,7 +31,7 @@ const { title, description } = data.header
       <section class='swiper-wrapper' id='my-slider'>
         {
           $dataCS?.data?.map((data) => (
-            <div class='swiper-slide'>
+            <div class='swiper-slide min-w-[166px] max-w-[166px]'>
               <DefaultCard
                 client:load
                 id={data?.mal_id}
